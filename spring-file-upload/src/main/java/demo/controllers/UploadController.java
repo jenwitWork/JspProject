@@ -25,7 +25,8 @@ public class UploadController {
 	}
 
 	@PostMapping("/multi-upload")
-	public String multipleUpload(@RequestParam(value = "files") MultipartFile file) {
+	public String multipleUpload(@RequestParam(value = "name") String name,
+			@RequestParam(value = "files") MultipartFile files[]) {
 		return "redirect:home";
 	}
 
