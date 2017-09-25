@@ -17,6 +17,7 @@
 	</div>
 	<div class="modal-body">
 		<div class="form-horizontal form-label-left">
+			<input type="hidden" name="old_serialNo" id="old_serialNo" value="${edit_form.serialNo}">
 			<div class="form-group row">
 				<label class="control-label col-md-3 col-sm-3 col-xs-12">serial
 					no.</label>
@@ -31,7 +32,6 @@
 				<div class="col-md-7 col-sm-7 col-xs-12">
 					<edit_form:input path="assetNo" class="form-control"
 						placeholder="asset no." />
-					${edit_form.inputDate }
 				</div>
 			</div>
 			<div class="form-group row">
@@ -81,12 +81,11 @@
 				<label class="control-label col-md-3 col-sm-3 col-xs-12">input
 					date</label>
 				<div class="col-md-7 col-sm-7 col-xs-12">
-					<div class=" input-group date" data-date="${edit_form.inputDate }"
-						data-date-format="dd/MM/YYYY" id="datetimepicker">
-						<input name="input_date" class="form-control"
-							placeholder="input date"
-							value="<fmt:formatDate value='${edit_form.inputDate }' pattern='dd/MM/YYYY'/>" readonly="readonly" />
-						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<div class='input-group date' id='datetimepicker1'>
+						<input type="text" name="input_date" id="input_date" class="form-control" value="${edit_form.inputDate}">						
+						<span class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
 					</div>
 				</div>
 			</div>
@@ -112,7 +111,14 @@
 </edit_form:form>
 
 <script type="text/javascript">
-	$("#datetimepicker").datetimepicker();
+	$('#datetimepicker1').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm:ss',
+		date : '${edit_form.inputDate}',
+	});
+	
+	$('#input_date').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm:ss',
+	});
 
 	$('#form-edit').on('submit', function(event) {
 		event.preventDefault();
@@ -132,7 +138,19 @@
 		rules : {
 			serialNo : {
 				required : true,
-				maxlength : 20
+				maxlength : 20,
+				remote : {
+					type : 'get',
+					url : 'handheld-lotus/check-dup',
+					data : {
+						serialNo : function() {
+							$('#form-create input[name=serialNo]').val()
+						},
+						old_serialNo : function() {
+							$('#form-create input[name=old_serialNo]').val()
+						}
+					}
+				}
 			},
 			assetNo : {
 				required : true,

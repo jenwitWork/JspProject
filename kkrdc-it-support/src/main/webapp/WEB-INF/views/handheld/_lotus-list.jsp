@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<table class="table table-striped table-hover" id="table-data">
+<table class="table table-responsive table-striped table-hover" id="table-data">
 	<thead>
 		<tr>
 			<th class="text-center">#</th>
@@ -35,9 +35,12 @@
 </table>
 
 <script type="text/javascript">
+
 	$('#table-data').DataTable({
 		ordering : false,
 		searching : false,
+		responsive : true,
+		"scrollY": "300px",
 	});
 
 	$('.btn-view').on('click', function(event) {

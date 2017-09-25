@@ -17,97 +17,56 @@
 
 <!-- Bootstrap -->
 <link
-	href="resources/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap/dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Font Awesome -->
 <link
-	href="resources/gentelella-master/vendors/font-awesome/css/font-awesome.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- NProgress -->
-<link href="resources/gentelella-master/vendors/nprogress/nprogress.css"
+<link
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/nprogress/nprogress.css"
 	rel="stylesheet">
 <!-- iCheck -->
 <link
-	href="resources/gentelella-master/vendors/iCheck/skins/flat/green.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/iCheck/skins/flat/green.css"
 	rel="stylesheet">
 
 <!-- bootstrap-progressbar -->
 <link
-	href="resources/gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css"
 	rel="stylesheet">
 <!-- JQVMap -->
 <link
-	href="resources/gentelella-master/vendors/jqvmap/dist/jqvmap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/jqvmap.css"
 	rel="stylesheet" />
 <!-- bootstrap-datepicker -->
 <link
-	href="resources/bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.css"
+	href="<%=request.getContextPath()%>/resources/bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.css"
 	rel="stylesheet">
 
 <!-- Datatables -->
 <link
-	href="resources/gentelella-master/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-bs/css/dataTables.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="resources/gentelella-master/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="resources/gentelella-master/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="resources/gentelella-master/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="resources/gentelella-master/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.css"
 	rel="stylesheet">
 
 <!-- Custom Theme Style -->
-<link href="resources/gentelella-master/build/css/custom.min.css"
+<link
+	href="<%=request.getContextPath()%>/resources/gentelella-master/build/css/custom.css"
 	rel="stylesheet">
 </head>
-
-<style>
-label.error {
-	color: #ff5151;
-}
-
-.btn-view {
-	color: blue;
-}
-
-.btn-edit {
-	color: green;
-}
-
-.btn-delete {
-	color: #ff5151;
-}
-
-.Using {
-	color: #26e026;
-	font-weight: bold;
-}
-
-.Repairing {
-	color: #ff5151;
-	font-weight: bold;
-}
-
-.RHS {
-	color: orange;
-	font-weight: bold;
-}
-
-.Sparing {
-	color: orange;
-	font-weight: bold;
-}
-
-.WSR {
-	color: #19d7d7;
-	font-weight: bold;
-}
-</style>
 
 <body class="${menu_toggle}" onload="loader()">
 	<div class="container body">
@@ -124,8 +83,9 @@ label.error {
 					<!-- menu profile quick info -->
 					<div class="profile clearfix">
 						<div class="profile_pic">
-							<img src="resources/gentelella-master/images/logo.jpg" alt="..."
-								class="img-circle profile_img">
+							<img
+								src="<%=request.getContextPath()%>/resources/gentelella-master/images/logo.jpg"
+								alt="..." class="img-circle profile_img">
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
@@ -181,47 +141,6 @@ label.error {
 									</ul></li>
 							</ul>
 						</div>
-						<div class="menu_section">
-							<h3>Live On</h3>
-							<ul class="nav side-menu">
-								<li><a><i class="fa fa-bug"></i> Additional Pages <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="e_commerce.html">E-commerce</a></li>
-										<li><a href="projects.html">Projects</a></li>
-										<li><a href="project_detail.html">Project Detail</a></li>
-										<li><a href="contacts.html">Contacts</a></li>
-										<li><a href="profile.html">Profile</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-windows"></i> Extras <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="page_403.html">403 Error</a></li>
-										<li><a href="page_404.html">404 Error</a></li>
-										<li><a href="page_500.html">500 Error</a></li>
-										<li><a href="plain_page.html">Plain Page</a></li>
-										<li><a href="login.html">Login Page</a></li>
-										<li><a href="pricing_tables.html">Pricing Tables</a></li>
-									</ul></li>
-								<li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
-										class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="#level1_1">Level One</a>
-										<li><a>Level One<span class="fa fa-chevron-down"></span></a>
-											<ul class="nav child_menu">
-												<li class="sub_menu"><a href="level2.html">Level
-														Two</a></li>
-												<li><a href="#level2_1">Level Two</a></li>
-												<li><a href="#level2_2">Level Two</a></li>
-											</ul></li>
-										<li><a href="#level1_2">Level One</a></li>
-									</ul></li>
-								<li><a href="javascript:void(0)"><i
-										class="fa fa-laptop"></i> Landing Page <span
-										class="label label-success pull-right">Coming Soon</span></a></li>
-							</ul>
-						</div>
-
 					</div>
 					<!-- /sidebar menu -->
 
@@ -330,7 +249,11 @@ label.error {
 	<div class="modal fade gobal-modal" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content"></div>
+			<div class="modal-content">
+				<div class="text-center">
+					<img alt="" src="resources/images/loading/Ellipsis.gif">
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -338,7 +261,11 @@ label.error {
 	<div class="modal fade gobal-modal-lg" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<div class="modal-content">...</div>
+			<div class="modal-content">
+				<div class="text-center">
+					<img alt="" src="resources/images/loading/Ellipsis.gif">
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -346,103 +273,114 @@ label.error {
 	<div class="modal fade gobal-modal-sm" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-			<div class="modal-content">...</div>
+			<div class="modal-content">
+				<div class="text-center">
+					<img alt="" src="resources/images/loading/Ellipsis.gif">
+				</div>
+			</div>
 		</div>
 	</div>
 
 	<!-- jQuery -->
 	<script
-		src="resources/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- jQuery Validate -->
 	<script
-		src="resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="resources/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- FastClick -->
 	<script
-		src="resources/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script
-		src="resources/gentelella-master/vendors/nprogress/nprogress.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/nprogress/nprogress.js"></script>
 	<!-- Chart.js -->
 	<script
-		src="resources/gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
 	<!-- gauge.js -->
 	<script
-		src="resources/gentelella-master/vendors/gauge.js/dist/gauge.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/gauge.js/dist/gauge.min.js"></script>
 	<!-- bootstrap-progressbar -->
 	<script
-		src="resources/gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 	<!-- iCheck -->
-	<script src="resources/gentelella-master/vendors/iCheck/icheck.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/iCheck/icheck.min.js"></script>
 	<!-- Skycons -->
-	<script src="resources/gentelella-master/vendors/skycons/skycons.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/skycons/skycons.js"></script>
 	<!-- Flot -->
-	<script src="resources/gentelella-master/vendors/Flot/jquery.flot.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
 	<!-- Flot plugins -->
 	<script
-		src="resources/gentelella-master/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/flot.curvedlines/curvedLines.js"></script>
-	<!-- DateJS -->
-	<script src="resources/gentelella-master/vendors/DateJS/build/date.js"></script>
-	<!-- JQVMap -->
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot.curvedlines/curvedLines.js"></script>
+	<!-- moment Js -->
 	<script
-		src="resources/gentelella-master/vendors/jqvmap/dist/jquery.vmap.js"></script>
-	<script
-		src="resources/gentelella-master/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-	<script
-		src="resources/gentelella-master/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-
+		src="<%=request.getContextPath()%>/resources/moment-develop/moment.js"></script>
 	<!-- bootstrap-daterangepicker -->
 	<script
-		src="resources/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.js"></script>
+		src="<%=request.getContextPath()%>/resources/bootstrap-datetimepicker-master/src/js/bootstrap-datetimepicker.js"></script>
+	<!-- DateJS -->
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/DateJS/build/date.js"></script>
+	<!-- JQVMap -->
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/jquery.vmap.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 
 
 	<!-- Datatables -->
 	<script
-		src="resources/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
 	<script
-		src="resources/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
 	<!-- Custom Theme Scripts -->
-	<script src="resources/gentelella-master/build/js/custom.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/gentelella-master/build/js/custom.min.js"></script>
 
 	<script type="text/javascript">
 		function loader() {

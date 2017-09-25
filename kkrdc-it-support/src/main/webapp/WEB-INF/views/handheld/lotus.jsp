@@ -80,7 +80,11 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_content">
-						<div id="table-search"></div>
+						<div id="table-search">
+							<div class="text-center">
+								<img alt="" src="resources/images/loading/Ellipsis.gif">
+							</div>
+						</div>
 				</div>
 				</div>
 			</div>
@@ -109,7 +113,7 @@
 			$('#table-search').html(response);
 		});
 	});
-	
+
 	$('select').on('change', function() {
 		$('#form-search').submit();
 	})

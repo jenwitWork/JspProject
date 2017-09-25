@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import kkrdc.entities.Handheld;
 import kkrdc.model.HandheldLotusSearch;
 import kkrdc.repositories.HandheldReposytory;
@@ -44,7 +43,7 @@ public class HandheldLotusController extends BaseController {
 				search.getIpAddress().trim(), search.getModel().trim(), search.getStatus().trim(), gobal_dc_tag);
 		model.addAttribute("hendhelds", hendhelds);
 
-		return auth.checkLogin(session, request, "handheld/_lotus-list");
+		return "handheld/_lotus-list";
 	}
 
 	@GetMapping("/handheld-lotus/view")
@@ -59,18 +58,23 @@ public class HandheldLotusController extends BaseController {
 	public String create(Model model, HttpSession session, HttpServletRequest request) {
 		model.addAttribute("create_form", new Handheld());
 
-		return auth.checkLogin(session, request, "handheld/_lotus-create");
+		return "handheld/_lotus-create";
 	}
 
 	@PostMapping("/handheld-lotus/create")
 	@ResponseBody
-	public String create(@ModelAttribute("create_form") Handheld form, HttpSession session,
-			HttpServletRequest request) {
+	public String create(@ModelAttribute("create_form") Handheld form, @RequestParam("input_date") String input_date,
+			HttpSession session, HttpServletRequest request) throws ParseException {
+		
 		gobal_dc_tag = session.getAttribute("gobal_dc_tag").toString();
+		Date date = formatDate.getDate("dd/MM/yyyy HH:mm:ss", input_date.trim());
+		
 		form.setDcType(gobal_dc_tag.trim());
+		form.setInputDate(date);
 		form.setCreatedDate(new Date());
 		form.setUpdatedDate(new Date());
 		handheldRep.save(form);
+		
 		return "seccess";
 	}
 
@@ -79,7 +83,7 @@ public class HandheldLotusController extends BaseController {
 			HttpServletRequest request) {
 		model.addAttribute("edit_form", handheldRep.findOne(serial_no.trim()));
 
-		return auth.checkLogin(session, request, "handheld/_lotus-edit");
+		return "handheld/_lotus-edit";
 	}
 
 	@PostMapping("/handheld-lotus/edit")
@@ -89,11 +93,8 @@ public class HandheldLotusController extends BaseController {
 			throws ParseException {
 
 		Handheld handheld = handheldRep.findOne(old_sn.trim());
-		System.out.println(formatDate.getDate("dd/MM/yyyy", input_date.trim()));
-		Date date = formatDate.getDate("dd/MM/yyyy", input_date.trim());
+		Date date = formatDate.getDate("dd/MM/yyyy HH:mm:ss", input_date.trim());
 
-		System.out.println(date);
-		
 		form.setCreatedDate(handheld.getCreatedDate());
 		form.setUpdatedDate(new Date());
 		form.setInputDate(date);
@@ -109,14 +110,40 @@ public class HandheldLotusController extends BaseController {
 			HttpServletRequest request) {
 		model.addAttribute("delete_form", handheldRep.findOne(serial_no.trim()));
 
-		return auth.checkLogin(session, request, "handheld/_lotus-delete");
+		return "handheld/_lotus-delete";
 	}
 
 	@PostMapping("/handheld-lotus/delete")
 	@ResponseBody
-	public String delete(@ModelAttribute("edit_form") Handheld form, HttpSession session, HttpServletRequest request) {
+	public String delete(@ModelAttribute("delete_form") Handheld form, HttpSession session, HttpServletRequest request) {
 		handheldRep.delete(form.getSerialNo().trim());
 		return "success";
+	}
+	
+	@GetMapping("/handheld-lotus/check-dup")
+	@ResponseBody
+	public Object checkDub(@RequestParam(value = "serialNo") String serialNo,
+			@RequestParam(value = "old_serialNo") String old_serialNo) {
+
+		if (old_serialNo.trim().equals("") | old_serialNo == null) {
+			Handheld cm = handheldRep.findOne(serialNo.trim());
+			if (cm != null) {
+				return "false";
+			} else {
+				return "true";
+			}
+		} else {
+			if (old_serialNo.trim().equals(serialNo.trim())) {
+				return "true";
+			} else {
+				Handheld cm = handheldRep.findOne(serialNo.trim());
+				if (cm != null) {
+					return "false";
+				} else {
+					return "true";
+				}
+			}
+		}
 	}
 
 }

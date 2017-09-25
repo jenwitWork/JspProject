@@ -15,12 +15,13 @@
 	</div>
 	<div class="modal-body">
 		<div class="form-horizontal form-label-left">
+			<input type="hidden" name="old_serialNo" id="old_serialNo" value="">
 			<div class="form-group row">
 				<label class="control-label col-md-3 col-sm-3 col-xs-12">serial
 					no.</label>
 				<div class="col-md-7 col-sm-7 col-xs-12">
 					<create_form:input path="serialNo" class="form-control"
-						placeholder="serial no." />
+						placeholder="serial no." value="" />
 				</div>
 			</div>
 			<div class="form-group row">
@@ -78,8 +79,12 @@
 				<label class="control-label col-md-3 col-sm-3 col-xs-12">input
 					date</label>
 				<div class="col-md-7 col-sm-7 col-xs-12 datepicker">
-					<create_form:input path="inputDate" class="form-control"
-						placeholder="input date" readonly="readonly"/>
+					<div class='input-group date' id='datetimepicker1'>
+						<input type="text" name="input_date" id="input_date" class="form-control" value="${edit_form.inputDate}">						
+						<span class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -102,14 +107,17 @@
 </create_form:form>
 
 <script type="text/javascript">
-	$('input[name=inputDate]').daterangepicker({
-		locale : {
-			format : 'DD/MM/YYYY'
-		},
-		"singleDatePicker" : true,
+	$('#datetimepicker1').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm:ss',
+		defaultDate : new Date(),
 	});
 
+	$('#input_date').datetimepicker({
+		format : 'DD/MM/YYYY HH:mm:ss',
+	});
+	
 	$('#form-create').on('submit', function(event) {
+		alert($(this).find('input[name=serialNo]').val());
 		event.preventDefault();
 		if ($(this).valid()) {
 			$.ajax({
@@ -127,7 +135,16 @@
 		rules : {
 			serialNo : {
 				required : true,
-				maxlength : 20
+				maxlength : 20,
+				remote : {
+					type : 'get',
+					url : 'handheld-lotus/check-dup',
+					data : {
+						serialNo : function() {
+							return $('input[name=serialNo]').val();
+						}
+					}
+				}
 			},
 			assetNo : {
 				required : true,
