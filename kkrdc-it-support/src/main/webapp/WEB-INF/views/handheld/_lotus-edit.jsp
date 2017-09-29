@@ -66,15 +66,9 @@
 			</div>
 			<div class="form-group row">
 				<label
-					class="control-label col-md-3 control-label col-md-3 col-sm-3 col-xs-12 col-xs-12">status</label>
+					class="control-label col-md-3 col-md-3 col-sm-3 col-xs-12 col-xs-12">status</label>
 				<div class="col-md-7 col-sm-7 col-xs-12">
-					<edit_form:select path="status" class="form-control">
-						<edit_form:option value="">-- select status --</edit_form:option>
-						<edit_form:option value="Using" class="Using">Using</edit_form:option>
-						<edit_form:option value="Repairing" class="Repairing">Repairing</edit_form:option>
-						<edit_form:option value="RHS" class="RHS">RHS (Repair have spare)</edit_form:option>
-						<edit_form:option value="WSR" class="WSR">WSR (Wait spare return)</edit_form:option>
-					</edit_form:select>
+					<edit_form:label path="status" class="control-label ${edit_form.status }">${edit_form.status }</edit_form:label>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -101,6 +95,7 @@
 	<input type="hidden" name="old_sn" id="old_sn"
 		value="${edit_form.serialNo}" />
 	<edit_form:input path="dcType" type="hidden" />
+	<edit_form:hidden path="status"/>
 	<edit_form:input path="createdUser" type="hidden" />
 	<edit_form:input path="updatedUser" type="hidden"
 		value="${gobalUser.username}" />
@@ -144,10 +139,10 @@
 					url : 'handheld-lotus/check-dup',
 					data : {
 						serialNo : function() {
-							$('#form-create input[name=serialNo]').val()
+							return $('#form-edit #serialNo').val();
 						},
 						old_serialNo : function() {
-							$('#form-create input[name=old_serialNo]').val()
+							return $('#form-edit #old_serialNo').val();
 						}
 					}
 				}

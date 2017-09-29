@@ -116,8 +116,7 @@
 		format : 'DD/MM/YYYY HH:mm:ss',
 	});
 	
-	$('#form-create').on('submit', function(event) {
-		alert($(this).find('input[name=serialNo]').val());
+	$('#form-create').on('submit', function(event) {		
 		event.preventDefault();
 		if ($(this).valid()) {
 			$.ajax({
@@ -137,11 +136,15 @@
 				required : true,
 				maxlength : 20,
 				remote : {
+					//alert($('input[name=serialNo]').val());
 					type : 'get',
 					url : 'handheld-lotus/check-dup',
 					data : {
 						serialNo : function() {
-							return $('input[name=serialNo]').val();
+							return $('#form-create #serialNo').val();
+						},
+						old_serialNo : function() {
+							return $('#form-create #old_serialNo').val();
 						}
 					}
 				}

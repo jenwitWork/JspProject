@@ -5,5 +5,7 @@
 		<class>kkrdc.entities.TypeOfAsset</class>
 		<class>kkrdc.entities.User</class>
 		<class>kkrdc.entities.Handheld</class>
+		<class>kkrdc.entities.HandheldSpare</class>
+		<class>kkrdc.entities.RepairHandheld</class>
 	</persistence-unit>
 </persistence>

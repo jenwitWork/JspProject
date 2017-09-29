@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<table class="table table-responsive table-striped table-hover" id="table-data">
+<table class="table table-responsive table-striped table-hover"
+	id="table-data">
 	<thead>
 		<tr>
 			<th class="text-center">#</th>
@@ -22,60 +23,64 @@
 				<td class="text-left">${handheld.ipAddress }</td>
 				<td class="text-center">${handheld.model }</td>
 				<td class="text-center ${handheld.status}">${handheld.status }</td>
-				<td class="text-center"><a class="btn-view"
-					href="handheld-lotus/view?serial_no=${handheld.serialNo}"><i
-						class="fa fa-eye"></i></a> | <a class="btn-edit"
-					href="handheld-lotus/edit?serial_no=${handheld.serialNo}"><i
-						class="fa fa-edit"></i></a> | <a class="btn-delete"
-					href="handheld-lotus/delete?serial_no=${handheld.serialNo}"><i
-						class="fa fa-trash"></i></a></td>
+				<td class="text-center"><a style="cursor: pointer;" class="btn-view"
+					onclick="view('${handheld.serialNo}')"><i class="fa fa-eye"></i></a>
+					| <a style="cursor: pointer;" class="btn-edit" onclick="edit('${handheld.serialNo}')"><i
+						class="fa fa-edit"></i></a> | <a style="cursor: pointer;" class="btn-delete"
+					onclick="remove('${handheld.serialNo}')"><i class="fa fa-trash"></i></a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 
 <script type="text/javascript">
+		$('#table-data').DataTable({
+			ordering : false,
+			searching : false,
+			responsive : true,
+		//"scrollY": "300px",
+		});
 
-	$('#table-data').DataTable({
-		ordering : false,
-		searching : false,
-		responsive : true,
-		"scrollY": "300px",
-	});
-
-	$('.btn-view').on('click', function(event) {
-		event.preventDefault();
+	function view(serial_no) {
 		$.ajax({
-			url : $(this).attr("href"),
-			type : 'get'
+			url : 'handheld-lotus/view',
+			type : 'get',
+			data : {
+				serial_no : serial_no
+			}
 		}).done(function(response) {
 			$modal = $('.gobal-modal');
 			$modal.find('.modal-content').html(response);
 			$modal.modal('show');
 		});
-	});
+	}
 	
-	$('.btn-edit').on('click', function(event) {
-		event.preventDefault();
+	function edit(serial_no) {
 		$.ajax({
-			url : $(this).attr("href"),
-			type : 'get'
+			url : 'handheld-lotus/edit',
+			type : 'get',
+			data : {
+				serial_no : serial_no
+			}
 		}).done(function(response) {
 			$modal = $('.gobal-modal');
 			$modal.find('.modal-content').html(response);
 			$modal.modal('show');
 		});
-	});
+	}
 	
-	$('.btn-delete').on('click', function(event) {
-		event.preventDefault();
+	function remove(serial_no) {
 		$.ajax({
-			url : $(this).attr("href"),
-			type : 'get'
+			url : 'handheld-lotus/delete',
+			type : 'get',
+			data : {
+				serial_no : serial_no
+			}
 		}).done(function(response) {
 			$modal = $('.gobal-modal');
+			$modal.find('.modal-content').html(response);
 			$modal.modal('show');
-			$modal.find('.modal-content').html(response);			
 		});
-	});
+	}
+
 </script>

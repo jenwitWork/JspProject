@@ -286,7 +286,7 @@
 		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- jQuery Validate -->
 	<script
-		src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/jquery-validation-1.17.0/dist/jquery.validate.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<th class="text-left">Status :</th>
-				<td>${view.status}</td>
+				<td class="${view.status}">${view.status}</td>
 			</tr>
 			<tr>
 				<th class="text-left">Input date :</th>
