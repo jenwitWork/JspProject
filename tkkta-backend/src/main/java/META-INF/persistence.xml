@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="tkkta-backend">
+		<class>com.entities.Branch</class>
+		<class>com.entities.CarModel</class>
+		<class>com.entities.CarSery</class>
+		<class>com.entities.DocDesc</class>
+		<class>com.entities.DocFile</class>
+		<class>com.entities.DocPic</class>
+		<class>com.entities.DocVdo</class>
+		<class>com.entities.Document</class>
+		<class>com.entities.Page</class>
+		<class>com.entities.ProblemType</class>
+		<class>com.entities.User</class>
+		<class>com.entities.UserBranch</class>
+		<class>com.entities.UserGroup</class>
+		<class>com.entities.UserPage</class>
+		<class>com.entities.UserPo</class>
+	</persistence-unit>
+</persistence>
