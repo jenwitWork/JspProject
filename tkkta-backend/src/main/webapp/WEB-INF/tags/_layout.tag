@@ -33,56 +33,56 @@
 
 <!-- Bootstrap -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap/dist/css/bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/bootstrap/dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Font Awesome -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/font-awesome/css/font-awesome.css"
+	href="<%=request.getContextPath()%>/resources/vendors/font-awesome/css/font-awesome.css"
 	rel="stylesheet">
 <!-- NProgress -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/nprogress/nprogress.css"
+	href="<%=request.getContextPath()%>/resources/vendors/nprogress/nprogress.css"
 	rel="stylesheet">
 <!-- iCheck -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/iCheck/skins/flat/green.css"
+	href="<%=request.getContextPath()%>/resources/vendors/iCheck/skins/flat/green.css"
 	rel="stylesheet">
 
 <!-- bootstrap-progressbar -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css"
+	href="<%=request.getContextPath()%>/resources/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css"
 	rel="stylesheet">
 <!-- JQVMap -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/jqvmap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/jqvmap.css"
 	rel="stylesheet" />
 <!-- bootstrap-daterangepicker -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css"
+	href="<%=request.getContextPath()%>/resources/vendors/bootstrap-daterangepicker/daterangepicker.css"
 	rel="stylesheet">
 
 <!-- Datatables -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-bs/css/dataTables.bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-bs/css/dataTables.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.css"
 	rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.css"
 	rel="stylesheet">
 <!-- jQuery custom content scroller -->
-    <link href="<%=request.getContextPath()%>/resources/gentelella-master/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet"/>
+    <link href="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet"/>
 
 <!-- Custom Theme Style -->
 <link
-	href="<%=request.getContextPath()%>/resources/gentelella-master/build/css/custom.css"
+	href="<%=request.getContextPath()%>/resources/assets/css/custom.css"
 	rel="stylesheet">
 
 </head>
@@ -103,7 +103,7 @@
 					<div class="profile clearfix">
 						<div class="profile_pic">
 							<img
-								src="<%=request.getContextPath()%>/resources/gentelella-master/images/logo.jpg"
+								src="<%=request.getContextPath()%>/resources/images/logo.jpg"
 								alt="..." class="img-circle profile_img">
 						</div>
 						<div class="profile_info">
@@ -244,106 +244,106 @@
 
 	<!-- jQuery -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jquery/dist/jquery.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jquery/dist/jquery.js"></script>
 	<!-- jQuery Validation-->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jquery-validation/dist/jquery.validate.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/dist/jquery.validate.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap/dist/js/bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/dist/js/bootstrap.js"></script>
 	<!-- FastClick -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/nprogress/nprogress.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/nprogress/nprogress.js"></script>
 	<!-- Chart.js -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Chart.js/dist/Chart.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Chart.js/dist/Chart.js"></script>
 	<!-- gauge.js -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/gauge.js/dist/gauge.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/gauge.js/dist/gauge.js"></script>
 	<!-- bootstrap-progressbar -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/bootstrap-progressbar/bootstrap-progressbar.js"></script>
 	<!-- iCheck -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/iCheck/icheck.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/iCheck/icheck.js"></script>
 	<!-- Skycons -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/skycons/skycons.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/skycons/skycons.js"></script>
 	<!-- Flot -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Flot/jquery.flot.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Flot/jquery.flot.pie.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Flot/jquery.flot.time.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Flot/jquery.flot.stack.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Flot/jquery.flot.resize.js"></script>
 	<!-- Flot plugins -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot-spline/js/jquery.flot.spline.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/flot-spline/js/jquery.flot.spline.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/flot.curvedlines/curvedLines.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/flot.curvedlines/curvedLines.js"></script>
 	<!-- DateJS -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/DateJS/build/date.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/DateJS/assets/date.js"></script>
 	<!-- JQVMap -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/jquery.vmap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/jquery.vmap.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 	<!-- bootstrap-daterangepicker -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/moment/min/moment.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/moment/min/moment.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 	<!-- Datatables -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net/js/jquery.dataTables.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net/js/jquery.dataTables.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons/js/dataTables.buttons.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons/js/buttons.flash.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons/js/buttons.html5.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-buttons/js/buttons.print.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-keytable/js/dataTables.keyTable.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-responsive/js/dataTables.responsive.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-scroller/js/dataTables.scroller.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/jszip/dist/jszip.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jszip/dist/jszip.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/pdfmake/build/pdfmake.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/pdfmake/assets/pdfmake.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/pdfmake/assets/vfs_fonts.js"></script>
 	<!-- jQuery custom content scroller -->
-    <script src="<%=request.getContextPath()%>/resources/gentelella-master/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	
 
 	<!-- Custom Theme Scripts -->
 	<script
-		src="<%=request.getContextPath()%>/resources/gentelella-master/build/js/custom.js"></script>
+		src="<%=request.getContextPath()%>/resources/assets/js/custom.js"></script>
 
 
 
