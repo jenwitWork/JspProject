@@ -13,22 +13,22 @@
 
 <!-- Bootstrap -->
 <link
-	href="resources/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css"
+	href="resources/vendors/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- Font Awesome -->
 <link
-	href="resources/gentelella-master/vendors/font-awesome/css/font-awesome.min.css"
+	href="resources/vendors/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- NProgress -->
-<link href="resources/gentelella-master/vendors/nprogress/nprogress.css"
+<link href="resources/vendors/nprogress/nprogress.css"
 	rel="stylesheet">
 <!-- Animate.css -->
 <link
-	href="resources/gentelella-master/vendors/animate.css/animate.min.css"
+	href="resources/vendors/animate.css/animate.min.css"
 	rel="stylesheet">
 
 <!-- Custom Theme Style -->
-<link href="resources/gentelella-master/build/css/custom.min.css"
+<link href="resources/assets/css/custom.min.css"
 	rel="stylesheet">
 </head>
 

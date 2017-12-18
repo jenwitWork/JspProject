@@ -33,7 +33,7 @@
 
 <!-- Bootstrap -->
 <link
-	href="<%=request.getContextPath()%>/resources/vendors/bootstrap/dist/css/bootstrap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Font Awesome -->
 <link
@@ -54,7 +54,7 @@
 	rel="stylesheet">
 <!-- JQVMap -->
 <link
-	href="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/jqvmap.css"
+	href="<%=request.getContextPath()%>/resources/vendors/jqvmap/jqvmap.css"
 	rel="stylesheet" />
 <!-- bootstrap-daterangepicker -->
 <link
@@ -244,13 +244,13 @@
 
 	<!-- jQuery -->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jquery/dist/jquery.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jquery/jquery.js"></script>
 	<!-- jQuery Validation-->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/dist/jquery.validate.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/dist/js/bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/js/bootstrap.js"></script>
 	<!-- FastClick -->
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/fastclick/lib/fastclick.js"></script>
@@ -259,10 +259,10 @@
 		src="<%=request.getContextPath()%>/resources/vendors/nprogress/nprogress.js"></script>
 	<!-- Chart.js -->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/Chart.js/dist/Chart.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/Chart.js/Chart.js"></script>
 	<!-- gauge.js -->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/gauge.js/dist/gauge.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/gauge.js/gauge.js"></script>
 	<!-- bootstrap-progressbar -->
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/bootstrap-progressbar/bootstrap-progressbar.js"></script>
@@ -295,9 +295,9 @@
 		src="<%=request.getContextPath()%>/resources/vendors/DateJS/assets/date.js"></script>
 	<!-- JQVMap -->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/jquery.vmap.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/jquery.vmap.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/maps/jquery.vmap.world.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 	<!-- bootstrap-daterangepicker -->
@@ -332,7 +332,7 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/datatables.net-scroller/js/dataTables.scroller.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jszip/dist/jszip.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jszip/jszip.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/pdfmake/assets/pdfmake.js"></script>
 	<script
