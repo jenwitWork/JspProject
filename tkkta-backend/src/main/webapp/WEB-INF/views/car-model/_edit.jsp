@@ -7,23 +7,23 @@
 		aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<h5 class="modal-title">แก้ไขข้อมูลสาขา</h5>
+	<h5 class="modal-title">แก้ไขข้อมูลแบบรถ</h5>
 </div>
-<form:form action="${root_action}/management/position/edit" method="post"
+<form:form action="${root_action}/car-model/edit" method="post"
 	modelAttribute="edit_form" id="form-edit">
-	<input type="hidden" name="old_pos_id" id="old_pos_id"
-		value="${edit_form.posId }" class="form-control"
-		placeholder="ชื่อสาขา" />
+	<input type="hidden" name="old_cm_id" id="old_cm_id"
+		value="${edit_form.cmId }" class="form-control"
+		placeholder="ชื่อแบบรถ" />
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<form:input path="posId" class="form-control"
-						placeholder="รหัสสาขา" />
+					<form:input path="cmId" class="form-control"
+						placeholder="รหัสแบบรถ" />
 				</div>
 				<div class="form-group">
-					<form:input path="posDesc" class="form-control"
-						placeholder="ชื่อสาขา" />
+					<form:input path="cmName" class="form-control"
+						placeholder="ชื่อแบบรถ" />
 				</div>
 			</div>
 		</div>
@@ -51,37 +51,37 @@
 
 	$('#form-edit').validate({
 		rules : {
-			posId : {
+			cmId : {
 				required : true,
 				maxlength : 10,
 				remote : {
-					url : "${root_action}/management/position/check-dup",
+					url : "${root_action}/car-model/check-dup",
 					type : "get",
 					data : {
-						posId : function() {
-							return $("#form-edit #posId").val();
+						cmId : function() {
+							return $("#form-edit #cmId").val();
 						},
-						old_pos_id : function() {
-							return $("#form-edit #old_pos_id").val();
+						old_cm_id : function() {
+							return $("#form-edit #old_cm_id").val();
 						}
 					}
 				}
 			},
-			posDesc : {
+			cmName : {
 				required : true,
 				maxlength : 100
 			},
 
 		},
 		messages : {
-			posId : {
-				required : 'ระบุรหัสสาขา',
-				maxlength : 'ระบุรหัสสาขาไม่เกิน 10 ตัวอักษร',
-				remote : 'รหัสสาขาถูกใช้งานไปแล้ว'
+			cmId : {
+				required : 'ระบุรหัสแบบรถ',
+				maxlength : 'ระบุรหัสแบบรถไม่เกิน 10 ตัวอักษร',
+				remote : 'รหัสแบบรถถูกใช้งานไปแล้ว'
 			},
-			posDesc : {
-				required : 'ระบุชื่อสาขา',
-				maxlength : 'ระบุชื่อสาขาไม่เกิน 100 ตัวอักษร'
+			cmName : {
+				required : 'ระบุชื่อแบบรถ',
+				maxlength : 'ระบุชื่อแบบรถไม่เกิน 100 ตัวอักษร'
 			},
 		}
 	})

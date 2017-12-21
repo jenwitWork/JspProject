@@ -14,27 +14,31 @@
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
-				<h5>Management / ${current_title }</h5>
+				<h5>${current_title }</h5>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>${current_title }</h2>
+						<h2>${current_title }  ${serie_title == '' ? '' : ' : '}${serie_title}</h2>
 						<div class="clearfix"></div>
 					</div>
 					<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<search_form:form action="${root_action}/management/position/list" method="get" modelAttribute="search_form" id="form-search" class="form-inline">
+						<search_form:form action="${root_action}/car-model/list" method="get" modelAttribute="search_form" id="form-search" class="form-inline">
+							<search_form:hidden path="serieId" value="${serie_id}"/>
 							<div class="form-group">
-								<search_form:input path="posId" class="form-control" placeholder="รหัสตำแหน่ง"/>
+								<search_form:input path="serieTitle" class="form-control" placeholder="รุ่นรถ" value="${serie_title}" readonly="${serie_title == '' ? '' : 'true'}"/>
 							</div>
 							<div class="form-group">
-								<search_form:input path="posDesc" class="form-control" placeholder="รายละเอียด"/>
+								<search_form:input path="cmId" class="form-control" placeholder="แบบรถ"/>
+							</div>
+							<div class="form-group">
+								<search_form:input path="cmName" class="form-control" placeholder="รายละเอียด"/>
 							</div>
 							<button class="btn btn-success" style="margin: 0px;">Search</button>
-							<a href="${root_action}/management/position/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
+							<a href="${root_action}/car-model/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
 						</search_form:form>
 					</div>
 					</div>

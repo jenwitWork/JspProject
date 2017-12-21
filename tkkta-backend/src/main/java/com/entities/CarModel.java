@@ -4,42 +4,41 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the car_model database table.
  * 
  */
 @Entity
-@Table(name="car_model")
-@NamedQuery(name="CarModel.findAll", query="SELECT c FROM CarModel c")
+@Table(name = "car_model")
+@NamedQuery(name = "CarModel.findAll", query = "SELECT c FROM CarModel c")
 public class CarModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="cm_id")
+	@Column(name = "cm_id")
 	private String cmId;
 
-	@Column(name="cm_name")
+	@Column(name = "cm_name")
 	private String cmName;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
+	@Column(name = "created_date")
 	private Date createdDate;
 
-	@Column(name="created_user")
+	@Column(name = "created_user")
 	private String createdUser;
 
-	@Column(name="serie_id")
+	@Column(name = "serie_id")
 	private String serieId;
 
-	@Column(name="serie_title")
+	@Column(name = "serie_title")
 	private String serieTitle;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="updated_date")
+	@Column(name = "updated_date")
 	private Date updatedDate;
 
-	@Column(name="updated_user")
+	@Column(name = "updated_user")
 	private String updatedUser;
 
 	public CarModel() {
@@ -107,6 +106,19 @@ public class CarModel implements Serializable {
 
 	public void setUpdatedUser(String updatedUser) {
 		this.updatedUser = updatedUser;
+	}
+
+	public CarModel update(CarModel car_model) {
+		CarModel cm = new CarModel();
+		cm.setCmId(car_model.getCmId());
+		cm.setCmName(car_model.getCmName());
+		cm.setSerieId(car_model.getSerieId());
+		cm.setSerieTitle(car_model.getSerieTitle());
+		cm.setCreatedDate(car_model.getCreatedDate());
+		cm.setCreatedUser(car_model.getCreatedUser());
+		cm.setUpdatedDate(car_model.getUpdatedDate());
+		cm.setUpdatedUser(car_model.getUpdatedUser());
+		return cm;
 	}
 
 }

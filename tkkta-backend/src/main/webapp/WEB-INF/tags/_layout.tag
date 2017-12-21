@@ -130,7 +130,7 @@
 						<div class="menu_section">
 							<h3>Cars</h3>
 							<ul class="nav side-menu">
-								<li><a><i class="fa fa-car"></i> รุ่นรถ</a></li>
+								<li><a href="<%=request.getContextPath()%>/car-model?serie_id="><i class="fa fa-car"></i> รุ่นรถ</a></li>
 								<li><a><i class="fa fa-truck"></i> แบบรถ</a></li>
 								<li><a><i class="fa fa-question-circle"></i> หมวดปัญหา
 								</a></li>
