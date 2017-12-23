@@ -124,8 +124,6 @@ public class ModelController extends BaseController {
 			
 			form.setSerieId(cs.getSerieId());
 			form.setSerieTitle(cs.getSerieTitle());
-			form.setCreatedDate(new Date());
-			form.setCreatedUser(current_user.trim());
 			form.setUpdatedDate(new Date());
 			form.setUpdatedUser(current_user.trim());
 
