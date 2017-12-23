@@ -8,8 +8,8 @@
 			<tr>
 				<th class="text-center">no.</th>
 				<th class="text-left">รุ่นรถ</th>
-				<th class="text-left">แบบรถ</th>
 				<th class="text-left">รายละเอียด</th>
+				<th class="text-center">แบบรถ</th>				
 				<th class="text-center">วันที่สร้าง</th>
 				<th class="text-left">ผู้สร้าง</th>
 				<th class="text-center">แก้ไขล่าสุด</th>
@@ -22,8 +22,8 @@
 				<tr>
 					<td class="text-center">${count.index+1}</td>
 					<td class="text-left">${item.serieTitle}</td>
-					<td class="text-center">${item.cmId}</td>
 					<td class="text-left">${item.cmName}</td>
+					<td class="text-center">${item.cmId}</td>					
 					<td class="text-center">${item.createdDate}</td>
 					<td class="text-left">${item.createdUser}</td>
 					<td class="text-center">${item.updatedDate}</td>

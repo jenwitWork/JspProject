@@ -30,7 +30,7 @@
 				</div>
 				<div class="form-group">
 					<form:input path="cmName" class="form-control"
-						placeholder="ชื่อแบบรถ" />
+						placeholder="รายละเอียดแบบรถ" />
 				</div>
 			</div>
 		</div>
@@ -60,14 +60,17 @@
 
 	$('#form-create').validate({
 		rules : {
+			serieId :{
+				required : true
+			},
 			cmId : {
 				required : true,
-				maxlength : 10,
+				maxlength : 100,
 				remote : {
 					url : "${root_action}/car-model/check-dup",
 					type : "get",
 					data : {
-						cmId : function() {
+						cm_id : function() {
 							return $("#form-create #cmId").val();
 						},
 						old_cm_id : function() {
@@ -83,14 +86,17 @@
 
 		},
 		messages : {
+			serieId : {
+				required : 'ระบุรุ่นรถ'
+			},
 			cmId : {
 				required : 'ระบุรหัสแบบรถ',
-				maxlength : 'ระบุรหัสแบบรถไม่เกิน 10 ตัวอักษร',
+				maxlength : 'ระบุรหัสแบบรถไม่เกิน 100 ตัวอักษร',
 				remote : 'รหัสแบบรถถูกใช้งานไปแล้ว'
 			},
 			cmName : {
-				required : 'ระบุชื่อแบบรถ',
-				maxlength : 'ระบุชื่อแบบรถไม่เกิน 100 ตัวอักษร'
+				required : 'รายละเอียดแบบรถ',
+				maxlength : 'รายละเอียดแบบรถไม่เกิน 100 ตัวอักษร'
 			},
 		}
 	})

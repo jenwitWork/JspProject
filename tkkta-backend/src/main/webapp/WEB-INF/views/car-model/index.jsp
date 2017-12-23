@@ -32,11 +32,11 @@
 								<search_form:input path="serieTitle" class="form-control" placeholder="รุ่นรถ" value="${serie_title}" readonly="${serie_title == '' ? '' : 'true'}"/>
 							</div>
 							<div class="form-group">
-								<search_form:input path="cmId" class="form-control" placeholder="แบบรถ"/>
-							</div>
-							<div class="form-group">
 								<search_form:input path="cmName" class="form-control" placeholder="รายละเอียด"/>
 							</div>
+							<div class="form-group">
+								<search_form:input path="cmId" class="form-control" placeholder="แบบรถ"/>
+							</div>							
 							<button class="btn btn-success" style="margin: 0px;">Search</button>
 							<a href="${root_action}/car-model/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
 						</search_form:form>

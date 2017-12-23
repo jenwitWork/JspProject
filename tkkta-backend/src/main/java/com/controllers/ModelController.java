@@ -103,16 +103,16 @@ public class ModelController extends BaseController {
 		
 		
 		CarModel car_model = cmRep.findOne(old_cm_id.trim());
+		CarSery cs = csRep.findOne(form.getSerieId().trim());
 		
-		if(!old_serie_id.trim().equals(form.getSerieId().trim())) {
-			CarSery cs = csRep.findOne(form.getSerieId().trim());
+		if(!old_serie_id.trim().equals(form.getSerieId().trim())) {			
 			form.setSerieId(cs.getSerieId());
 			form.setSerieTitle(cs.getSerieTitle());
 		}
 
 		if (old_cm_id.trim().equals(form.getCmId().trim())) {
-			car_model.setSerieTitle(form.getSerieId());
-			car_model.setSerieTitle(form.getSerieTitle());
+			car_model.setSerieId(form.getSerieId());
+			car_model.setSerieTitle(cs.getSerieTitle());
 			car_model.setCmName(form.getCmName().trim());
 			car_model.setUpdatedDate(new Date());
 			car_model.setUpdatedUser(current_user.trim());
@@ -121,8 +121,9 @@ public class ModelController extends BaseController {
 		} else {
 			if (car_model != null)
 				cmRep.delete(car_model);
-			car_model.setSerieTitle(form.getSerieId());
-			car_model.setSerieTitle(form.getSerieTitle());
+			
+			form.setSerieId(cs.getSerieId());
+			form.setSerieTitle(cs.getSerieTitle());
 			form.setCreatedDate(new Date());
 			form.setCreatedUser(current_user.trim());
 			form.setUpdatedDate(new Date());
@@ -155,7 +156,7 @@ public class ModelController extends BaseController {
 
 	@GetMapping("/car-model/check-dup")
 	@ResponseBody
-	public String checkDuplicate(@RequestParam("branchId") String cm_id, @RequestParam("old_cm_id") String old_cm_id) {
+	public String checkDuplicate(@RequestParam("cm_id") String cm_id, @RequestParam("old_cm_id") String old_cm_id) {
 		String return_value = "true";
 		if (old_cm_id.equals("") | old_cm_id == null) {
 			CarModel car_model = cmRep.findOne(cm_id.trim());
