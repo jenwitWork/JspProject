@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<h4>คำเตือน !!</h4>
-				<p>คูณกำลังดำเนินการลบข้อมูลรุ่นรถ  ${delete_form.serieId}   :    ${delete_form.serieTitle} ออกจากฐานข้อมูลของระบบ</p>
+				<p>คูณกำลังดำเนินการลบข้อมูลรุ่นรถ ${delete_form.serieTitle} ออกจากฐานข้อมูลของระบบ</p>
 			</div>
 		</div>
 	</div>

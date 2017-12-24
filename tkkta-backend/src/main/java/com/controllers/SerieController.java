@@ -87,8 +87,12 @@ public class SerieController extends BaseController {
 	@ResponseBody
 	public String edit(@ModelAttribute("edit_form") CarSery form, @RequestParam("old_serie_title") String old_serie_title) {
 		
-		if(!old_serie_title.trim().equals(form.getSerieTitle().trim())) {			
+		CarSery cs = csRep.findOne(form.getSerieId());
+		
+		if(!old_serie_title.trim().equals(form.getSerieTitle().trim())) {		
 			
+			form.setCreatedDate(cs.getCreatedDate());
+			form.setCreatedUser(cs.getCreatedUser());
 			form.setUpdatedDate(new Date());
 			form.setUpdatedUser(current_user);
 			
