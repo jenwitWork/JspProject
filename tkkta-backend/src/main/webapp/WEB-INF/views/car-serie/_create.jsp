@@ -3,34 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<form:form action="${root_action}/car-model/create" method="post"
+<form:form action="${root_action}/car-serie/create" method="post"
 	modelAttribute="create_form" id="form-create">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<h5 class="modal-title">สร้างแบบรถใหม่</h5>
+		<h5 class="modal-title">สร้างรุ่นรถใหม่</h5>
 	</div>
-	<input type="hidden" name="old_cm_id" id="old_cm_id" value="" />
+	<input type="hidden" name="old_serie_title" id="old_serie_title"
+		value="" />
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<form:select path="serieId" class="form-control">
-						<form:option value="">--- รุ่นรถ ---</form:option>
-						<c:forEach var="item" items="${car_series}">
-							<form:option value="${item.serieId}">${item.serieTitle}</form:option>
-						</c:forEach>						
-					</form:select>
-				</div>
-				<div class="form-group">
-					<form:input path="cmId" class="form-control"
-						placeholder="รหัสแบบรถ" />
-				</div>
-				<div class="form-group">
-					<form:input path="cmName" class="form-control"
-						placeholder="รายละเอียดแบบรถ" />
+					<form:input path="serieTitle" class="form-control"
+						placeholder="รุ่นรถ" />
 				</div>
 			</div>
 		</div>
@@ -60,44 +49,31 @@
 
 	$('#form-create').validate({
 		rules : {
-			serieId :{
-				required : true
-			},
-			cmId : {
+			serieTitle : {
 				required : true,
 				maxlength : 100,
 				remote : {
-					url : "${root_action}/car-model/check-dup",
+					url : "${root_action}/car-serie/check-dup",
 					type : "get",
 					data : {
-						cm_id : function() {
-							return $("#form-create #cmId").val();
+						serie_title : function() {
+							return $("#form-create #serieTitle").val();
 						},
-						old_cm_id : function() {
-							return $("#form-create #old_cm_id").val();
+						old_serie_title : function() {
+							return $("#form-create #old_serie_title").val();
 						}
 					}
 				}
-			},
-			cmName : {
-				required : true,
-				maxlength : 100
-			},
 
+			}
 		},
 		messages : {
-			serieId : {
-				required : 'ระบุรุ่นรถ'
-			},
-			cmId : {
-				required : 'ระบุรหัสแบบรถ',
-				maxlength : 'ระบุรหัสแบบรถไม่เกิน 100 ตัวอักษร',
-				remote : 'รหัสแบบรถถูกใช้งานไปแล้ว'
-			},
-			cmName : {
-				required : 'รายละเอียดแบบรถ',
-				maxlength : 'รายละเอียดแบบรถไม่เกิน 100 ตัวอักษร'
-			},
+			serieTitle : {
+				required : 'ระบุรหัสรุ่นรถ',
+				maxlength : 'ระบุรหัสรุ่นรถไม่เกิน 100 ตัวอักษร',
+				remote : 'รหัสรุ่นรถถูกใช้งานไปแล้ว'
+			}
 		}
+
 	})
 </script>

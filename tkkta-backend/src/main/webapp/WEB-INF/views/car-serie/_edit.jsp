@@ -8,33 +8,20 @@
 		aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<h5 class="modal-title">แก้ไขข้อมูลแบบรถ</h5>
+	<h5 class="modal-title">แก้ไขข้อมูลรุ่นรถ</h5>
 </div>
-<form:form action="${root_action}/car-model/edit" method="post"
+<form:form action="${root_action}/car-serie/edit" method="post"
 	modelAttribute="edit_form" id="form-edit">
-	<input type="hidden" name="old_serie_id" id="old_serie_id"
-		value="${edit_form.serieId }" />
-	<input type="hidden" name="old_cm_id" id="old_cm_id"
-		value="${edit_form.cmId }" class="form-control"
-		placeholder="รายละเอียดแบบรถ" />
+	<form:hidden path="serieId" value="${edit_form.serieId }" />
+	<input type="hidden" name="old_serie_title" id="old_serie_title"
+		value="${edit_form.serieTitle }" class="form-control"
+		placeholder="รุ่นรถ" />
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<form:select path="serieId" class="form-control">
-						<form:option value="">--- รุ่นรถ ---</form:option>
-						<c:forEach var="item" items="${car_series}">
-							<form:option value="${item.serieId}">${item.serieTitle}</form:option>
-						</c:forEach>
-					</form:select>
-				</div>
-				<div class="form-group">
-					<form:input path="cmId" class="form-control"
-						placeholder="รหัสแบบรถ" />
-				</div>
-				<div class="form-group">
-					<form:input path="cmName" class="form-control"
-						placeholder="รายละเอียดแบบรถ" />
+					<form:input path="serieTitle" class="form-control"
+						placeholder="รุ่นรถ" />
 				</div>
 			</div>
 		</div>
@@ -62,44 +49,30 @@
 
 	$('#form-edit').validate({
 		rules : {
-			serieId : {
-				required : true
-			},
-			cmId : {
+			serieTitle : {
 				required : true,
 				maxlength : 100,
 				remote : {
-					url : "${root_action}/car-model/check-dup",
+					url : "${root_action}/car-serie/check-dup",
 					type : "get",
 					data : {
-						cm_id : function() {
-							return $("#form-edit #cmId").val();
+						serie_title : function() {
+							return $("#form-edit #serieTitle").val();
 						},
-						old_cm_id : function() {
-							return $("#form-edit #old_cm_id").val();
+						old_serie_title : function() {
+							return $("#form-edit #old_serie_title").val();
 						}
 					}
 				}
-			},
-			cmName : {
-				required : true,
-				maxlength : 100
-			},
 
+			}
 		},
 		messages : {
-			serieId : {
-				required : 'ระบุรุ่นรถ'
-			},
-			cmId : {
-				required : 'ระบุรหัสแบบรถ',
-				maxlength : 'ระบุรหัสแบบรถไม่เกิน 100 ตัวอักษร',
-				remote : 'รหัสแบบรถถูกใช้งานไปแล้ว'
-			},
-			cmName : {
-				required : 'รายละเอียดแบบรถ',
-				maxlength : 'รายละเอียดแบบรถไม่เกิน 100 ตัวอักษร'
-			},
+			serieTitle : {
+				required : 'ระบุรหัสรุ่นรถ',
+				maxlength : 'ระบุรหัสรุ่นรถไม่เกิน 100 ตัวอักษร',
+				remote : 'รหัสรุ่นรถถูกใช้งานไปแล้ว'
+			}
 		}
 	})
 </script>

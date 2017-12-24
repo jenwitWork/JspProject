@@ -7,17 +7,17 @@
 		aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<h5 class="modal-title">ลบข้อมูลแบบรถ</h5>
+	<h5 class="modal-title">ลบข้อมูลรุ่นรถ</h5>
 </div>
-<form:form action="${root_action}/car-model/delete" method="post"
+<form:form action="${root_action}/car-serie/delete" method="post"
 	modelAttribute="delete_form" id="form-delete">
-	<form:hidden path="cmId" />
-	<form:hidden path="cmName" />
+	<form:hidden path="serieId" />
+	<form:hidden path="serieTitle" />
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<h4>คำเตือน !!</h4>
-				<p>คูณกำลังดำเนินการลบข้อมูลแบบรถ  ${delete_form.cmId}   :    ${delete_form.cmName} ออกจากฐานข้อมูลของระบบ</p>
+				<p>คูณกำลังดำเนินการลบข้อมูลรุ่นรถ  ${delete_form.serieId}   :    ${delete_form.serieTitle} ออกจากฐานข้อมูลของระบบ</p>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 			$('button[class=close]').click();
 			$('#form-search').submit();
 		}).error(function(response) {
-			alert("ไม่สามารถลบแบบรถข้อมูลได้  กรุณาลองใหม่อีกครั้ง");
+			alert("ไม่สามารถลบรุ่นรถข้อมูลได้  กรุณาลองใหม่อีกครั้ง");
 		})
 	})
 </script>
