@@ -1,6 +1,7 @@
 package com.controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.entities.CarModel;
 import com.entities.CarSery;
 import com.repositories.CarModelRepository;
 import com.repositories.CarSerieRepository;
@@ -25,17 +27,15 @@ public class SerieController extends BaseController {
 
 	@Autowired
 	private CarModelRepository cmRep;
-	
+
 	@Autowired
 	private CarSerieRepository csRep;
 
 	@GetMapping("/car-serie")
-	public Object index(Model model, HttpServletRequest request,
-			HttpSession session) {
+	public Object index(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "car-serie";
 		current_title = "รุ่นรถ";
-		
-		
+
 		model.addAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_form", new CarSery());
@@ -45,7 +45,7 @@ public class SerieController extends BaseController {
 
 	@GetMapping("/car-serie/list")
 	public Object list(@ModelAttribute("search_form") CarSery search, Model model) {
-		
+
 		Iterable<CarSery> car_series = csRep.search("", search.getSerieTitle());
 		model.addAttribute("car_series", car_series);
 
@@ -61,15 +61,20 @@ public class SerieController extends BaseController {
 
 	@PostMapping("/car-serie/create")
 	@ResponseBody
-	public String create(@ModelAttribute("create_form") CarSery form) {	
-		
-		form.setSerieId(new GenerateCode().newCode().trim());
-		form.setCreatedDate(new Date());
-		form.setCreatedUser(current_user);
-		form.setUpdatedDate(new Date());
-		form.setUpdatedUser(current_user);
+	public String create(@ModelAttribute("create_form") CarSery form) {
 
-		csRep.save(form);
+		CarSery cs = csRep.findBySerieTitle(form.getSerieTitle().trim());
+
+		if (cs == null) {
+
+			form.setSerieId(new GenerateCode().newCode().trim());
+			form.setCreatedDate(new Date());
+			form.setCreatedUser(current_user);
+			form.setUpdatedDate(new Date());
+			form.setUpdatedUser(current_user);
+
+			csRep.save(form);
+		}
 
 		return "success";
 	}
@@ -85,21 +90,22 @@ public class SerieController extends BaseController {
 
 	@PostMapping("/car-serie/edit")
 	@ResponseBody
-	public String edit(@ModelAttribute("edit_form") CarSery form, @RequestParam("old_serie_title") String old_serie_title) {
-		
+	public String edit(@ModelAttribute("edit_form") CarSery form,
+			@RequestParam("old_serie_title") String old_serie_title) {
+
 		CarSery cs = csRep.findOne(form.getSerieId());
-		
-		if(!old_serie_title.trim().equals(form.getSerieTitle().trim())) {		
-			
+
+		if (!old_serie_title.trim().equals(form.getSerieTitle().trim())) {
+
 			form.setCreatedDate(cs.getCreatedDate());
 			form.setCreatedUser(cs.getCreatedUser());
 			form.setUpdatedDate(new Date());
 			form.setUpdatedUser(current_user);
-			
+
 			csRep.save(form);
-			
+
 			cmRep.updateSerieTitle(form.getSerieTitle(), old_serie_title);
-			
+
 		}
 
 		return "success";
@@ -117,16 +123,22 @@ public class SerieController extends BaseController {
 
 	@PostMapping("/car-serie/delete")
 	@ResponseBody
-	public String delete(@ModelAttribute("delete_form") CarSery form, HttpServletRequest request,
-			HttpSession session) {
-		form = csRep.findOne(form.getSerieId().trim());
-		csRep.delete(form);
-		return "success";
+	public String delete(@ModelAttribute("delete_form") CarSery form, HttpServletRequest request, HttpSession session) {
+		List<CarModel> models = cmRep.findSerieId(form.getSerieId());
+		if (models.size() > 0) {
+			return "false";
+		} else {
+			form = csRep.findOne(form.getSerieId().trim());
+			csRep.delete(form);
+			return "true";
+		}
+
 	}
 
 	@GetMapping("/car-serie/check-dup")
 	@ResponseBody
-	public String checkDuplicate(@RequestParam("serie_title") String serie_title, @RequestParam("old_serie_title") String old_serie_title) {
+	public String checkDuplicate(@RequestParam("serie_title") String serie_title,
+			@RequestParam("old_serie_title") String old_serie_title) {
 		String return_value = "true";
 		if (old_serie_title.equals("") | old_serie_title == null) {
 			CarSery car_serie = csRep.findBySerieTitle(serie_title.trim());

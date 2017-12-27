@@ -1,5 +1,7 @@
 package com.repositories;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,7 +13,7 @@ import com.entities.UserPage;
 public interface UserPageRepository extends CrudRepository<UserPage, Integer> {
 
 	@Query(value = "select * from user_page where branch_id = ?1 and username = ?2", nativeQuery = true)
-	Iterable<UserPage> find_branch_and_user(String branch_id, String username);
+	List<UserPage> find_branch_and_user(String branch_id, String username);
 
 	@Modifying
 	@Transactional

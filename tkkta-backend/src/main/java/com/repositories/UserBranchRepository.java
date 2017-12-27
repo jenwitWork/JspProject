@@ -1,5 +1,7 @@
 package com.repositories;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,13 +14,13 @@ public interface UserBranchRepository extends CrudRepository<UserBranch, Integer
 
 	/// Select statement
 	@Query(value = "select * from user_branch where username = ?1", nativeQuery = true)
-	Iterable<UserBranch> findUsername(String username);
+	List<UserBranch> findUsername(String username);
 
 	@Query(value = "select * from user_branch where branch_id = ?1", nativeQuery = true)
-	Iterable<UserBranch> findBranch(String branch_id);
+	List<UserBranch> findBranch(String branch_id);
 
 	@Query(value = "select * from user_branch where branch_id = ?1 and username = ?2", nativeQuery = true)
-	Iterable<UserBranch> find_branch_and_user(String branch_id, String username);
+	List<UserBranch> find_branch_and_user(String branch_id, String username);
 
 	/// Update statement
 	@Modifying
