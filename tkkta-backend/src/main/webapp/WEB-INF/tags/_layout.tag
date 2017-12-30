@@ -124,7 +124,7 @@
 							<ul class="nav side-menu">
 								<li><a href="<%=request.getContextPath()%>/dashboard"><i
 										class="fa fa-dashboard"></i> Dashboard</a></li>
-								<li><a><i class="fa fa-edit"></i> จัดการเอกสาร </a></li>
+								<li class="${current_action == 'document' ? 'current-page' : '' }"><a href="<%=request.getContextPath()%>/document"><i class="fa fa-edit"></i> จัดการเอกสาร </a></li>
 							</ul>
 						</div>
 						<div class="menu_section">
@@ -167,8 +167,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">John
-									Doe <span class=" fa fa-angle-down"></span>
+								aria-expanded="false"> <img src="images/img.jpg" alt="">${gobalUser.username } <span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"><i

@@ -25,4 +25,8 @@ public interface DocumentRepository extends CrudRepository<Document, String> {
 	@Query(value = "select * from document where pb_type = ?1", nativeQuery = true)
 	List<Document> findPbType(String pb_type);
 
+	@Query(value = "select * from document where doc_no like %?1% and branch_id like %?2% and status like %?3% and serie_title like %?4% and cm_name like %?5% and pb_name like %?6% and case_name_th like %?7% and case_name_en like %?8% order by doc_no desc", nativeQuery = true)
+	List<Document> search(String doc_no, String branch_id, String status, String serie_title, String cm_name,
+			String pb_name, String case_name_th, String case_name_en);
+
 }
