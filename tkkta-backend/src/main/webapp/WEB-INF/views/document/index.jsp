@@ -99,18 +99,7 @@
 			$('#table-data').html(response);
 		});
 	});
-	
-	$('#btn-create').on('click',function(event){
-		event.preventDefault();
-		$modal = $('.gobal-modal');
-		$modal.modal('show');
-		$.ajax({
-			url : $(this).attr("href"),
-			type : 'get'
-		}).done(function(response) {
-			$modal.find('.modal-content').html(response);
-		});
-	})
+
 	
 </script>
 

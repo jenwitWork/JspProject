@@ -47,6 +47,11 @@ public class DocumentController extends BaseController {
 	@GetMapping("/document/create")
 	public Object create(Model model, HttpServletRequest request, HttpSession session) {
 
+		current_action = "document";
+		current_title = "สร้างเอกสาร";
+		model.addAttribute("current_action", current_action);
+		model.addAttribute("current_title", current_title);
+		
 		model.addAttribute("create_form", new Document());
 
 		return new ModelAndView("document/_create");

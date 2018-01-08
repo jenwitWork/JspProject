@@ -78,7 +78,18 @@
 	href="<%=request.getContextPath()%>/resources/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.css"
 	rel="stylesheet">
 <!-- jQuery custom content scroller -->
-    <link href="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet"/>
+<link
+	href="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+	rel="stylesheet" />
+
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.css"
+	media="screen">
+
+<link rel="stylesheet" type="text/css" id="u0"
+	href="<%=request.getContextPath()%>/resources/tinymce/js/tinymce/skins/lightgray/skin.min.css">
+
 
 <!-- Custom Theme Style -->
 <link
@@ -124,15 +135,27 @@
 							<ul class="nav side-menu">
 								<li><a href="<%=request.getContextPath()%>/dashboard"><i
 										class="fa fa-dashboard"></i> Dashboard</a></li>
-								<li class="${current_action == 'document' ? 'current-page' : '' }"><a href="<%=request.getContextPath()%>/document"><i class="fa fa-edit"></i> จัดการเอกสาร </a></li>
+								<li
+									class="${current_action == 'document' ? 'current-page' : '' }"><a
+									href="<%=request.getContextPath()%>/document"><i
+										class="fa fa-edit"></i> จัดการเอกสาร </a></li>
 							</ul>
 						</div>
 						<div class="menu_section">
 							<h3>Cars</h3>
 							<ul class="nav side-menu">
-								<li class="${current_action == 'car-serie' ? 'current-page' : '' }"><a href="<%=request.getContextPath()%>/car-serie"><i class="fa fa-truck"></i> รุ่นรถ</a></li>
-								<li class="${current_action == 'car-model' ? 'current-page' : '' }"><a href="<%=request.getContextPath()%>/car-model?serie_id="><i class="fa fa-car"></i> แบบรถ</a></li>								
-								<li class="${current_action == 'problem' ? 'current-page' : '' }"><a href="<%=request.getContextPath()%>/problem"><i class="fa fa-question-circle"></i> หมวดปัญหา</a></li>		
+								<li
+									class="${current_action == 'car-serie' ? 'current-page' : '' }"><a
+									href="<%=request.getContextPath()%>/car-serie"><i
+										class="fa fa-truck"></i> รุ่นรถ</a></li>
+								<li
+									class="${current_action == 'car-model' ? 'current-page' : '' }"><a
+									href="<%=request.getContextPath()%>/car-model?serie_id="><i
+										class="fa fa-car"></i> แบบรถ</a></li>
+								<li
+									class="${current_action == 'problem' ? 'current-page' : '' }"><a
+									href="<%=request.getContextPath()%>/problem"><i
+										class="fa fa-question-circle"></i> หมวดปัญหา</a></li>
 							</ul>
 						</div>
 						<div class="menu_section">
@@ -141,11 +164,14 @@
 								<li class="${current_action == 'users' ? 'current-page' : '' }"><a
 									href="<%=request.getContextPath()%>/management/users"><i
 										class="fa fa-users"></i> ผู้ใช้งานทั้งหมด </a></li>
-								<li><a href="<%=request.getContextPath()%>/management/position"><i
+								<li><a
+									href="<%=request.getContextPath()%>/management/position"><i
 										class="fa fa-user-secret"></i> ตำแหน่ง </a></li>
-								<li><a href="<%=request.getContextPath()%>/management/branch"><i
+								<li><a
+									href="<%=request.getContextPath()%>/management/branch"><i
 										class="fa fa-bank"></i> สาขา </a></li>
-								<li><a href="<%=request.getContextPath()%>/management/pages"><i
+								<li><a
+									href="<%=request.getContextPath()%>/management/pages"><i
 										class="fa fa-windows"></i> เว็บโมดูล </a></li>
 							</ul>
 						</div>
@@ -167,7 +193,8 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
-								aria-expanded="false"> <img src="images/img.jpg" alt="">${gobalUser.username } <span class=" fa fa-angle-down"></span>
+								aria-expanded="false"> <img src="images/img.jpg" alt="">${gobalUser.username }
+									<span class=" fa fa-angle-down"></span>
 							</a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"><i
@@ -247,6 +274,8 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>
 	<!-- Bootstrap -->
+	<script
+		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/js/bootstrap.js"></script>
 	<!-- FastClick -->
@@ -336,12 +365,18 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/pdfmake/assets/vfs_fonts.js"></script>
 	<!-- jQuery custom content scroller -->
-    <script src="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/resources/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<script
+		src="<%=request.getContextPath()%>/resources/tinymce/js/tinymce/tinymce.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script
 		src="<%=request.getContextPath()%>/resources/assets/js/custom.js"></script>
+
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
 
 
 

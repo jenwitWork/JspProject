@@ -12,7 +12,7 @@
 				<th class="text-center">รุ่นรถ</th>
 				<th class="text-center">แบบรถ</th>
 				<th class="text-center">หมวดปัญหา</th>
-				<th class="text-center">ชื่อปัญหา</th>
+				<th class="text-left">ชื่อปัญหา</th>
 				<th class="text-center">จัดการ</th>
 			</tr>
 		</thead>
@@ -25,13 +25,11 @@
 					<td class="text-center">${item.serieTitle}</td>
 					<td class="text-center">${item.cmName}</td>
 					<td class="text-center">${item.pbName}</td>
-					<td class="text-center">${item.caseNameTh}</td>
+					<td class="text-left">${item.caseNameTh}</td>
 					<td class="text-center"><a
-						href="${root_action}/car-model?doc_no=${item.docNo}"><i
-							class="fa fa-arrows"></i></a> <a href="#" style="color: green;"
-						onclick="edit('${item.docNo}')"><i
-							class="fa fa-pencil fa-fw"></i></a> <a href="#" style="color: red;"
-						onclick="remove('${item.docNo}')"><i
+						href="${root_action}/document/edit?doc_no=${item.docNo}"
+						style="color: green;"><i class="fa fa-pencil fa-fw"></i></a> <a
+						href="#" style="color: red;" onclick="remove('${item.docNo}')"><i
 							class="fa fa-minus-circle fa-fw"></i></a></td>
 				</tr>
 			</c:forEach>
