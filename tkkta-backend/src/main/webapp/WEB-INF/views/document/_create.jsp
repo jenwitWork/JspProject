@@ -4,7 +4,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="create_form"
+<%@ taglib prefix="edit_form"
 	uri="http://www.springframework.org/tags/form"%>
 
 <mt:_layout title="${current_title }">
@@ -30,10 +30,10 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="margin-bottom-50">
-								<create_form:form action="add-case" method="post"
-									modelAttribute="create_form" class="ng-pristine ng-valid"
+								<edit_form:form action="add-case" method="post"
+									modelAttribute="edit_form" class="ng-pristine ng-valid"
 									id="form-add" enctype="multipart/form-data">
-									<create_form:hidden path="createdUser"
+									<edit_form:hidden path="createdUser"
 										value="${gobalUser.username}" />
 									<input type="hidden" name="detail" id="detail" value="">
 									<div class="form-group row">
@@ -48,19 +48,19 @@
 											<label class="form-control-label" for="l0">สำหรับสาขา</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:select path="branchId"
+											<edit_form:select path="branchId"
 												class="form-control input-sm">
-												<create_form:option value="">-- สาขา --</create_form:option>
+												<edit_form:option value="">-- สาขา --</edit_form:option>
 												<c:forEach var="item" items="${branchList}">
-													<create_form:option value="${item.branchId}">${item.branchId}</create_form:option>
+													<edit_form:option value="${item.branchId}">${item.branchId}</edit_form:option>
 												</c:forEach>
-											</create_form:select>
+											</edit_form:select>
 										</div>
 										<div class="col-md-2">
 											<label class="form-control-label" for="l0">วันที่สร้างเอกสาร</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:input path="createdDate" value="${now}"
+											<edit_form:input path="createdDate" value="${now}"
 												class="form-control input-sm" disabled="true" />
 										</div>
 									</div>
@@ -69,21 +69,21 @@
 											<label class="form-control-label" for="l11">รุ่นรถ</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:select path="serieId"
+											<edit_form:select path="serieId"
 												class="form-control input-sm">
-												<create_form:option value="">-- รุ่นรถ --</create_form:option>
+												<edit_form:option value="">-- รุ่นรถ --</edit_form:option>
 												<c:forEach var="item" items="${csList}">
-													<create_form:option value="${item.serieId}">${item.serieTitle}</create_form:option>
+													<edit_form:option value="${item.serieId}">${item.serieTitle}</edit_form:option>
 												</c:forEach>
-											</create_form:select>
+											</edit_form:select>
 										</div>
 										<div class="col-md-2">
 											<label class="form-control-label" for="l11">แบบรถ</label>
 										</div>
 										<div class="col-md-4" id="model-rendered">
-											<create_form:select class="form-control input-sm" path="cmId">
-												<create_form:option value="">-- แบบรถ --</create_form:option>
-											</create_form:select>
+											<edit_form:select class="form-control input-sm" path="cmId">
+												<edit_form:option value="">-- แบบรถ --</edit_form:option>
+											</edit_form:select>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -91,13 +91,13 @@
 											<label class="form-control-label" for="l11">หมวดปัญหา</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:select class="form-control input-sm"
+											<edit_form:select class="form-control input-sm"
 												path="pbType">
-												<create_form:option value="">-- หมวดปัญหา --</create_form:option>
+												<edit_form:option value="">-- หมวดปัญหา --</edit_form:option>
 												<c:forEach var="item" items="${pbList}">
-													<create_form:option value="${item.pbType}">${item.pbName}</create_form:option>
+													<edit_form:option value="${item.pbType}">${item.pbName}</edit_form:option>
 												</c:forEach>
-											</create_form:select>
+											</edit_form:select>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -106,7 +106,7 @@
 												(ภาษาไทย)</label>
 										</div>
 										<div class="col-md-10">
-											<create_form:input path="caseNameTh"
+											<edit_form:input path="caseNameTh"
 												class="form-control input-sm" placeholder="" />
 										</div>
 									</div>
@@ -116,7 +116,7 @@
 												(ภาษาอังกฤษ)</label>
 										</div>
 										<div class="col-md-10">
-											<create_form:input path="caseNameEn"
+											<edit_form:input path="caseNameEn"
 												class="form-control input-sm" placeholder="" />
 										</div>
 									</div>
@@ -160,7 +160,7 @@
 												id="videos" accept="video/*" />
 										</div>
 									</div>
-								</create_form:form>
+								</edit_form:form>
 							</div>
 						</div>
 					</div>

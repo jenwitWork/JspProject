@@ -16,13 +16,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entities.Document;
+import com.repositories.BranchRepository;
+import com.repositories.CarSerieRepository;
 import com.repositories.DocumentRepository;
+import com.repositories.ProblemTypeRepository;
 
 @Controller
 public class DocumentController extends BaseController {
 	
 	@Autowired
 	private DocumentRepository docRep;
+	
+	@Autowired
+	private BranchRepository branchRep;
+	
+	@Autowired
+	private CarSerieRepository csRep;
+	
+	@Autowired
+	private ProblemTypeRepository pbRep;
 
 	@GetMapping("/document")
 	public Object pos(Model model, HttpServletRequest request, HttpSession session) {
@@ -49,8 +61,13 @@ public class DocumentController extends BaseController {
 
 		current_action = "document";
 		current_title = "สร้างเอกสาร";
+		
 		model.addAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
+		model.addAttribute("branchList", branchRep.findAll());
+		model.addAttribute("csList", csRep.findAll());
+		model.addAttribute("pbList", pbRep.findAll());
+		
 		
 		model.addAttribute("create_form", new Document());
 
@@ -75,8 +92,14 @@ public class DocumentController extends BaseController {
 	public Object edit(@RequestParam("doc_no") String doc_no, Model model, HttpServletRequest request,
 			HttpSession session) {
 
+		current_action = "document";
+		current_title = "แก้ไขเอกสาร";
+		
 		Document pos = docRep.findOne(doc_no.trim());
 		model.addAttribute("edit_form", pos);
+		model.addAttribute("branchList", branchRep.findAll());
+		model.addAttribute("csList", csRep.findAll());
+		model.addAttribute("pbList", pbRep.findAll());
 
 		return new ModelAndView("document/_edit");
 	}
