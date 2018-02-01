@@ -11,7 +11,6 @@
 	<jsp:attribute name="content">
 
 
-
 <!-- page content -->
 <div class="right_col" role="main" style="min-height: 1883px;">
 	<div class="">
@@ -32,7 +31,7 @@
 							<div class="margin-bottom-50">
 								<edit_form:form action="add-case" method="post"
 									modelAttribute="edit_form" class="ng-pristine ng-valid"
-									id="form-add" enctype="multipart/form-data">
+									id="form-edit" enctype="multipart/form-data">
 									<edit_form:hidden path="createdUser"
 										value="${gobalUser.username}" />
 									<input type="hidden" name="detail" id="detail" value="">
@@ -45,16 +44,11 @@
 									</div>
 									<div class="form-group row">
 										<div class="col-md-2">
-											<label class="form-control-label" for="l0">สำหรับสาขา</label>
+											<label class="form-control-label" for="l0">เลขที่เอกสาร</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:select path="branchId"
-												class="form-control input-sm">
-												<edit_form:option value="">-- สาขา --</edit_form:option>
-												<c:forEach var="item" items="${branchList}">
-													<edit_form:option value="${item.branchId}">${item.branchId}</edit_form:option>
-												</c:forEach>
-											</edit_form:select>
+											<edit_form:input path="docNo" class="form-control input-sm"
+												disabled="true" />
 										</div>
 										<div class="col-md-2">
 											<label class="form-control-label" for="l0">วันที่สร้างเอกสาร</label>
@@ -91,11 +85,22 @@
 											<label class="form-control-label" for="l11">หมวดปัญหา</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:select class="form-control input-sm"
-												path="pbType">
+											<edit_form:select class="form-control input-sm" path="pbType">
 												<edit_form:option value="">-- หมวดปัญหา --</edit_form:option>
 												<c:forEach var="item" items="${pbList}">
 													<edit_form:option value="${item.pbType}">${item.pbName}</edit_form:option>
+												</c:forEach>
+											</edit_form:select>
+										</div>
+										<div class="col-md-2">
+											<label class="form-control-label" for="l0">สำหรับสาขา</label>
+										</div>
+										<div class="col-md-4">
+											<edit_form:select path="branchId"
+												class="form-control input-sm">
+												<edit_form:option value="">-- สาขา --</edit_form:option>
+												<c:forEach var="item" items="${branchList}">
+													<edit_form:option value="${item.branchId}">${item.branchId}</edit_form:option>
 												</c:forEach>
 											</edit_form:select>
 										</div>
@@ -130,7 +135,7 @@
 
 									<div class="form-group row">
 										<div class="col-md-12">
-											<div id="form-editor"></div>
+											<div id="form-editor">${cpd.caseDesc }</div>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -141,6 +146,46 @@
 												data-buttonText="เลือกไฟล์ PDF" type="file" name="pdf"
 												id="pdf" />
 										</div>
+										<div class="col-md-8">
+											<input type="hidden" name="old_pdf" id="old_pdf"
+												value="${pdf.pdfPath}">
+											<c:if test="${not empty pdf}">
+												<div class="btn-group" id="delete-pdf" role="group"
+													aria-label="...">
+													<a class="btn btn-sm" target="_blank" href="${pdf.pdfPath}">${pdf.pdfName}</a>
+													<button type="button" id="btn-delete-pdf"
+														class="btn btn-default btn-sm">
+														<i class="fa fa-trash fa-fw"></i>Remove
+													</button>
+												</div>
+											</c:if>
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-sm-12">
+											<div class="app-gallery clearfix">
+												<input type="hidden" name="old_image">
+												<c:forEach var="item" items="${cppList}" varStatus="count">
+													<div class="app-gallery-item edit"
+														id="old-image-${count.index+1}"
+														style="background-image: url(${item.imagePath})">
+														<input type="hidden" name="old_image"
+															value="${item.imagePath}">
+														<div class="app-gallery-item-hover">
+															<div class="btn-group margin-inline">
+																<a class="btn thumbnail fancybox" rel="ligthbox"
+																	href="${item.imagePath}"><i class="fa fa-eye"></i>
+																</a>
+																<button type="button" class="btn btn-delete-image"
+																	data-delete-image="old-image-${count.index+1}">
+																	<i class="fa fa-trash"></i>
+																</button>
+															</div>
+														</div>
+													</div>
+												</c:forEach>
+											</div>
+										</div>
 									</div>
 									<div class="form-group row">
 										<div class="col-md-4">
@@ -150,6 +195,24 @@
 												data-buttonText="เลือกไฟล์รูปภาพ" type="file" name="images"
 												id="images" accept="image/*" multiple="multiple" />
 										</div>
+									</div>
+									<div class="form-group row">
+										<input type="hidden" name="old_vdo" id="old_vdo"
+											value="${vdo.videoPath}">
+										<c:if test="${not empty vdo}">
+											<div id="delete-vdo">
+												<div class="col-sm-6 text-left">
+													<video width="500" controls>
+														<source src="${vdo.videoPath}" type="video/mp4">
+													</video>
+												</div>
+												<div class="col-sm-6">
+													<button class="btn btn-danger btn-delete-vdo">
+														<i class="fa fa-trash fa-fw"></i>Remove VDO
+													</button>
+												</div>
+											</div>
+										</c:if>
 									</div>
 									<div class="form-group row">
 										<div class="col-md-4">
@@ -176,6 +239,8 @@
 
 
 
+
+
 </jsp:attribute>
 </mt:_layout>
 
@@ -187,8 +252,35 @@
 
 
 
+
 <script type="text/javascript">
 	var remoteText = 'ไม่สามารถใช้งานเลขที่เอกสารนี้ได้กรุณากดปุ่ม Gen code';
+	
+	function pageLoad() {
+		//loadDetail();
+		//loadTinyMce();
+	}
+
+	$('.btn-delete-vdo').on('click', function() {
+		$('#old_vdo').val('');
+		$('#delete-vdo').remove();
+	})
+
+	$('#btn-delete-pdf').on('click', function() {
+		$('#old_pdf').val('');
+		$('#delete-pdf').remove();
+	})
+
+	$('.btn-delete-image').on('click', function() {
+		$("#" + $(this).data('delete-image')).remove();
+	})
+
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			openEffect : "none",
+			closeEffect : "none"
+		});
+	});
 
 	$('#new-doc').on('click', function(event) {
 		$.ajax({
@@ -219,12 +311,12 @@
 	})
 	
 
-	$('#form-add').submit(function(event) {
+	$('#form-edit').submit(function(event) {
 		event.preventDefault();
-		if ($('#form-add').valid()) {
+		if ($('#form-edit').valid()) {
 			var detail = tinyMCE.activeEditor.getContent();
 			$('#detail').val(detail);
-			var data = new FormData($('#form-add')[0]);
+			var data = new FormData($('#form-edit')[0]);
 			$modal = $('#gobal-modal-md');
 			$load = $('#saving-md');
 			$modal.find('.modal-content').html($load.html());
@@ -247,7 +339,7 @@
 		}
 	})
 
-	$('#form-add').validate({ // initialize the plugin
+	$('#form-edit').validate({ // initialize the plugin
 		rules : {
 			docNo : {
 				required : true,
@@ -256,7 +348,7 @@
 					url : 'utilities/check-dup-doc_no',
 					data : {
 						doc_no : function() {
-							return $('#form-add input[id=docNo]').val();
+							return $('#form-edit input[id=docNo]').val();
 						}
 					}
 				}
@@ -317,8 +409,7 @@
 					title : 'Test template 2',
 					content : 'Test 2'
 				} ],
-				content_css : [
-						'<%=request.getContextPath()%>/resources/tinymce/font-for-tinymce.css',
+				content_css : ['<%=request.getContextPath()%>/resources/tinymce/font-for-tinymce.css',
 						'<%=request.getContextPath()%>/resources/tinymce/codepen.min.css' ]
 			});
 </script>

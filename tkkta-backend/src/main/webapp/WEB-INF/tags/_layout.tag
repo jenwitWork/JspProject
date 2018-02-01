@@ -83,10 +83,6 @@
 	rel="stylesheet" />
 
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.css"
-	media="screen">
-
 <link rel="stylesheet" type="text/css" id="u0"
 	href="<%=request.getContextPath()%>/resources/tinymce/js/tinymce/skins/lightgray/skin.min.css">
 
@@ -95,6 +91,9 @@
 <link
 	href="<%=request.getContextPath()%>/resources/assets/css/custom.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.css"
+	media="screen">
 
 </head>
 
@@ -272,13 +271,19 @@
 		src="<%=request.getContextPath()%>/resources/vendors/jquery/jquery.js"></script>
 	<!-- jQuery Validation-->
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>
-	<!-- Bootstrap -->
+		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>	
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap -->
+	<script
+		src="<%=request.getContextPath()%>/resources/mustache-master/mustache.min.js"></script>	
 	<!-- FastClick -->
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+	
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->

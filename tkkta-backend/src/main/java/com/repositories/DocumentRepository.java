@@ -11,6 +11,9 @@ import org.springframework.data.repository.CrudRepository;
 import com.entities.Document;
 
 public interface DocumentRepository extends CrudRepository<Document, String> {
+	
+	@Query(value = "select * from document order by doc_no desc limit 1", nativeQuery = true)
+	Document lastRecord();
 
 	@Modifying
 	@Transactional

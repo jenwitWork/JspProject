@@ -4,7 +4,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="edit_form"
+<%@ taglib prefix="create_form"
 	uri="http://www.springframework.org/tags/form"%>
 
 <mt:_layout title="${current_title }">
@@ -30,10 +30,10 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="margin-bottom-50">
-								<edit_form:form action="add-case" method="post"
-									modelAttribute="edit_form" class="ng-pristine ng-valid"
+								<create_form:form action="${root_action}/document/create" method="post"
+									modelAttribute="create_form" class="ng-pristine ng-valid"
 									id="form-add" enctype="multipart/form-data">
-									<edit_form:hidden path="createdUser"
+									<create_form:hidden path="createdUser"
 										value="${gobalUser.username}" />
 									<input type="hidden" name="detail" id="detail" value="">
 									<div class="form-group row">
@@ -48,19 +48,19 @@
 											<label class="form-control-label" for="l0">สำหรับสาขา</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:select path="branchId"
+											<create_form:select path="branchId"
 												class="form-control input-sm">
-												<edit_form:option value="">-- สาขา --</edit_form:option>
+												<create_form:option value="">-- สาขา --</create_form:option>
 												<c:forEach var="item" items="${branchList}">
-													<edit_form:option value="${item.branchId}">${item.branchId}</edit_form:option>
+													<create_form:option value="${item.branchId}">${item.branchId}</create_form:option>
 												</c:forEach>
-											</edit_form:select>
+											</create_form:select>
 										</div>
 										<div class="col-md-2">
 											<label class="form-control-label" for="l0">วันที่สร้างเอกสาร</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:input path="createdDate" value="${now}"
+											<create_form:input path="createdDate" value="${now}"
 												class="form-control input-sm" disabled="true" />
 										</div>
 									</div>
@@ -69,21 +69,21 @@
 											<label class="form-control-label" for="l11">รุ่นรถ</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:select path="serieId"
+											<create_form:select path="serieId"
 												class="form-control input-sm">
-												<edit_form:option value="">-- รุ่นรถ --</edit_form:option>
+												<create_form:option value="">-- รุ่นรถ --</create_form:option>
 												<c:forEach var="item" items="${csList}">
-													<edit_form:option value="${item.serieId}">${item.serieTitle}</edit_form:option>
+													<create_form:option value="${item.serieId}">${item.serieTitle}</create_form:option>
 												</c:forEach>
-											</edit_form:select>
+											</create_form:select>
 										</div>
 										<div class="col-md-2">
 											<label class="form-control-label" for="l11">แบบรถ</label>
 										</div>
 										<div class="col-md-4" id="model-rendered">
-											<edit_form:select class="form-control input-sm" path="cmId">
-												<edit_form:option value="">-- แบบรถ --</edit_form:option>
-											</edit_form:select>
+											<create_form:select class="form-control input-sm" path="cmId">
+												<create_form:option value="">-- แบบรถ --</create_form:option>
+											</create_form:select>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -91,13 +91,13 @@
 											<label class="form-control-label" for="l11">หมวดปัญหา</label>
 										</div>
 										<div class="col-md-4">
-											<edit_form:select class="form-control input-sm"
+											<create_form:select class="form-control input-sm"
 												path="pbType">
-												<edit_form:option value="">-- หมวดปัญหา --</edit_form:option>
+												<create_form:option value="">-- หมวดปัญหา --</create_form:option>
 												<c:forEach var="item" items="${pbList}">
-													<edit_form:option value="${item.pbType}">${item.pbName}</edit_form:option>
+													<create_form:option value="${item.pbType}">${item.pbName}</create_form:option>
 												</c:forEach>
-											</edit_form:select>
+											</create_form:select>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -106,7 +106,7 @@
 												(ภาษาไทย)</label>
 										</div>
 										<div class="col-md-10">
-											<edit_form:input path="caseNameTh"
+											<create_form:input path="caseNameTh"
 												class="form-control input-sm" placeholder="" />
 										</div>
 									</div>
@@ -116,7 +116,7 @@
 												(ภาษาอังกฤษ)</label>
 										</div>
 										<div class="col-md-10">
-											<edit_form:input path="caseNameEn"
+											<create_form:input path="caseNameEn"
 												class="form-control input-sm" placeholder="" />
 										</div>
 									</div>
@@ -160,7 +160,7 @@
 												id="videos" accept="video/*" />
 										</div>
 									</div>
-								</edit_form:form>
+								</create_form:form>
 							</div>
 						</div>
 					</div>
@@ -205,12 +205,13 @@
 	$('#serieId').change(function(event) {
 		var serie_id = $(this).val();
 		$.ajax({
-			url : 'utilities/model-list',
+			url : '${root_action}/utilities/model-list',
 			type : 'get',
 			data : {
 				serie_id : serie_id
 			}
 		}).done(function(data) {
+			console.log(data);
 			var template = $('#model-template').html();
 			Mustache.parse(template); // optional, speeds up future uses
 			var rendered = Mustache.render(template, data);
@@ -234,13 +235,13 @@
 			})
 			$.ajax({
 				type : 'post',
-				url : 'add-case',
+				url : $(this).attr('action'),
 				data : data,
 				cache : false,
 				contentType : false,
 				processData : false,
 			}).done(function(respons) {
-				location.replace("case-problem");
+				location.replace("${root_action}/document");
 			}).error(function(respons) {
 
 			})
