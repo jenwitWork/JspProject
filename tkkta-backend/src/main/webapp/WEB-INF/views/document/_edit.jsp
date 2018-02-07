@@ -29,16 +29,17 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="margin-bottom-50">
-								<edit_form:form action="add-case" method="post"
+								<edit_form:form action="${root_action}/document/edit" method="post"
 									modelAttribute="edit_form" class="ng-pristine ng-valid"
 									id="form-edit" enctype="multipart/form-data">
 									<edit_form:hidden path="createdUser"
 										value="${gobalUser.username}" />
+									<edit_form:hidden path="docNo"/>
 									<input type="hidden" name="detail" id="detail" value="">
 									<div class="form-group row">
 										<div class="col-md-12 text-right">
 											<button type="submit" name="submit"
-												class="btn width-150 btn-success">สร้างเอกสาร</button>
+												class="btn width-150 btn-success">บันทึก</button>
 											<button type="button" class="btn btn-warning">ยกเลิก</button>
 										</div>
 									</div>
@@ -75,8 +76,12 @@
 											<label class="form-control-label" for="l11">แบบรถ</label>
 										</div>
 										<div class="col-md-4" id="model-rendered">
-											<edit_form:select class="form-control input-sm" path="cmId">
-												<edit_form:option value="">-- แบบรถ --</edit_form:option>
+											<edit_form:select path="cmId"
+												class="form-control input-sm">
+												<edit_form:option value="">-- รุ่นรถ --</edit_form:option>
+												<c:forEach var="item" items="${cmList}">
+													<edit_form:option value="${item.cmId}">${item.cmId}</edit_form:option>
+												</c:forEach>
 											</edit_form:select>
 										</div>
 									</div>
@@ -187,6 +192,8 @@
 											</div>
 										</div>
 									</div>
+																		
+									
 									<div class="form-group row">
 										<div class="col-md-4">
 											<input class="filestyle" data-buttonBefore="true"
@@ -274,13 +281,13 @@
 	$('.btn-delete-image').on('click', function() {
 		$("#" + $(this).data('delete-image')).remove();
 	})
-
-	$(document).ready(function() {
+	
+	 $(document).ready(function() {
 		$(".fancybox").fancybox({
 			openEffect : "none",
 			closeEffect : "none"
 		});
-	});
+	}); 
 
 	$('#new-doc').on('click', function(event) {
 		$.ajax({
@@ -297,7 +304,7 @@
 	$('#serieId').change(function(event) {
 		var serie_id = $(this).val();
 		$.ajax({
-			url : 'utilities/model-list',
+			url : '${root_action}/utilities/model-list',
 			type : 'get',
 			data : {
 				serie_id : serie_id
@@ -326,13 +333,13 @@
 			})
 			$.ajax({
 				type : 'post',
-				url : 'add-case',
+				url : $(this).attr('action'),
 				data : data,
 				cache : false,
 				contentType : false,
 				processData : false,
 			}).done(function(respons) {
-				location.replace("case-problem");
+				location.replace("${root_action}/document");
 			}).error(function(respons) {
 
 			})

@@ -216,5 +216,19 @@ public class Document implements Serializable {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
+	
+	public void update(Document obj) {
+		setBranchId(obj.getBranchId().trim());
+		setCaseNameEn(obj.getCaseNameEn().trim());
+		setCaseNameTh(obj.getCaseNameTh().trim());
+		setCmId(obj.getCmId().trim());
+		setCmName(obj.getCmName().trim());
+		setPbName(obj.getPbName().trim());
+		setPbType(obj.getPbType().trim());
+		setSerieId(obj.getSerieId().trim());
+		setSerieTitle(obj.getSerieTitle().trim());
+		setUpdatedDate(obj.getUpdatedDate());
+		setUpdatedUser(obj.getUpdatedUser().trim());
+	}
 
 }

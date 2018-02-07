@@ -9,15 +9,14 @@
 	</button>
 	<h5 class="modal-title">ลบข้อมูลรุ่นรถ</h5>
 </div>
-<form:form action="${root_action}/car-serie/delete" method="post"
+<form:form action="${root_action}/document/delete" method="post"
 	modelAttribute="delete_form" id="form-delete">
-	<form:hidden path="serieId" />
-	<form:hidden path="serieTitle" />
+	<form:hidden path="docNo" />
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<h4>คำเตือน !!</h4>
-				<p>คูณกำลังดำเนินการลบข้อมูลรุ่นรถ ${delete_form.serieTitle}
+				<p>คูณกำลังดำเนินการลบข้อมูลรุ่นรถ ${delete_form.docNo}
 					ออกจากฐานข้อมูลของระบบ</p>
 			</div>
 		</div>
@@ -36,7 +35,7 @@
 			type : 'post',
 			data : $(this).serialize()
 		}).done(function(response) {
-			if (response == 'true') {
+			if (response == 'success') {
 				$('button[class=close]').click();
 				$('#form-search').submit();
 			} else {

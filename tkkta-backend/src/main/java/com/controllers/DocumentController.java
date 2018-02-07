@@ -48,13 +48,13 @@ public class DocumentController extends BaseController {
 	private DocDescRepository docDescRep;
 
 	@Autowired
-	private DocPicRepository cpPicRep;
+	private DocPicRepository docPicRep;
 
 	@Autowired
-	private DocVdoRepository cpVdoRep;
+	private DocVdoRepository docVdoRep;
 
 	@Autowired
-	private DocFileRepository cppdfRep;
+	private DocFileRepository docFileRep;
 
 	@Autowired
 	private BranchRepository branchRep;
@@ -70,7 +70,7 @@ public class DocumentController extends BaseController {
 	
 
 	@GetMapping("/document")
-	public Object pos(Model model, HttpServletRequest request, HttpSession session) {
+	public Object doc(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "document";
 		current_title = "จัดการเอกสาร";
 		model.addAttribute("current_action", current_action);
@@ -158,20 +158,22 @@ public class DocumentController extends BaseController {
 		Iterable<CarSery> csList = csRep.findAll();
 		Iterable<ProblemType> pbList = pbRep.findAll();
 
-		Document cp = docRep.findOne(doc_no.trim());
+		Document doc = docRep.findOne(doc_no.trim());
 		DocDesc cpd = docDescRep.findOne(doc_no.trim());
-		Iterable<CarModel> cmList = cmRep.findSerieId(cp.getSerieId().toString());
-		Iterable<DocPic> cppList = cpPicRep.findByDocNo(doc_no.trim());
-		DocFile pdf = cppdfRep.findByDocNo(doc_no.trim());
-		DocVdo vdo = cpVdoRep.findByDocNo(doc_no.trim());
+		Iterable<CarModel> cmList = cmRep.findSerieId(doc.getSerieId().toString());
+		Iterable<DocPic> cppList = docPicRep.findByDocNo(doc_no.trim());
+		DocFile pdf = docFileRep.findByDocNo(doc_no.trim());
+		DocVdo vdo = docVdoRep.findByDocNo(doc_no.trim());
 
 		model.addAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("csList", csList);
 		model.addAttribute("pbList", pbList);
-		model.addAttribute("edit_form", cp);
+		model.addAttribute("edit_form", doc);
 		model.addAttribute("cpd", cpd);
 		model.addAttribute("cmList", cmList);
+		model.addAttribute("csList", csRep.findAll());
+		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
 		model.addAttribute("vdo", vdo);
@@ -181,28 +183,91 @@ public class DocumentController extends BaseController {
 
 	@PostMapping("/document/edit")
 	@ResponseBody
-	public String edit(@ModelAttribute("edit_form") Document form, @RequestParam("old_doc_no") String old_doc_no) {
+	public String edit(@ModelAttribute("edit_form") Document form, @RequestParam(value = "detail") String detail,
+			@RequestParam(value = "old_pdf") String old_pdf, @RequestParam(value = "old_image") String[] old_image,
+			@RequestParam(value = "old_vdo") String old_vdo, @RequestParam("images") MultipartFile[] images,
+			@RequestParam("pdf") MultipartFile file, @RequestParam("videos") MultipartFile videos) {
 
-		// Document pos = docRep.findOne(old_doc_no.trim());
+		Document doc = docRep.findOne(form.getDocNo().trim());
+		DocDesc cpd = new DocDesc();
+
+		form.setUpdatedUser(current_user.trim());
+		form.setSerieTitle(csRep.findOne(form.getSerieId().trim()).getSerieTitle().trim());
+		form.setCmName(cmRep.findOne(form.getCmId().trim()).getCmName().trim());
+		form.setPbName(pbRep.findOne(form.getPbType().trim()).getPbName().trim());
+		form.setUpdatedDate(new Date());
+
+		doc.update(form);
+
+		cpd.setDocNo(form.getDocNo().trim());
+		cpd.setCaseDesc(detail);
+
+		docRep.save(doc);
+		docDescRep.save(cpd);
+
+		DocFile pdf = docFileRep.findByDocNo(form.getDocNo().trim());
+		if (pdf != null)
+			docFileRep.delete(pdf);
+		if (old_pdf != null & !old_pdf.equals("")) {
+			pdf = new DocFile();
+			pdf.setDocNo(form.getDocNo().trim());
+			pdf.setPdfPath(old_pdf.trim());
+			pdf.setPdfName(old_pdf.replace("/storage/files/", ""));
+			docFileRep.save(pdf);
+		}
+
+		Iterable<DocPic> imageList = docPicRep.findByDocNo(form.getDocNo().trim());
+		if (imageList != null)
+			docPicRep.delete(imageList);
+		if (old_image != null) {
+			for (String item : old_image) {
+				if (item != null & !item.equals("")) {
+					DocPic cpp = new DocPic();
+					cpp.setDocNo(form.getDocNo().trim());
+					cpp.setImagePath(item.trim());
+					docPicRep.save(cpp);
+				}
+			}
+		}
+
+		DocVdo vdo = docVdoRep.findByDocNo(form.getDocNo().trim());
+		if (vdo != null)
+			docVdoRep.delete(vdo);
+		if (old_vdo != null & !old_vdo.equals("")) {
+			vdo = new DocVdo();
+			vdo.setDocNo(form.getDocNo().trim());
+			vdo.setVideoPath(old_vdo.trim());
+			docVdoRep.save(vdo);
+		}
+
+		uploadImage(images, form.getDocNo().trim(), true);
+		uploadFile(file, form.getDocNo().trim(), true);
+		uploadVideo(videos, form.getDocNo().trim(), true);
 
 		return "success";
+
 	}
 
 	@GetMapping("/document/delete")
 	public Object delete(@RequestParam("doc_no") String doc_no, Model model, HttpServletRequest request,
 			HttpSession session) {
 
-		Document pos = docRep.findOne(doc_no.trim());
-		model.addAttribute("delete_form", pos);
+		Document doc = docRep.findOne(doc_no.trim());
+		model.addAttribute("delete_form", doc);
 
 		return new ModelAndView("document/_delete");
 	}
 
 	@PostMapping("/document/delete")
 	@ResponseBody
-	public String delete(@ModelAttribute("delete_form") Document form, HttpServletRequest request,
-			HttpSession session) {
+	public String delete(@ModelAttribute("delete_form") Document form) {
 		form = docRep.findOne(form.getDocNo().trim());
+		
+		docDescRep.delete(form.getDocNo());
+		docPicRep.deleteWhereDocNo(form.getDocNo());
+		docVdoRep.deleteWhereDocNo(form.getDocNo());
+		docFileRep.deleteWhereDocNo(form.getDocNo());
+		
 		docRep.delete(form);
 		return "success";
 	}
@@ -212,8 +277,8 @@ public class DocumentController extends BaseController {
 	public String checkDuplicate(@RequestParam("doc_no") String doc_no, @RequestParam("old_doc_no") String old_doc_no) {
 		String return_value = "true";
 		if (old_doc_no.equals("") | old_doc_no == null) {
-			Document pos = docRep.findOne(doc_no.trim());
-			if (pos == null)
+			Document doc = docRep.findOne(doc_no.trim());
+			if (doc == null)
 				return_value = "true";
 			else
 				return_value = "false";
@@ -221,8 +286,8 @@ public class DocumentController extends BaseController {
 			if (old_doc_no.trim().equals(doc_no.trim())) {
 				return_value = "true";
 			} else {
-				Document pos = docRep.findOne(doc_no.trim());
-				if (pos == null)
+				Document doc = docRep.findOne(doc_no.trim());
+				if (doc == null)
 					return_value = "true";
 				else
 					return_value = "false";
@@ -233,9 +298,9 @@ public class DocumentController extends BaseController {
 
 	public void uploadImage(MultipartFile[] images, String doc_no, boolean flag_edit) {
 		if (!flag_edit) {
-			Iterable<DocPic> imageList = cpPicRep.findByDocNo(doc_no.trim());
+			Iterable<DocPic> imageList = docPicRep.findByDocNo(doc_no.trim());
 			if (imageList != null)
-				cpPicRep.delete(imageList);
+				docPicRep.delete(imageList);
 		}
 
 		if (images.length > 0) {
@@ -258,14 +323,14 @@ public class DocumentController extends BaseController {
 						stream.write(bytes);
 						stream.close();
 						fileLocation = fileLocation + "\\" + fileName;
-						fileLocation = "../" + fileLocation.replace("\\", "/");
+						fileLocation = "/" + fileLocation.replace("\\", "/");
 						fileLocation = fileLocation.replace("webapps", "");
 						fileLocation = fileLocation.replace("//", "/");
 
 						DocPic cpPic = new DocPic();
 						cpPic.setDocNo(doc_no.trim());
 						cpPic.setImagePath(fileLocation.trim());
-						cpPicRep.save(cpPic);
+						docPicRep.save(cpPic);
 					} catch (Exception e) {
 					}
 				}
@@ -275,9 +340,9 @@ public class DocumentController extends BaseController {
 
 	public void uploadVideo(MultipartFile video, String doc_no, boolean flag_edit) {
 		if (!flag_edit) {
-			DocVdo vdo = cpVdoRep.findByDocNo(doc_no.trim());
+			DocVdo vdo = docVdoRep.findByDocNo(doc_no.trim());
 			if (vdo != null)
-				cpVdoRep.delete(vdo);
+				docVdoRep.delete(vdo);
 		}
 
 		if (!video.isEmpty()) {
@@ -296,7 +361,7 @@ public class DocumentController extends BaseController {
 				stream.write(bytes);
 				stream.close();
 				fileLocation = fileLocation + "\\" + fileName;
-				fileLocation = "../" + fileLocation.replace("\\", "/");
+				fileLocation = "/" + fileLocation.replace("\\", "/");
 				fileLocation = fileLocation.replace("webapps", "");
 				fileLocation = fileLocation.replace("//", "/");
 
@@ -304,7 +369,7 @@ public class DocumentController extends BaseController {
 				vdos.setDocNo(doc_no.trim());
 				vdos.setVideoPath(fileLocation.trim());
 
-				cpVdoRep.save(vdos);
+				docVdoRep.save(vdos);
 
 			} catch (Exception e) {
 			}
@@ -313,9 +378,9 @@ public class DocumentController extends BaseController {
 
 	public void uploadFile(MultipartFile file, String doc_no, boolean flag_edit) {
 		if (!flag_edit) {
-			DocFile pdfTemp = cppdfRep.findByDocNo(doc_no.trim());
+			DocFile pdfTemp = docFileRep.findByDocNo(doc_no.trim());
 			if (pdfTemp != null)
-				cppdfRep.delete(pdfTemp);
+				docFileRep.delete(pdfTemp);
 		}
 
 		if (!file.isEmpty()) {
@@ -335,7 +400,7 @@ public class DocumentController extends BaseController {
 				stream.write(bytes);
 				stream.close();
 				fileLocation = fileLocation + "\\" + fileName;
-				fileLocation = "../" + fileLocation.replace("\\", "/");
+				fileLocation = "/" + fileLocation.replace("\\", "/");
 				fileLocation = fileLocation.replace("webapps", "");
 				fileLocation = fileLocation.replace("//", "/");
 
@@ -343,7 +408,7 @@ public class DocumentController extends BaseController {
 				pdf.setDocNo(doc_no.trim());
 				pdf.setPdfPath(fileLocation.trim());
 				pdf.setPdfName(fileName.trim());
-				cppdfRep.save(pdf);
+				docFileRep.save(pdf);
 			} catch (Exception e) {
 			}
 		}

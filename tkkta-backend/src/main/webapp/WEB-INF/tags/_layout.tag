@@ -35,6 +35,7 @@
 <link
 	href="<%=request.getContextPath()%>/resources/vendors/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
 <!-- Font Awesome -->
 <link
 	href="<%=request.getContextPath()%>/resources/vendors/font-awesome/css/font-awesome.css"
@@ -91,9 +92,11 @@
 <link
 	href="<%=request.getContextPath()%>/resources/assets/css/custom.css"
 	rel="stylesheet">
-<link rel="stylesheet"
+<%-- <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.css"
-	media="screen">
+	media="screen"> --%>
+	
+	
 
 </head>
 
@@ -270,9 +273,11 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/jquery/jquery.js"></script>
 	<!-- jQuery Validation-->
-	<script
-		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>	
-	<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+	<%-- <script
+		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>	 --%>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>	
 	<script

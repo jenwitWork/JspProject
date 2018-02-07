@@ -3116,7 +3116,7 @@ ul.project_files li a i {
 .thumbnail .image {
     height: 120px;
     overflow: hidden
-}
+} 
 .caption {
     padding: 9px 5px;
     background: #F7F7F7
@@ -3127,7 +3127,7 @@ ul.project_files li a i {
 .thumbnail {
     height: 190px;
     overflow: hidden
-}
+} 
 .view {
     overflow: hidden;
     position: relative;

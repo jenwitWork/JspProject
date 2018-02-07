@@ -52,7 +52,7 @@ public class LoginController extends BaseController {
 				session.setAttribute("gobalUser", user);
 				session.setAttribute("menu_toggle", menu_toggle);
 				session.setAttribute("root_action", root_action);
-				return_view = "redirect:dashboard";
+				return_view = "redirect:document";
 			} else {
 				return_view = "redirect:login?error=false";
 			}
