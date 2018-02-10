@@ -35,8 +35,6 @@
 <link
 	href="<%=request.getContextPath()%>/resources/vendors/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
-<!-- Font Awesome -->
 <link
 	href="<%=request.getContextPath()%>/resources/vendors/font-awesome/css/font-awesome.css"
 	rel="stylesheet">
@@ -92,11 +90,11 @@
 <link
 	href="<%=request.getContextPath()%>/resources/assets/css/custom.css"
 	rel="stylesheet">
-<%-- <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.css"
-	media="screen"> --%>
-	
-	
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/fancybox-master/assets/jquery.fancybox.min.css" />
+
+
 
 </head>
 
@@ -272,23 +270,17 @@
 	<!-- jQuery -->
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/jquery/jquery.js"></script>
-	<!-- jQuery Validation-->
-	<%-- <script
-		src="<%=request.getContextPath()%>/resources/fancybox/jquery.fancybox.min.js"></script>	 --%>
-	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>	
+		src="<%=request.getContextPath()%>/resources/vendors/jquery-validation/jquery.validate.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/bootstrap/js/bootstrap.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="<%=request.getContextPath()%>/resources/mustache-master/mustache.min.js"></script>	
+		src="<%=request.getContextPath()%>/resources/mustache-master/mustache.min.js"></script>
 	<!-- FastClick -->
 	<script
 		src="<%=request.getContextPath()%>/resources/assets/jquery-mousewheel/jquery.mousewheel.min.js"></script>
-	
+
 	<script
 		src="<%=request.getContextPath()%>/resources/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
@@ -387,6 +379,8 @@
 
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/bootstrap-filestyle/src/bootstrap-filestyle.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/fancybox-master/assets/jquery.fancybox.min.js"></script>
 
 
 
@@ -414,7 +408,9 @@
 	<div class="modal fade gobal-modal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content"></div>
+			<div class="modal-content">
+				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_md.gif">
+			</div>
 		</div>
 	</div>
 
@@ -422,7 +418,9 @@
 	<div class="modal fade gobal-modal-lg" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<div class="modal-content">...</div>
+			<div class="modal-content">
+				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_lg.gif">
+			</div>
 		</div>
 	</div>
 
@@ -430,7 +428,9 @@
 	<div class="modal fade gobal-modal-sm" tabindex="-1" role="dialog"
 		aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-			<div class="modal-content">...</div>
+			<div class="modal-content">
+				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_sm.gif">
+			</div>
 		</div>
 	</div>
 

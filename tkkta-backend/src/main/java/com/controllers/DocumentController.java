@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.entities.CarModel;
 import com.entities.CarSery;
@@ -81,13 +80,12 @@ public class DocumentController extends BaseController {
 	}
 
 	@GetMapping("/document/list")
-	public Object list(@ModelAttribute("search_form") Document form, Model model) {
+	public Object list(@ModelAttribute("search_form") Document form, Model model, HttpServletRequest request, HttpSession session) {
 
 		Iterable<Document> docs = docRep.search(form.getDocNo(), form.getBranchId(), form.getStatus(),
 				form.getSerieTitle(), form.getCmName(), form.getPbName(), form.getCaseNameTh(), form.getCaseNameEn());
 		model.addAttribute("docs", docs);
-
-		return new ModelAndView("document/_list");
+		return auth.checkLogin(session, request, "document/_list");
 	}
 
 	@GetMapping("/document/create")
@@ -104,7 +102,7 @@ public class DocumentController extends BaseController {
 
 		model.addAttribute("create_form", new Document());
 
-		return new ModelAndView("document/_create");
+		return auth.checkLogin(session, request, "document/_create");
 	}
 
 	@PostMapping("/document/create")
@@ -178,7 +176,7 @@ public class DocumentController extends BaseController {
 		model.addAttribute("cppList", cppList);
 		model.addAttribute("vdo", vdo);
 
-		return new ModelAndView("document/_edit");
+		return auth.checkLogin(session, request, "document/_edit");
 	}
 
 	@PostMapping("/document/edit")
@@ -255,7 +253,7 @@ public class DocumentController extends BaseController {
 		Document doc = docRep.findOne(doc_no.trim());
 		model.addAttribute("delete_form", doc);
 
-		return new ModelAndView("document/_delete");
+		return auth.checkLogin(session, request, "document/_delete");
 	}
 
 	@PostMapping("/document/delete")

@@ -171,23 +171,8 @@
 											<div class="app-gallery clearfix">
 												<input type="hidden" name="old_image">
 												<c:forEach var="item" items="${cppList}" varStatus="count">
-													<div class="app-gallery-item edit"
-														id="old-image-${count.index+1}"
-														style="background-image: url(${item.imagePath})">
-														<input type="hidden" name="old_image"
-															value="${item.imagePath}">
-														<div class="app-gallery-item-hover">
-															<div class="btn-group margin-inline">
-																<a class="btn thumbnail fancybox" rel="ligthbox"
-																	href="${item.imagePath}"><i class="fa fa-eye"></i>
-																</a>
-																<button type="button" class="btn btn-delete-image"
-																	data-delete-image="old-image-${count.index+1}">
-																	<i class="fa fa-trash"></i>
-																</button>
-															</div>
-														</div>
-													</div>
+													<input type="hidden" name="old_image" value="${item.imagePath}">
+													<a data-fancybox="gallery" href="${item.imagePath}"><img src="${item.imagePath}" class="col-sm-2" style="padding: 0px"></a>															
 												</c:forEach>
 											</div>
 										</div>
@@ -282,12 +267,6 @@
 		$("#" + $(this).data('delete-image')).remove();
 	})
 	
-	 $(document).ready(function() {
-		$(".fancybox").fancybox({
-			openEffect : "none",
-			closeEffect : "none"
-		});
-	}); 
 
 	$('#new-doc').on('click', function(event) {
 		$.ajax({
@@ -324,13 +303,13 @@
 			var detail = tinyMCE.activeEditor.getContent();
 			$('#detail').val(detail);
 			var data = new FormData($('#form-edit')[0]);
-			$modal = $('#gobal-modal-md');
-			$load = $('#saving-md');
-			$modal.find('.modal-content').html($load.html());
+			$modal = $('.gobal-modal');
 			$modal.modal({
 				backdrop : 'static',
 				keyboard : false
 			})
+			$modal.modal('show');
+			
 			$.ajax({
 				type : 'post',
 				url : $(this).attr('action'),
@@ -372,6 +351,9 @@
 			caseNameTh : {
 				required : true,
 				maxlength : 255
+			},
+			branchId : {
+				required : true
 			}
 		},
 		messages : {
@@ -391,6 +373,9 @@
 			caseNameTh : {
 				required : 'กรุณาระบุ  ชื่อปัญหา (ภาษาไทย)',
 				maxlength : 'ความยาวต้องไม่เกิน 255 ตัวอักษร'
+			},
+			branchId : {
+				required : 'กรุณาระบุสาขา'
 			}
 
 		}
