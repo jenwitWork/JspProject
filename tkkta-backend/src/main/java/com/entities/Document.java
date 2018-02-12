@@ -229,6 +229,7 @@ public class Document implements Serializable {
 		setSerieTitle(obj.getSerieTitle().trim());
 		setUpdatedDate(obj.getUpdatedDate());
 		setUpdatedUser(obj.getUpdatedUser().trim());
+		setStatus(obj.getStatus().trim());
 	}
 
 }

@@ -409,7 +409,9 @@
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_md.gif">
+				<div class="row text-center">
+					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_md.gif">
+				</div>				
 			</div>
 		</div>
 	</div>
@@ -419,7 +421,9 @@
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_lg.gif">
+				<div class="row text-center">
+					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_lg.gif">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -429,7 +433,9 @@
 		aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
-				<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_sm.gif">
+				<div class="row text-center">
+					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_sm.gif">
+				</div>
 			</div>
 		</div>
 	</div>

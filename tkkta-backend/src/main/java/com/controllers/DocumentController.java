@@ -125,7 +125,6 @@ public class DocumentController extends BaseController {
 		form.setCreatedUser(current_user);
 		form.setUpdatedDate(new Date());
 		form.setUpdatedUser(current_user);
-		form.setStatus("pending");
 		form.setSerieTitle(csRep.findOne(form.getSerieId().trim()).getSerieTitle().trim());
 		form.setCmName(cmRep.findOne(form.getCmId().trim()).getCmName().trim());
 		form.setPbName(pbRep.findOne(form.getPbType().trim()).getPbName().trim());

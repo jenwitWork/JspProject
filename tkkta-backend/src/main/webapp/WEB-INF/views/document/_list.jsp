@@ -21,7 +21,7 @@
 				<tr>
 					<td class="text-left">${item.docNo}</td>
 					<td class="text-center">${item.branchId}</td>
-					<td class="text-center">${item.status}</td>
+					<td class="text-center ${item.status}">${item.status}</td>
 					<td class="text-center">${item.serieTitle}</td>
 					<td class="text-center">${item.cmName}</td>
 					<td class="text-center">${item.pbName}</td>

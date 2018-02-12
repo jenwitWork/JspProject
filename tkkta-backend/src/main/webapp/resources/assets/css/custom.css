@@ -4254,6 +4254,18 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 }
 /** /bootstrap-datetimepicker **/
 
-label .error{
-	color: red;
+label.error{
+	color: #ff4d4d;
+}
+.pending{
+	font-weight : bold;
+	color: #ffcc00;
+}
+.approved{
+	font-weight : bold;
+	color: #00e600;
+}
+.not-approved{
+	font-weight : bold;
+	color: #ff4d4d;
 }
