@@ -2,6 +2,8 @@ package com.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+
 import java.util.Date;
 
 
@@ -16,6 +18,7 @@ public class UserPage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String id;
 
 	@Column(name="branch_id")
