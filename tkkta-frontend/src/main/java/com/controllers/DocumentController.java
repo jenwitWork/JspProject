@@ -35,7 +35,9 @@ import com.repositories.DocPicRepository;
 import com.repositories.DocVdoRepository;
 import com.repositories.DocumentRepository;
 import com.repositories.ProblemTypeRepository;
+import com.repositories.UserBranchRepository;
 import com.utilities.GenerateCode;
+
 
 @Controller
 public class DocumentController extends BaseController {
@@ -67,6 +69,8 @@ public class DocumentController extends BaseController {
 	@Autowired
 	private ProblemTypeRepository pbRep;
 	
+	@Autowired
+	private UserBranchRepository userBranchRep;
 
 	@GetMapping("/document")
 	public Object doc(Model model, HttpServletRequest request, HttpSession session) {
@@ -79,11 +83,19 @@ public class DocumentController extends BaseController {
 		return auth.checkLogin(session, request, "document/index");
 	}
 
-	@GetMapping("/document/list")
-	public Object list(@ModelAttribute("search_form") Document form, Model model, HttpServletRequest request, HttpSession session) {
 
-		Iterable<Document> docs = docRep.search(form.getDocNo(), form.getBranchId(), form.getStatus(),
-				form.getSerieTitle(), form.getCmName(), form.getPbName(), form.getCaseNameTh(), form.getCaseNameEn());
+	@GetMapping("/document/list")
+	public Object list(@ModelAttribute("search_form") Document form, Model model, HttpServletRequest request,
+			HttpSession session) {
+
+		allow_branch = userBranchRep.findUsername(current_user);
+		String [] branchs = new String[allow_branch.size()];
+		for (int i = 0; i < allow_branch.size(); i++) {
+			branchs[i] = allow_branch.get(i).getBranchId();
+		}
+
+		Iterable<Document> docs = docRep.search(form.getDocNo(), branchs, form.getStatus(), form.getSerieTitle(),
+				form.getCmName(), form.getPbName(), form.getCaseNameTh(), form.getCaseNameEn());
 		model.addAttribute("docs", docs);
 		return auth.checkLogin(session, request, "document/_list");
 	}
@@ -109,18 +121,18 @@ public class DocumentController extends BaseController {
 	@ResponseBody
 	public String create(@ModelAttribute("create_form") Document form, @RequestParam("detail") String detail,
 			@RequestParam("images") MultipartFile[] images, @RequestParam("pdf") MultipartFile file,
-			@RequestParam("videos") MultipartFile videos) {		
+			@RequestParam("videos") MultipartFile videos) {
 
 		DocDesc cpd = new DocDesc();
 
 		Document doc = docRep.lastRecord();
-		
+
 		if (doc == null) {
 			form.setDocNo(new GenerateCode().newCodeDocument(""));
 		} else {
 			form.setDocNo(new GenerateCode().newCodeDocument(doc.getDocNo().trim()));
 		}
-		
+
 		form.setCreatedDate(new Date());
 		form.setCreatedUser(current_user);
 		form.setUpdatedDate(new Date());
@@ -259,12 +271,12 @@ public class DocumentController extends BaseController {
 	@ResponseBody
 	public String delete(@ModelAttribute("delete_form") Document form) {
 		form = docRep.findOne(form.getDocNo().trim());
-		
+
 		docDescRep.delete(form.getDocNo());
 		docPicRep.deleteWhereDocNo(form.getDocNo());
 		docVdoRep.deleteWhereDocNo(form.getDocNo());
 		docFileRep.deleteWhereDocNo(form.getDocNo());
-		
+
 		docRep.delete(form);
 		return "success";
 	}

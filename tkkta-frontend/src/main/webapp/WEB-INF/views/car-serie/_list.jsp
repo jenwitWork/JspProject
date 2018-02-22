@@ -26,11 +26,8 @@
 					<td class="text-left">${item.updatedUser}</td>
 					<td class="text-center"><a
 						href="${root_action}/car-model?serie_id=${item.serieId}"><i
-							class="fa fa-arrows"></i></a> <a href="#" style="color: green;"
-						onclick="edit('${item.serieId}')"><i
-							class="fa fa-pencil fa-fw"></i></a> <a href="#" style="color: red;"
-						onclick="remove('${item.serieId}')"><i
-							class="fa fa-minus-circle fa-fw"></i></a></td>
+							class="fa fa-arrows"></i></a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

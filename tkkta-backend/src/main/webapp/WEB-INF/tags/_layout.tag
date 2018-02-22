@@ -13,7 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>${current_title }</title>
+<title>(Admin) ${current_title }</title>
 
 <link
 	href="<%=request.getContextPath()%>/resources/img/favicon.144x144.png"

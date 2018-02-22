@@ -37,8 +37,7 @@
 							<div class="form-group">
 								<search_form:input path="cmId" class="form-control" placeholder="แบบรถ"/>
 							</div>							
-							<button class="btn btn-success" style="margin: 0px;">Search</button>
-							<a href="${root_action}/car-model/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
+							<button class="btn btn-success" style="margin: 0px;">Search</button>							
 						</search_form:form>
 					</div>
 					</div>

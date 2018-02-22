@@ -1,5 +1,7 @@
 package com.controllers;
+import java.util.List;
 
+import com.entities.UserBranch;
 import com.utilities.Authorization;
 
 public class BaseController {
@@ -10,6 +12,8 @@ public class BaseController {
 	// static variable.
 	public static String current_action = "";
 	public static String current_title = "";
+	public static String current_branch = "";
+	public static List<UserBranch> allow_branch;
 	public static String return_view = "redirect:home";
 	public static String menu_toggle = "nav-md";
 	public static String current_user = "";

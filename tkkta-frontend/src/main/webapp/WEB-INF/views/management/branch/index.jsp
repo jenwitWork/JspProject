@@ -36,7 +36,6 @@
 								<search_form:input path="branchName" class="form-control" placeholder="ชื่อสาขา"/>
 							</div>
 							<button class="btn btn-success" style="margin: 0px;">Search</button>
-							<a href="${root_action}/management/branch/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
 						</search_form:form>
 					</div>
 					</div>

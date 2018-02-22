@@ -12,7 +12,6 @@
 			<th class="text-left">ผู้สร้าง</th>
 			<th class="text-center">แก้ไขล่าสุด</th>
 			<th class="text-left">ผู้แก้ไข</th>
-			<th class="text-center">action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,11 +24,6 @@
 				<td class="text-left">${branch.createdUser}</td>
 				<td class="text-center">${branch.updatedDate}</td>
 				<td class="text-left">${branch.updatedUser}</td>
-				<td class="text-center"> <a href="${root_action}/management/branch/manage?branch_id=${branch.branchId}" style="color: blue;"><i
-						class="fa fa-gear fa-fw"></i></a>  <a href="#" style="color: green;" onclick="edit('${branch.branchId}')"><i
-						class="fa fa-pencil fa-fw"></i></a>  <a href="#" style="color: red;" onclick="remove('${branch.branchId}')"><i
-						class="fa fa-minus-circle fa-fw"></i></a> 
-				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

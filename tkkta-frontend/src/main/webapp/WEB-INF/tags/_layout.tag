@@ -105,7 +105,7 @@
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
 						<a href="dashboard" class="site_title"><i class="fa fa-paw"></i>
-							<span>TKK Bankend</span></a>
+							<span>TKK Frontend</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -138,7 +138,7 @@
 								<li
 									class="${current_action == 'document' ? 'current-page' : '' }"><a
 									href="<%=request.getContextPath()%>/document"><i
-										class="fa fa-edit"></i> จัดการเอกสาร </a></li>
+										class="fa fa-edit"></i> ปัญหาเทคนิค </a></li>
 							</ul>
 						</div>
 						<div class="menu_section">
@@ -152,10 +152,6 @@
 									class="${current_action == 'car-model' ? 'current-page' : '' }"><a
 									href="<%=request.getContextPath()%>/car-model?serie_id="><i
 										class="fa fa-car"></i> แบบรถ</a></li>
-								<li
-									class="${current_action == 'problem' ? 'current-page' : '' }"><a
-									href="<%=request.getContextPath()%>/problem"><i
-										class="fa fa-question-circle"></i> หมวดปัญหา</a></li>
 							</ul>
 						</div>
 						<div class="menu_section">
@@ -165,14 +161,8 @@
 									href="<%=request.getContextPath()%>/management/users"><i
 										class="fa fa-users"></i> ผู้ใช้งานทั้งหมด </a></li>
 								<li><a
-									href="<%=request.getContextPath()%>/management/position"><i
-										class="fa fa-user-secret"></i> ตำแหน่ง </a></li>
-								<li><a
 									href="<%=request.getContextPath()%>/management/branch"><i
 										class="fa fa-bank"></i> สาขา </a></li>
-								<li><a
-									href="<%=request.getContextPath()%>/management/pages"><i
-										class="fa fa-windows"></i> เว็บโมดูล </a></li>
 							</ul>
 						</div>
 

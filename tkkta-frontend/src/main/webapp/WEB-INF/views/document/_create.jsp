@@ -49,15 +49,10 @@
 											<label class="form-control-label" for="l0">สำหรับสาขา</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:select path="branchId"
-												class="form-control input-sm">
-												<create_form:option value="">-- สาขา --</create_form:option>
-												<c:forEach var="item" items="${branchList}">
-													<create_form:option value="${item.branchId}">${item.branchId}</create_form:option>
-												</c:forEach>
-											</create_form:select>
+											<create_form:input path="branchId" value="${current_branch}" class="form-control input-sm" disabled="true"/>
+											<create_form:hidden path="branchId" value="${current_branch}"/>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-2 text-right">
 											<label class="form-control-label" for="l0">วันที่สร้างเอกสาร</label>
 										</div>
 										<div class="col-md-4">
@@ -78,7 +73,7 @@
 												</c:forEach>
 											</create_form:select>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-2 text-right">
 											<label class="form-control-label" for="l11">แบบรถ</label>
 										</div>
 										<div class="col-md-4" id="model-rendered">
@@ -100,18 +95,12 @@
 												</c:forEach>
 											</create_form:select>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-2 text-right">
 											<label class="form-control-label" for="l11">สถานะ</label>
 										</div>
 										<div class="col-md-4">
-											<create_form:select class="form-control input-sm"
-												path="status">
-												<create_form:option value="">-- สถานะ --</create_form:option>
-												<create_form:option value="pending" class="pending">pending</create_form:option>
-												<create_form:option value="approved" class="approved">approved</create_form:option>
-												<create_form:option value="not-approved"
-													class="not-approved">not-approved</create_form:option>
-											</create_form:select>
+											<create_form:label path="status" class="form-control-label pending">pending</create_form:label>
+											<create_form:hidden path="status" value="pending"/>
 										</div>
 									</div>
 									<div class="form-group row">

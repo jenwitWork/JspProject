@@ -14,7 +14,6 @@
 				<th class="text-left">ผู้สร้าง</th>
 				<th class="text-center">แก้ไขล่าสุด</th>
 				<th class="text-left">ผู้แก้ไข</th>
-				<th class="text-center">action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,11 +27,6 @@
 					<td class="text-left">${item.createdUser}</td>
 					<td class="text-center">${item.updatedDate}</td>
 					<td class="text-left">${item.updatedUser}</td>
-					<td class="text-center"> <a href="#" style="color: green;"
-						onclick="edit('${item.cmId}')"><i class="fa fa-pencil fa-fw"></i></a>  <a
-						href="#" style="color: red;" onclick="remove('${item.cmId}')"><i
-							class="fa fa-minus-circle fa-fw"></i></a> 
-					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

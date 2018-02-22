@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.entities.User;
 import com.models.LoginForm;
+import com.repositories.BranchRepository;
+import com.repositories.UserBranchRepository;
 import com.repositories.UserRepository;
 import com.utilities.EncodingPassword;
 
@@ -22,6 +24,12 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private UserRepository userRep;
+
+	@Autowired
+	private BranchRepository branchRep;
+	
+	@Autowired
+	private UserBranchRepository userBranchRep;
 
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request, HttpSession session) {
@@ -46,16 +54,17 @@ public class LoginController extends BaseController {
 
 		User user = userRep.findByUsernameAndPassword(login_form.getUsername(), login_form.getPassword());
 		if (user != null) {
-			if (user.getGroupId().trim().toUpperCase().equals("ADMINISTRATOR") && user.getStatus().trim().toUpperCase().equals("ACTIVE")) {
-				root_action = request.getContextPath().toString();
-				current_user = user.getUsername().trim();
-				session.setAttribute("gobalUser", user);
-				session.setAttribute("menu_toggle", menu_toggle);
-				session.setAttribute("root_action", root_action);
-				return_view = "redirect:document";
-			} else {
-				return_view = "redirect:login?error=false";
-			}
+			root_action = request.getContextPath().toString();
+			current_user = user.getUsername().trim();
+			current_branch = user.getBranchId();
+			allow_branch = userBranchRep.findUsername(user.getUsername());
+			session.setAttribute("gobalUser", user);
+			session.setAttribute("menu_toggle", menu_toggle);
+			session.setAttribute("root_action", root_action);
+			session.setAttribute("current_branch", current_branch);
+			session.setAttribute("allow_branch", allow_branch);
+			session.setAttribute("gobalBranchList", branchRep.findAll());
+			return_view = "redirect:document";
 		} else {
 			return_view = "redirect:login?error=false";
 		}
