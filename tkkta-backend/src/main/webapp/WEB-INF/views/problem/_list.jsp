@@ -24,9 +24,9 @@
 					<td class="text-left">${item.createdUser}</td>
 					<td class="text-center">${item.updatedDate}</td>
 					<td class="text-left">${item.updatedUser}</td>
-					<td class="text-center"><a href="#" style="color: green;"
+					<td class="text-center"><a href="#" class="btn-edit"
 						onclick="edit('${item.pbType}')"><i class="fa fa-pencil fa-fw"></i></a>
-						<a href="#" style="color: red;" onclick="remove('${item.pbType}')"><i
+						<a href="#" class="btn-delete" onclick="remove('${item.pbType}')"><i
 							class="fa fa-minus-circle fa-fw"></i></a></td>
 				</tr>
 			</c:forEach>

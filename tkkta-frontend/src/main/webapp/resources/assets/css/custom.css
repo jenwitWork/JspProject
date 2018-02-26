@@ -4269,3 +4269,12 @@ label.error{
 	font-weight : bold;
 	color: #ff4d4d;
 }
+.btn-view{
+	color: blue;
+}
+.btn-edit{
+	color: green;
+}
+.btn-delete{
+	color: red;
+}

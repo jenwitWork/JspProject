@@ -83,6 +83,29 @@ public class DocumentController extends BaseController {
 		return auth.checkLogin(session, request, "document/index");
 	}
 
+	@GetMapping("/document/view")
+	public Object view(@RequestParam("doc_no") String doc_no, Model model, HttpServletRequest request,
+			HttpSession session) {
+
+		current_action = "document";
+		current_title = doc_no;
+
+		Document doc = docRep.findOne(doc_no.trim());
+		DocDesc cpd = docDescRep.findOne(doc_no.trim());
+		DocFile pdf = docFileRep.findByDocNo(doc_no.trim());
+		Iterable<DocPic> cppList = docPicRep.findByDocNo(doc_no.trim());
+		DocVdo vdo = docVdoRep.findByDocNo(doc_no.trim());
+
+		model.addAttribute("current_action", current_action);
+		model.addAttribute("current_title", current_title);
+		model.addAttribute("view_form", doc);
+		model.addAttribute("cpd", cpd);
+		model.addAttribute("pdf", pdf);
+		model.addAttribute("cppList", cppList);
+		model.addAttribute("vdo", vdo);
+
+		return auth.checkLogin(session, request, "document/_view");
+	}
 
 	@GetMapping("/document/list")
 	public Object list(@ModelAttribute("search_form") Document form, Model model, HttpServletRequest request,

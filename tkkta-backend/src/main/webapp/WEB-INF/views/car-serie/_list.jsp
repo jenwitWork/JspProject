@@ -26,9 +26,9 @@
 					<td class="text-left">${item.updatedUser}</td>
 					<td class="text-center"><a
 						href="${root_action}/car-model?serie_id=${item.serieId}"><i
-							class="fa fa-arrows"></i></a> <a href="#" style="color: green;"
+							class="fa fa-arrows"></i></a> <a href="#" class="btn-edit"
 						onclick="edit('${item.serieId}')"><i
-							class="fa fa-pencil fa-fw"></i></a> <a href="#" style="color: red;"
+							class="fa fa-pencil fa-fw"></i></a> <a href="#" class="btn-delete"
 						onclick="remove('${item.serieId}')"><i
 							class="fa fa-minus-circle fa-fw"></i></a></td>
 				</tr>

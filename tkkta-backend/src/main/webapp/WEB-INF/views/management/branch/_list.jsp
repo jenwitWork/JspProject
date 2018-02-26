@@ -26,8 +26,8 @@
 				<td class="text-center">${branch.updatedDate}</td>
 				<td class="text-left">${branch.updatedUser}</td>
 				<td class="text-center"> <a href="${root_action}/management/branch/manage?branch_id=${branch.branchId}" style="color: blue;"><i
-						class="fa fa-gear fa-fw"></i></a>  <a href="#" style="color: green;" onclick="edit('${branch.branchId}')"><i
-						class="fa fa-pencil fa-fw"></i></a>  <a href="#" style="color: red;" onclick="remove('${branch.branchId}')"><i
+						class="fa fa-gear fa-fw"></i></a>  <a href="#" class="btn-edit" onclick="edit('${branch.branchId}')"><i
+						class="fa fa-pencil fa-fw"></i></a>  <a href="#" class="btn-delete" onclick="remove('${branch.branchId}')"><i
 						class="fa fa-minus-circle fa-fw"></i></a> 
 				</td>
 			</tr>

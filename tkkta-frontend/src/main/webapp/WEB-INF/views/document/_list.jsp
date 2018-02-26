@@ -7,11 +7,11 @@
 		<thead>
 			<tr>
 				<th class="text-left">เลขที่เอกสาร</th>
-				<th class="text-center">สาขา</th>
-				<th class="text-center">สถานะ</th>
-				<th class="text-center">รุ่นรถ</th>
-				<th class="text-center">แบบรถ</th>
-				<th class="text-center">หมวดปัญหา</th>
+				<th class="text-left">สาขา</th>
+				<th class="text-left">สถานะ</th>
+				<th class="text-left">รุ่นรถ</th>
+				<th class="text-left">แบบรถ</th>
+				<th class="text-left">หมวดปัญหา</th>
 				<th class="text-left">ชื่อปัญหา</th>
 				<th class="text-center">จัดการ</th>
 			</tr>
@@ -20,16 +20,20 @@
 			<c:forEach var="item" varStatus="count" items="${docs}">
 				<tr>
 					<td class="text-left">${item.docNo}</td>
-					<td class="text-center">${item.branchId}</td>
-					<td class="text-center ${item.status}">${item.status}</td>
-					<td class="text-center">${item.serieTitle}</td>
-					<td class="text-center">${item.cmName}</td>
-					<td class="text-center">${item.pbName}</td>
+					<td class="text-left">${item.branchId}</td>
+					<td class="text-left ${item.status}">${item.status}</td>
+					<td class="text-left">${item.serieTitle}</td>
+					<td class="text-left">${item.cmName}</td>
+					<td class="text-left">${item.pbName}</td>
 					<td class="text-left">${item.caseNameTh}</td>
-					<td class="text-center"><a
+					<td class="text-center">
+						<a
+						href="${root_action}/document/view?doc_no=${item.docNo}"
+						class="btn-view"><i class="fa fa-eye fa-fw"></i></a>
+						<a
 						href="${root_action}/document/edit?doc_no=${item.docNo}"
-						style="color: green;"><i class="fa fa-pencil fa-fw"></i></a> <a
-						href="#" style="color: red;" onclick="remove('${item.docNo}')"><i
+						class="btn-edit"><i class="fa fa-pencil fa-fw"></i></a> <a
+						href="#" class="btn-delete" onclick="remove('${item.docNo}')"><i
 							class="fa fa-minus-circle fa-fw"></i></a></td>
 				</tr>
 			</c:forEach>

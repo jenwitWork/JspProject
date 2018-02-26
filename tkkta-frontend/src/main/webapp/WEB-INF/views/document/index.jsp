@@ -8,7 +8,6 @@
 	<jsp:attribute name="content">
 
 
-
 <!-- page content -->
 <div class="right_col" role="main" style="min-height: 1883px;">
 	<div class="">
@@ -25,44 +24,59 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<search_form:form action="${root_action}/document/list" method="get" modelAttribute="search_form" id="form-search" class="form-inline">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<search_form:form action="${root_action}/document/list"
+								method="get" modelAttribute="search_form" id="form-search"
+								class="form-inline">
 
-							<div class="form-group">
-								<search_form:input path="docNo" class="form-control" placeholder="เลขที่เอกสาร"/>
-							</div>						
-							<div class="form-group">
-								<search_form:input path="branchId" class="form-control" placeholder="สาขา"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="status" class="form-control" placeholder="สถานะ"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="serieTitle" class="form-control" placeholder="รุ่นรถ"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="cmName" class="form-control" placeholder="แบบรถ"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="pbName" class="form-control" placeholder="หมวดปัญหา"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="caseNameTh" class="form-control" placeholder="ชื่อปัญหาภาษาไทย"/>
-							</div>	
-							<div class="form-group">
-								<search_form:input path="caseNameEn" class="form-control" placeholder="ชื่อปัญหาภาษาอังกฤษ"/>
-							</div>	
-							<button class="btn btn-success" style="margin: 0px;">Search</button>
-							<a href="${root_action}/document/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
-						</search_form:form>
-					</div>
+								<div class="form-group">
+									<search_form:input path="docNo" class="form-control"
+										placeholder="เลขที่เอกสาร" />
+								</div>
+								<div class="form-group">
+									<search_form:input path="branchId" class="form-control"
+										placeholder="สาขา" />
+								</div>
+								<div class="form-group">
+									<search_form:select class="form-control"
+											path="status">
+										<search_form:option value="">-- สถานะ --</search_form:option>
+										<search_form:option value="pending" class="pending">pending</search_form:option>
+										<search_form:option value="approved" class="approved">approved</search_form:option>
+										<search_form:option value="not-approved" class="not-approved">not-approved</search_form:option>
+									</search_form:select>
+								</div>
+								<div class="form-group">
+									<search_form:input path="serieTitle" class="form-control"
+										placeholder="รุ่นรถ" />
+								</div>
+								<div class="form-group">
+									<search_form:input path="cmName" class="form-control"
+										placeholder="แบบรถ" />
+								</div>
+								<div class="form-group">
+									<search_form:input path="pbName" class="form-control"
+										placeholder="หมวดปัญหา" />
+								</div>
+								<div class="form-group">
+									<search_form:input path="caseNameTh" class="form-control"
+										placeholder="ชื่อปัญหาภาษาไทย" />
+								</div>
+								<div class="form-group">
+									<search_form:input path="caseNameEn" class="form-control"
+										placeholder="ชื่อปัญหาภาษาอังกฤษ" />
+								</div>
+								<button class="btn btn-success" style="margin: 0px;">Search</button>
+								<a href="${root_action}/document/create" id="btn-create"
+									class="btn btn-primary" style="margin: 0px;">Create</a>
+							</search_form:form>
+						</div>
 					</div>
 					<br>
 					<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div id="table-data">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div id="table-data"></div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>
@@ -74,9 +88,10 @@
 
 
 
+
+
 </jsp:attribute>
 </mt:_layout>
-
 
 
 
@@ -99,8 +114,6 @@
 			$('#table-data').html(response);
 		});
 	});
-
-	
 </script>
 
 

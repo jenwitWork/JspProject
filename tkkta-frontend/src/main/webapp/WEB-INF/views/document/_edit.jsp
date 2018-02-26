@@ -142,13 +142,9 @@
 											    data-buttonText="เลือกไฟล์ PDF" type="file" name="pdf" id="pdf" />
 										</div>
 										<div class="col-md-8">
-											<input type="hidden" name="old_pdf" id="old_pdf" value="${pdf.pdfPath}">
 											<c:if test="${not empty pdf}">
 												<div class="btn-group" id="delete-pdf" role="group" aria-label="...">
 													<a class="btn btn-sm" target="_blank" href="${pdf.pdfPath}">${pdf.pdfName}</a>
-													<button type="button" id="btn-delete-pdf" class="btn btn-default btn-sm">
-														<i class="fa fa-trash fa-fw"></i>Remove
-													</button>
 												</div>
 											</c:if>
 										</div>

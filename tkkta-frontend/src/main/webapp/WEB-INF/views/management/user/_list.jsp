@@ -25,8 +25,8 @@
 				<td class="text-center">${user.posId}</td>
 				<td class="text-center">${user.groupId}</td>
 				<td class="text-center">${user.status}</td>
-				<td class="text-center"> <a href="<%=request.getContextPath() %>/management/users/edit?username=${user.username}" style="color: green;"><i
-						class="fa fa-pencil fa-fw"></i></a>  <a href="#" onclick="remove('${user.username}')" style="color: red;"><i
+				<td class="text-center"> <a href="<%=request.getContextPath() %>/management/users/edit?username=${user.username}" class="btn-edit"><i
+						class="fa fa-pencil fa-fw"></i></a>  <a href="#" onclick="remove('${user.username}')" class="btn-delete"><i
 						class="fa fa-minus-circle fa-fw"></i></a> 
 				</td>
 			</tr>
