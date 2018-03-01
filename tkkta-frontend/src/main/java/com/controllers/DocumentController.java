@@ -26,6 +26,7 @@ import com.entities.DocPic;
 import com.entities.DocVdo;
 import com.entities.Document;
 import com.entities.ProblemType;
+import com.entities.UserPage;
 import com.repositories.BranchRepository;
 import com.repositories.CarModelRepository;
 import com.repositories.CarSerieRepository;
@@ -35,9 +36,8 @@ import com.repositories.DocPicRepository;
 import com.repositories.DocVdoRepository;
 import com.repositories.DocumentRepository;
 import com.repositories.ProblemTypeRepository;
-import com.repositories.UserBranchRepository;
+import com.repositories.UserPageRepository;
 import com.utilities.GenerateCode;
-
 
 @Controller
 public class DocumentController extends BaseController {
@@ -68,15 +68,15 @@ public class DocumentController extends BaseController {
 
 	@Autowired
 	private ProblemTypeRepository pbRep;
-	
+
 	@Autowired
-	private UserBranchRepository userBranchRep;
+	private UserPageRepository userPageRep;
 
 	@GetMapping("/document")
 	public Object doc(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "document";
 		current_title = "จัดการเอกสาร";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_form", new Document());
 
@@ -96,13 +96,14 @@ public class DocumentController extends BaseController {
 		Iterable<DocPic> cppList = docPicRep.findByDocNo(doc_no.trim());
 		DocVdo vdo = docVdoRep.findByDocNo(doc_no.trim());
 
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("view_form", doc);
 		model.addAttribute("cpd", cpd);
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
 		model.addAttribute("vdo", vdo);
+		model.addAttribute("access_now", userPageRep.findUserAccess(current_branch, current_user, current_action));
 
 		return auth.checkLogin(session, request, "document/_view");
 	}
@@ -111,14 +112,18 @@ public class DocumentController extends BaseController {
 	public Object list(@ModelAttribute("search_form") Document form, Model model, HttpServletRequest request,
 			HttpSession session) {
 
-		allow_branch = userBranchRep.findUsername(current_user);
-		String [] branchs = new String[allow_branch.size()];
-		for (int i = 0; i < allow_branch.size(); i++) {
-			branchs[i] = allow_branch.get(i).getBranchId();
-		}
+		String fst_stats = "", scn_status = "approved";
 
-		Iterable<Document> docs = docRep.search(form.getDocNo(), branchs, form.getStatus(), form.getSerieTitle(),
-				form.getCmName(), form.getPbName(), form.getCaseNameTh(), form.getCaseNameEn());
+		fst_stats = form.getStatus();
+
+		if (!fst_stats.equals(""))
+			if (fst_stats.equals("approved"))
+				scn_status = "approved";
+			else
+				scn_status = "";
+
+		Iterable<Document> docs = docRep.search(form.getDocNo(), current_branch, form.getStatus(), form.getSerieTitle(),
+				form.getCmName(), form.getPbName(), form.getCaseNameTh(), "", scn_status);
 		model.addAttribute("docs", docs);
 		return auth.checkLogin(session, request, "document/_list");
 	}
@@ -129,7 +134,7 @@ public class DocumentController extends BaseController {
 		current_action = "document";
 		current_title = "สร้างเอกสาร";
 
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("csList", csRep.findAll());
@@ -137,7 +142,12 @@ public class DocumentController extends BaseController {
 
 		model.addAttribute("create_form", new Document());
 
-		return auth.checkLogin(session, request, "document/_create");
+		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, "document");
+
+		if (userPage.getFlagAdd().equals("Y"))
+			return auth.checkLogin(session, request, "document/_create");
+		else
+			return auth.checkLogin(session, request, "error/error_access");
 	}
 
 	@PostMapping("/document/create")
@@ -197,7 +207,7 @@ public class DocumentController extends BaseController {
 		DocFile pdf = docFileRep.findByDocNo(doc_no.trim());
 		DocVdo vdo = docVdoRep.findByDocNo(doc_no.trim());
 
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("csList", csList);
 		model.addAttribute("pbList", pbList);
@@ -208,9 +218,17 @@ public class DocumentController extends BaseController {
 		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
-		model.addAttribute("vdo", vdo);
+		model.addAttribute("vdo", vdo);		
 
-		return auth.checkLogin(session, request, "document/_edit");
+		UserPage userPage = userPageRep.findUserAccess(doc.getBranchId(), current_user, "document");
+
+		if (userPage.getFlagEdit().equals("Y"))
+			if (doc.getStatus().equals("approved"))
+				return auth.checkLogin(session, request, "error/error_access");
+			else
+				return auth.checkLogin(session, request, "document/_edit");
+		else
+			return auth.checkLogin(session, request, "error/error_access");
 	}
 
 	@PostMapping("/document/edit")

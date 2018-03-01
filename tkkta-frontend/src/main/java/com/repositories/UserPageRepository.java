@@ -15,6 +15,9 @@ public interface UserPageRepository extends CrudRepository<UserPage, Integer> {
 	@Query(value = "select * from user_page where branch_id = ?1 and username = ?2", nativeQuery = true)
 	List<UserPage> find_branch_and_user(String branch_id, String username);
 
+	@Query(value = "select * from user_page where branch_id = ?1 and username = ?2 and page_name = ?3", nativeQuery = true)
+	UserPage findUserAccess(String branch_id, String username, String page_name);
+
 	@Modifying
 	@Transactional
 	@Query(value = "update user_page set branch_id = ?1 where branch_id = ?2", nativeQuery = true)

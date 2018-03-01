@@ -36,7 +36,7 @@ public class ProblemController extends BaseController {
 		current_action = "problem";
 		current_title = "หมวดปัญหา";
 
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_form", new ProblemType());
 

@@ -59,7 +59,7 @@ public class UserController extends BaseController {
 	public Object index(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "users";
 		current_title = "Users";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_user", new User());
 		model.addAttribute("posList", posRep.findAll());
@@ -86,13 +86,18 @@ public class UserController extends BaseController {
 	public Object add(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "users";
 		current_title = "User / Create";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("posList", posRep.findAll());
 		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("add_form", new User());
 
-		return new ModelAndView("management/user/_add");
+		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, "document");
+
+		if (userPage.getFlagAdd().equals("Y"))
+			return new ModelAndView("management/user/_add");
+		else
+			return auth.checkLogin(session, request, "error/error_access");
 	}
 
 	@PostMapping("/management/users/add")
@@ -162,7 +167,7 @@ public class UserController extends BaseController {
 		User user = userRep.findOne(username.trim());
 		Iterable<UserBranch> user_branchs = userBranchRep.findUsername(user.getUsername());
 
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("posList", posRep.findAll());
 		model.addAttribute("branchList", branchRep.findAll());
@@ -176,7 +181,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public String edit(@ModelAttribute("edit_form") User form) {
 		User user = userRep.findOne(form.getUsername());
-		//String old_branch_id = user.getBranchId();
+		// String old_branch_id = user.getBranchId();
 		user.setName(form.getName());
 		user.setDetail(form.getDetail());
 		user.setBranchId(form.getBranchId());
@@ -188,12 +193,13 @@ public class UserController extends BaseController {
 
 		userRep.save(user);
 
-		/*if (!old_branch_id.equals(form.getBranchId())) {
-			List<UserBranch> new_branch = (List<UserBranch>) userBranchRep.find_branch_and_user(form.getBranchId(),
-					form.getUsername());
-			if (new_branch.isEmpty())
-				userBranchRep.updateBranchWhereUsername(form.getBranchId(), old_branch_id, user.getUsername());
-		}*/
+		/*
+		 * if (!old_branch_id.equals(form.getBranchId())) { List<UserBranch> new_branch
+		 * = (List<UserBranch>) userBranchRep.find_branch_and_user(form.getBranchId(),
+		 * form.getUsername()); if (new_branch.isEmpty())
+		 * userBranchRep.updateBranchWhereUsername(form.getBranchId(), old_branch_id,
+		 * user.getUsername()); }
+		 */
 
 		return "success";
 	}

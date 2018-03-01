@@ -26,14 +26,16 @@
 					<td class="text-left">${item.cmName}</td>
 					<td class="text-left">${item.pbName}</td>
 					<td class="text-left">${item.caseNameTh}</td>
-					<td class="text-center">
-						<a
+					<td class="text-center"><a
 						href="${root_action}/document/view?doc_no=${item.docNo}"
-						class="btn-view"><i class="fa fa-eye fa-fw"></i></a>
-						<a
+						class="btn-view"><i class="fa fa-eye fa-fw"></i></a> <a
 						href="${root_action}/document/edit?doc_no=${item.docNo}"
-						class="btn-edit"><i class="fa fa-pencil fa-fw"></i></a> <a
-						href="#" class="btn-delete" onclick="remove('${item.docNo}')"><i
+						class="btn-edit"
+						style="visibility: ${item.status == 'approved' ? 'hidden' : 'visible' }"
+						data-branch="${item.branchId}"><i class="fa fa-pencil fa-fw"></i></a>
+						<a href="#" class="btn-delete"
+						style="visibility: ${item.status == 'approved' ? 'hidden' : 'visible' }"
+						onclick="remove('${item.docNo}','${item.branchId}')"><i
 							class="fa fa-minus-circle fa-fw"></i></a></td>
 				</tr>
 			</c:forEach>
@@ -49,34 +51,77 @@
 		responsive : true
 	});
 
-	function edit(doc_no) {
+	$('.btn-edit').on('click', function(event) {
 		event.preventDefault();
-		$modal = $('.gobal-modal');
-		$modal.modal('show');
+		var url1 = $(this).attr("href");
 		$.ajax({
-			url : '${root_action}/document/edit',
+			url : '${root_action}/utilities/user-access',
 			type : 'get',
 			data : {
-				doc_no : doc_no
+				branch_id : '${current_branch}',
+				username : '${gobalUser.username}',
+				page_name : '${current_action}',
+				flag_type : 'edit'
 			}
 		}).done(function(response) {
-			$modal.find('.modal-content').html(response);
+			if (response == 'true') {
+				location.replace(url1);
+			} else {
+				alert('คุณไม่มีสิทธิ์ในการแแก้ไขข้อมูลของสาขานี้');
+			}
 		});
-	}
+	})
 
-	function remove(doc_no) {
+	$('.btn-delete').on('click', function(event) {
 		event.preventDefault();
-		$modal = $('.gobal-modal');
-		$modal.modal('show');
+		var url1 = $(this).attr("href");
 		$.ajax({
-			url : '${root_action}/document/delete',
+			url : '${root_action}/utilities/user-access',
 			type : 'get',
 			data : {
-				doc_no : doc_no
+				branch_id : $(this).data('branch'),
+				username : '${gobalUser.username}',
+				page_name : '${current_action}',
+				flag_type : 'delete'
 			}
 		}).done(function(response) {
-			$modal.find('.modal-content').html(response);
+			if (response == 'true') {
+				location.replace(url1);
+			} else {
+				alert('คุณไม่มีสิทธิ์ในการแแก้ไขข้อมูลของสาขานี้');
+			}
 		});
+	})
+
+	function remove(doc_no, branch) {
+		event.preventDefault();
+		$.ajax({
+			url : '${root_action}/utilities/user-access',
+			type : 'get',
+			data : {
+				branch_id : branch,
+				username : '${gobalUser.username}',
+				page_name : '${current_action}',
+				flag_type : 'delete'
+			}
+		}).done(function(response) {
+			if (response == 'true') {
+				$modal = $('.gobal-modal');
+				$modal.modal('show');
+				$.ajax({
+					url : '${root_action}/document/delete',
+					type : 'get',
+					data : {
+						doc_no : doc_no
+					}
+				}).done(function(response) {
+					$modal.find('.modal-content').html(response);
+				});
+			} else {
+				alert('คุณไม่มีสิทธิ์ในการแแก้ไขข้อมูลของสาขานี้');
+			}
+		});
+
 	}
 </script>
 

@@ -20,7 +20,7 @@ public interface UserBranchRepository extends CrudRepository<UserBranch, Integer
 	List<UserBranch> findBranch(String branch_id);
 
 	@Query(value = "select * from user_branch where branch_id = ?1 and username = ?2", nativeQuery = true)
-	List<UserBranch> find_branch_and_user(String branch_id, String username);
+	UserBranch find_branch_and_user(String branch_id, String username);
 
 	/// Update statement
 	@Modifying

@@ -197,6 +197,20 @@
 									<li><a href="<%=request.getContextPath()%>/logout"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 								</ul></li>
+							<li class=""><a href="javascript:;"
+								class="user-profile dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"> <img src="images/img.jpg" alt="">${current_branch }
+									<span class=" fa fa-angle-down"></span>
+							</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<c:forEach var="item" items="${allow_branch}">
+										<li><a
+											href="${root_action}/utilities/change-branch?branch_id=${item.branchId}"
+											class="btn-change-branch"><i
+												class="${item.branchId == gobalUser.branchId ? 'fa fa-user pull-right' : '' }"></i>
+												${item.branchId}</a></li>
+									</c:forEach>
+								</ul></li>
 
 							<li role="presentation" class="dropdown"><a
 								href="javascript:;" class="dropdown-toggle info-number"
@@ -392,6 +406,16 @@
 			}).done(function(response) {
 			});
 		})
+
+		$('.btn-change-branch').on('click', function(event) {
+			event.preventDefault();
+			$.ajax({
+				url : $(this).attr('href'),
+				type : 'get'
+			}).done(function(response) {
+				location.replace("${root_action}/document");
+			})
+		})
 	</script>
 
 	<!-- Modal -->
@@ -400,8 +424,9 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="row text-center">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_md.gif">
-				</div>				
+					<img alt=""
+						src="<%=request.getContextPath()%>/resources/img/loading/loading_md.gif">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -412,7 +437,8 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="row text-center">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_lg.gif">
+					<img alt=""
+						src="<%=request.getContextPath()%>/resources/img/loading/loading_lg.gif">
 				</div>
 			</div>
 		</div>
@@ -424,7 +450,8 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="row text-center">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/loading/loading_sm.gif">
+					<img alt=""
+						src="<%=request.getContextPath()%>/resources/img/loading/loading_sm.gif">
 				</div>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ public class DashbaordController extends BaseController {
 	public Object dashbaord(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "Dashboard";
 		current_title = "Dashboard";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 
 		return auth.checkLogin(session, request, "dashboard/dashboard");

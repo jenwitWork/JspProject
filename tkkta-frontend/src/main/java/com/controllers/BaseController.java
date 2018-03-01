@@ -15,7 +15,7 @@ public class BaseController {
 	public static String current_branch = "";
 	public static List<UserBranch> allow_branch;
 	public static String return_view = "redirect:home";
-	public static String menu_toggle = "nav-md";
+	public static String menu_toggle = "nav-sm";
 	public static String current_user = "";
 	public static String root_action = "";
 

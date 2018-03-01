@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.entities.CarModel;
 import com.entities.CarSery;
 import com.entities.Document;
+import com.entities.UserBranch;
+import com.entities.UserPage;
 import com.google.gson.Gson;
 import com.repositories.CarModelRepository;
 import com.repositories.CarSerieRepository;
 import com.repositories.DocumentRepository;
+import com.repositories.UserBranchRepository;
+import com.repositories.UserPageRepository;
 
 @Controller
 public class Utilities extends BaseController {
@@ -29,6 +33,12 @@ public class Utilities extends BaseController {
 	private DocumentRepository cpRep;
 	@Autowired
 	private CarModelRepository cmRep;
+
+	@Autowired
+	private UserPageRepository userPageRep;
+
+	@Autowired
+	private UserBranchRepository userBranch;
 
 	@GetMapping("/utilities/menu-toggle")
 	@ResponseBody
@@ -76,6 +86,47 @@ public class Utilities extends BaseController {
 			return "false";
 		}
 		return "true";
+	}
+
+	@GetMapping("/utilities/user-access")
+	@ResponseBody
+	public String userAccess(@RequestParam("branch_id") String branch_id, @RequestParam("username") String username,
+			@RequestParam("page_name") String page_name, @RequestParam("flag_type") String flag_type) {
+
+		String access = "false";
+
+		UserPage userPage = userPageRep.findUserAccess(branch_id, username, page_name);
+
+		if (flag_type.equals("add")) {
+			if (userPage.getFlagAdd().equals("Y"))
+				access = "true";
+		} else if (flag_type.equals("edit")) {
+			if (userPage.getFlagEdit().equals("Y"))
+				access = "true";
+		} else if (flag_type.equals("delete")) {
+			if (userPage.getFlagDelete().equals("Y"))
+				access = "true";
+		} else if (flag_type.equals("appove")) {
+			if (userPage.getFlagApprove().equals("Y"))
+				access = "true";
+		}
+
+		return access;
+	}
+
+	@GetMapping("/utilities/change-branch")
+	@ResponseBody
+	public String changeBranch(@RequestParam("branch_id") String branch_id, HttpServletRequest request, HttpSession session) {
+		String access = "false";
+
+		UserBranch obj = userBranch.find_branch_and_user(branch_id, current_user);
+		if (obj != null) {
+			current_branch = obj.getBranchId();
+			session.setAttribute("current_branch", current_branch);
+			access = "true";
+		}
+		return access;
+
 	}
 
 }

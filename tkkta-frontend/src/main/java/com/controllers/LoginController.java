@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.entities.User;
 import com.models.LoginForm;
-import com.repositories.BranchRepository;
 import com.repositories.UserBranchRepository;
 import com.repositories.UserRepository;
 import com.utilities.EncodingPassword;
@@ -25,9 +24,6 @@ public class LoginController extends BaseController {
 	@Autowired
 	private UserRepository userRep;
 
-	@Autowired
-	private BranchRepository branchRep;
-	
 	@Autowired
 	private UserBranchRepository userBranchRep;
 
@@ -63,7 +59,6 @@ public class LoginController extends BaseController {
 			session.setAttribute("root_action", root_action);
 			session.setAttribute("current_branch", current_branch);
 			session.setAttribute("allow_branch", allow_branch);
-			session.setAttribute("gobalBranchList", branchRep.findAll());
 			return_view = "redirect:document";
 		} else {
 			return_view = "redirect:login?error=false";

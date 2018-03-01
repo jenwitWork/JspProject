@@ -45,7 +45,7 @@ public class BranchController extends BaseController {
 	public Object branch(Model model, HttpServletRequest request, HttpSession session) {
 		current_action = "branch";
 		current_title = "Branch";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_form", new Branch());
 
@@ -179,7 +179,7 @@ public class BranchController extends BaseController {
 		
 		current_action = "branch";
 		current_title = "Branch";
-		model.addAttribute("current_action", current_action);
+		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("form_branch", branch);
 		model.addAttribute("userBranchs", userBranchs);
