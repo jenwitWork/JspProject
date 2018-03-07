@@ -28,15 +28,15 @@
 					<td class="text-left">${item.caseNameTh}</td>
 					<td class="text-center"><a
 						href="${root_action}/document/view?doc_no=${item.docNo}"
-						class="btn-view"><i class="fa fa-eye fa-fw"></i></a> <a
-						href="${root_action}/document/edit?doc_no=${item.docNo}"
-						class="btn-edit"
-						style="visibility: ${item.status == 'approved' ? 'hidden' : 'visible' }"
-						data-branch="${item.branchId}"><i class="fa fa-pencil fa-fw"></i></a>
-						<a href="#" class="btn-delete"
-						style="visibility: ${item.status == 'approved' ? 'hidden' : 'visible' }"
-						onclick="remove('${item.docNo}','${item.branchId}')"><i
-							class="fa fa-minus-circle fa-fw"></i></a></td>
+						class="btn-view"><i class="fa fa-eye fa-fw"></i></a> <c:if
+							test="${item.status != 'approved'}">
+							<a href="${root_action}/document/edit?doc_no=${item.docNo}"
+								class="btn-edit" data-branch="${item.branchId}"><i
+								class="fa fa-pencil fa-fw"></i></a>
+							<a href="#" class="btn-delete"
+								onclick="remove('${item.docNo}','${item.branchId}')"><i
+								class="fa fa-minus-circle fa-fw"></i></a>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</tbody>

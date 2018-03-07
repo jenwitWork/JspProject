@@ -89,7 +89,7 @@
 										<div class="col-md-4">
 											<view_form:label class="${view_form.status}" path="status">${view_form.status}</view_form:label>
 											<c:if test="${(access_now.flagApprove == 'Y' ) and ( view_form.status != 'approved')}">
-												<a href="#" class="approved"><i class="fa fa-check-square fa-2x"></i></a> <a href="#" class="not-approved"><i class="fa fa-remove fa-2x"></i></a>
+												<a href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=approved" class="approved"><i class="fa fa-check-square fa-2x"></i></a> <a href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=not-approved" class="not-approved"><i class="fa fa-remove fa-2x"></i></a>
 											</c:if>											
 										</div>
 									</div>

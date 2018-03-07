@@ -218,7 +218,7 @@ public class DocumentController extends BaseController {
 		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
-		model.addAttribute("vdo", vdo);		
+		model.addAttribute("vdo", vdo);
 
 		UserPage userPage = userPageRep.findUserAccess(doc.getBranchId(), current_user, "document");
 
@@ -319,6 +319,18 @@ public class DocumentController extends BaseController {
 		docFileRep.deleteWhereDocNo(form.getDocNo());
 
 		docRep.delete(form);
+		return "success";
+	}
+
+	@GetMapping("/document/approval")
+	@ResponseBody
+	public String approval(@RequestParam("doc_no") String doc_no, @RequestParam("status") String status) {
+		Document doc = docRep.findOne(doc_no);
+		if (status.equals("approved"))
+			doc.setStatus("approved");
+		else
+			doc.setStatus("not-approved");
+		docRep.save(doc);
 		return "success";
 	}
 
