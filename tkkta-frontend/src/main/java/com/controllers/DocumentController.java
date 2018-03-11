@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.entities.CarModel;
 import com.entities.CarSery;
+import com.entities.DocComment;
 import com.entities.DocDesc;
 import com.entities.DocFile;
 import com.entities.DocPic;
@@ -30,6 +31,7 @@ import com.entities.UserPage;
 import com.repositories.BranchRepository;
 import com.repositories.CarModelRepository;
 import com.repositories.CarSerieRepository;
+import com.repositories.DocCommentRepository;
 import com.repositories.DocDescRepository;
 import com.repositories.DocFileRepository;
 import com.repositories.DocPicRepository;
@@ -71,6 +73,9 @@ public class DocumentController extends BaseController {
 
 	@Autowired
 	private UserPageRepository userPageRep;
+	
+	@Autowired
+	private DocCommentRepository docComRep;
 
 	@GetMapping("/document")
 	public Object doc(Model model, HttpServletRequest request, HttpSession session) {
@@ -221,6 +226,7 @@ public class DocumentController extends BaseController {
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
 		model.addAttribute("vdo", vdo);
+		model.addAttribute("comment", docComRep.findByDocNo(doc_no));
 
 		UserPage userPage = userPageRep.findUserAccess(doc.getBranchId(), current_user, "document");
 
@@ -327,13 +333,38 @@ public class DocumentController extends BaseController {
 
 	@GetMapping("/document/approval")
 	@ResponseBody
-	public String approval(@RequestParam("doc_no") String doc_no, @RequestParam("status") String status) {
+	public Object approval(Model model, @RequestParam("doc_no") String doc_no, @RequestParam("status") String status,
+			HttpServletRequest request, HttpSession session) {
 		Document doc = docRep.findOne(doc_no);
-		if (status.equals("approved"))
+		if (status.equals("approved")) {
+			model.addAttribute("approve_form", doc);
+			return auth.checkLogin(session, request, "document/_approved");
+		} else {
+			model.addAttribute("approve_form", doc);
+			return auth.checkLogin(session, request, "document/_not-approved");
+		}
+	}
+
+	@PostMapping("/document/approval")
+	@ResponseBody
+	public String approval(@RequestParam("comment") String comment, @RequestParam("docNo") String doc_no,
+			@RequestParam("status") String status) {
+		Document doc = docRep.findOne(doc_no);
+		if (status.equals("approved")) {
 			doc.setStatus("approved");
-		else
+			docRep.save(doc);
+		}else {
 			doc.setStatus("not-approved");
-		docRep.save(doc);
+			docRep.save(doc);
+			DocComment docCom = new DocComment();
+			docCom.setComment(comment);
+			docCom.setDocNo(doc_no);
+			docCom.setUsername(current_user);
+			docCom.setCommentDate(new Date());
+			
+			docComRep.save(docCom);
+			
+		}		
 		return "success";
 	}
 

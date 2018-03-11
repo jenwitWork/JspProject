@@ -88,8 +88,13 @@
 										</div>
 										<div class="col-md-4">
 											<view_form:label class="${view_form.status}" path="status">${view_form.status}</view_form:label>
-											<c:if test="${(access_now.flagApprove == 'Y' ) and ( view_form.status != 'approved')}">
-												<a href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=approved" class="approved"><i class="fa fa-check-square fa-2x"></i></a> <a href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=not-approved" class="not-approved"><i class="fa fa-remove fa-2x"></i></a>
+											<c:if
+														test="${(access_now.flagApprove == 'Y' ) and ( view_form.status != 'approved')}">
+												<a
+															href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=approved"
+															class="btn btn-success btn-sm btn-approved">Approve</a> <a
+															href="${root_action}/document/approval?doc_no=${view_form.docNo}&status=not-approved"
+															class="btn btn-danger btn-sm btn-not-approved">Not approve</a>
 											</c:if>											
 										</div>
 									</div>
@@ -192,6 +197,30 @@
 		theme : 'modern',
 		readonly : 1
 	});
+
+	$('.btn-approved').on('click', function(event) {
+		event.preventDefault();
+		$modal = $('.gobal-modal');
+		$modal.modal('show');
+		$.ajax({
+			url : $(this).attr('href'),
+			type : 'get'
+		}).done(function(response) {
+			$modal.find('.modal-content').html(response);
+		});
+	})
+
+	$('.btn-not-approved').on('click', function(event) {
+		event.preventDefault();
+		$modal = $('.gobal-modal');
+		$modal.modal('show');
+		$.ajax({
+			url : $(this).attr('href'),
+			type : 'get'
+		}).done(function(response) {
+			$modal.find('.modal-content').html(response);
+		});
+	})
 </script>
 <script type="text/html" id="model-template">
 	<select class="form-control input-sm" id="cmId" name="cmId">

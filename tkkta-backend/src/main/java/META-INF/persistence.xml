@@ -16,5 +16,6 @@
 		<class>com.entities.UserGroup</class>
 		<class>com.entities.UserPage</class>
 		<class>com.entities.UserPo</class>
+		<class>com.entities.DocComment</class>
 	</persistence-unit>
 </persistence>
