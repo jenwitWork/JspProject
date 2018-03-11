@@ -29,10 +29,12 @@
 					<td class="text-center"><a
 						href="${root_action}/document/view?doc_no=${item.docNo}"
 						class="btn-view"><i class="fa fa-eye fa-fw"></i></a> <c:if
-							test="${item.status != 'approved'}">
+							test="${item.status != 'approved' and access_now.flagEdit == 'Y'}">
 							<a href="${root_action}/document/edit?doc_no=${item.docNo}"
 								class="btn-edit" data-branch="${item.branchId}"><i
 								class="fa fa-pencil fa-fw"></i></a>
+						</c:if> <c:if
+							test="${item.status != 'approved' and access_now.flagDelete == 'Y'}">
 							<a href="#" class="btn-delete"
 								onclick="remove('${item.docNo}','${item.branchId}')"><i
 								class="fa fa-minus-circle fa-fw"></i></a>

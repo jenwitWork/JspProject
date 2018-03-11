@@ -24,19 +24,20 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<form:form id="form-search" action="${root_action}/management/users/list" method="get"
-								modelAttribute="search_user" class="form-inline">
+							<form:form id="form-search"
+										action="${root_action}/management/users/list" method="get"
+										modelAttribute="search_user" class="form-inline">
 								<div class="form-group">
 									<form:input path="username" class="form-control input-sm"
-										placeholder="Username" />
+												placeholder="Username" />
 								</div>
 								<div class="form-group">
 									<form:input path="name" class="form-control input-sm"
-										placeholder="Name" />
+												placeholder="Name" />
 								</div>
 								<div class="form-group">
 									<form:input path="branchId" class="form-control input-sm"
-										placeholder="branchId" />
+												placeholder="branchId" />
 								</div>
 								<div class="form-group">
 									<form:select path="posId" class="form-control input-sm">
@@ -61,9 +62,12 @@
 									</form:select>
 								</div>
 								<button type="submit" class="btn btn-success btn-sm"
-									style="margin: 0px;">Search</button>
-								<a href="${root_action}/management/users/add" class="btn btn-primary btn-sm" id="btn-create"
-									style="margin: 0px;">Create</a>
+											style="margin: 0px;">Search</button>
+									<c:if test="${access_now.flagAdd == 'Y' }">
+								<a href="${root_action}/management/users/add"
+												class="btn btn-primary btn-sm" id="btn-create"
+												style="margin: 0px;">Create</a>
+									</c:if>
 							</form:form>
 						</div>
 					</div>
@@ -111,8 +115,36 @@
 	$('#form-search select').change(function(event) {
 		$('#form-search').submit();
 	})
-	
-	$('#btn-create').on('click',function(event){
+
+	$('#btn-create').on('click', function(event) {
+		event.preventDefault();
+		var url1 = $(this).attr("href");
+		$.ajax({
+			url : '${root_action}/utilities/user-access',
+			type : 'get',
+			data : {
+				branch_id : '${current_branch}',
+				username : '${gobalUser.username}',
+				page_name : '${current_action}',
+				flag_type : 'edit'
+			}
+		}).done(function(response) {
+			if (response == 'true') {
+				$modal = $('.gobal-modal');
+				$modal.modal('show');
+				$.ajax({
+					url : $(this).attr("href"),
+					type : 'get'
+				}).done(function(response) {
+					$modal.find('.modal-content').html(response);
+				});
+			} else {
+				alert('คุณไม่มีสิทธิ์ในการแแก้ไขข้อมูลของสาขานี้');
+			}
+		});
+	})
+
+/* 	$('#btn-create').on('click', function(event) {
 		event.preventDefault();
 		$modal = $('.gobal-modal');
 		$modal.modal('show');
@@ -122,8 +154,7 @@
 		}).done(function(response) {
 			$modal.find('.modal-content').html(response);
 		});
-	})
-	
+	}) */
 </script>
 
 

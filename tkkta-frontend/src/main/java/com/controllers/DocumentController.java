@@ -79,6 +79,7 @@ public class DocumentController extends BaseController {
 		session.setAttribute("current_action", current_action);
 		model.addAttribute("current_title", current_title);
 		model.addAttribute("search_form", new Document());
+		model.addAttribute("access_now", userPageRep.findUserAccess(current_branch, current_user, current_action));
 
 		return auth.checkLogin(session, request, "document/index");
 	}
@@ -125,6 +126,7 @@ public class DocumentController extends BaseController {
 		Iterable<Document> docs = docRep.search(form.getDocNo(), current_branch, form.getStatus(), form.getSerieTitle(),
 				form.getCmName(), form.getPbName(), form.getCaseNameTh(), "", scn_status);
 		model.addAttribute("docs", docs);
+		model.addAttribute("access_now", userPageRep.findUserAccess(current_branch, current_user, current_action));
 		return auth.checkLogin(session, request, "document/_list");
 	}
 
@@ -318,7 +320,8 @@ public class DocumentController extends BaseController {
 		docVdoRep.deleteWhereDocNo(form.getDocNo());
 		docFileRep.deleteWhereDocNo(form.getDocNo());
 
-		docRep.delete(form);
+		if (!form.getStatus().equals("approved"))
+			docRep.delete(form);
 		return "success";
 	}
 

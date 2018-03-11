@@ -64,6 +64,7 @@ public class UserController extends BaseController {
 		model.addAttribute("search_user", new User());
 		model.addAttribute("posList", posRep.findAll());
 		model.addAttribute("user_groups", ugRep.findAll());
+		model.addAttribute("access_now", userPageRep.findUserAccess(current_branch, current_user, current_action));
 
 		return auth.checkLogin(session, request, "management/user/index");
 	}
@@ -71,8 +72,9 @@ public class UserController extends BaseController {
 	@GetMapping("/management/users/list")
 	public Object list(@ModelAttribute("search_user") User form, Model model, HttpServletRequest request,
 			HttpSession session) {
-		model.addAttribute("users", userRep.search(form.getUsername().trim(), form.getName().trim(),
-				form.getBranchId().trim(), form.getPosId().trim(), form.getGroupId().trim(), form.getStatus().trim()));
+		model.addAttribute("users", userRep.search(form.getUsername().trim(), form.getName().trim(), current_branch,
+				form.getPosId().trim(), form.getGroupId().trim(), form.getStatus().trim()));
+		model.addAttribute("access_now", userPageRep.findUserAccess(current_branch, current_user, current_action));
 		return new ModelAndView("management/user/_list");
 	}
 
@@ -92,7 +94,7 @@ public class UserController extends BaseController {
 		model.addAttribute("branchList", branchRep.findAll());
 		model.addAttribute("add_form", new User());
 
-		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, "document");
+		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, current_action);
 
 		if (userPage.getFlagAdd().equals("Y"))
 			return new ModelAndView("management/user/_add");
@@ -174,7 +176,13 @@ public class UserController extends BaseController {
 		model.addAttribute("edit_form", user);
 		model.addAttribute("user_branchs", user_branchs);
 
-		return auth.checkLogin(session, request, "management/user/edit");
+		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, current_action);
+
+		if (userPage.getFlagEdit().equals("Y"))
+			return auth.checkLogin(session, request, "management/user/edit");
+		else
+			return auth.checkLogin(session, request, "error/error_access");
+
 	}
 
 	@PostMapping("/management/users/edit")
@@ -206,10 +214,18 @@ public class UserController extends BaseController {
 
 	@GetMapping("/management/users/delete")
 	@ResponseBody
-	public Object delete(Model model, @RequestParam("username") String username) {
+	public Object delete(Model model, @RequestParam("username") String username, HttpServletRequest request,
+			HttpSession session) {
 		User user = userRep.findOne(username.trim());
 		model.addAttribute("form_delete", user);
-		return new ModelAndView("management/user/_delete");
+
+		UserPage userPage = userPageRep.findUserAccess(current_branch, current_user, current_action);
+
+		if (userPage.getFlagEdit().equals("Y"))
+			return new ModelAndView("management/user/_delete");
+		else
+			return auth.checkLogin(session, request, "error/error_access");
+
 	}
 
 	@PostMapping("/management/users/delete")
@@ -324,18 +340,24 @@ public class UserController extends BaseController {
 
 	@PostMapping("/management/users/delete-branch")
 	@ResponseBody
-	public String delete_branch(@RequestParam("branchId") String branch_id, @RequestParam("username") String username) {
+	public String delete_branch(@RequestParam("branchId") String branch_id, @RequestParam("username") String username,
+			HttpSession session, HttpServletRequest request) {
 		userPageRep.deleteUsernameAndBranch(username, branch_id);
 		userBranchRep.deleteUsernameAndBranch(username, branch_id);
+		allow_branch = userBranchRep.findUsername(current_user);
+		session.setAttribute("allow_branch", allow_branch);
 		return "success";
 	}
 
 	@GetMapping("/management/users/add-branch")
 	@ResponseBody
-	public String add_branch(@RequestParam("branch_id") String branch_id, @RequestParam("username") String username) {
+	public String add_branch(@RequestParam("branch_id") String branch_id, @RequestParam("username") String username,
+			HttpSession session, HttpServletRequest request) {
 
-		List<UserBranch> user_branchs = (List<UserBranch>) userBranchRep.find_branch_and_user(branch_id, username);
-		if (user_branchs.isEmpty()) {
+		// List<UserBranch> user_branchs = (List<UserBranch>)
+		// userBranchRep.find_branch_and_user(branch_id, username);
+		UserBranch user_branchs = userBranchRep.find_branch_and_user(branch_id, username);
+		if (user_branchs == null) {
 			Iterable<Page> pages = pageRep.findAll();
 
 			for (Page item : pages) {
@@ -366,6 +388,10 @@ public class UserController extends BaseController {
 			ub.setUpdatedDate(new Date());
 			ub.setUpdatedUser(current_user);
 			userBranchRep.save(ub);
+
+			allow_branch = userBranchRep.findUsername(current_user);
+			session.setAttribute("allow_branch", allow_branch);
+
 		}
 
 		return "Success";

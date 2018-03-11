@@ -29,31 +29,31 @@
 						<search_form:form action="${root_action}/document/list" method="get" modelAttribute="search_form" id="form-search" class="form-inline">
 
 							<div class="form-group">
-								<search_form:input path="docNo" class="form-control" placeholder="เลขที่เอกสาร"/>
+								<search_form:input path="docNo" class="form-control input-sm" placeholder="เลขที่เอกสาร"/>
 							</div>						
 							<div class="form-group">
-								<search_form:input path="branchId" class="form-control" placeholder="สาขา"/>
+								<search_form:input path="branchId" class="form-control input-sm" placeholder="สาขา"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="status" class="form-control" placeholder="สถานะ"/>
+								<search_form:input path="status" class="form-control input-sm" placeholder="สถานะ"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="serieTitle" class="form-control" placeholder="รุ่นรถ"/>
+								<search_form:input path="serieTitle" class="form-control input-sm" placeholder="รุ่นรถ"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="cmName" class="form-control" placeholder="แบบรถ"/>
+								<search_form:input path="cmName" class="form-control input-sm" placeholder="แบบรถ"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="pbName" class="form-control" placeholder="หมวดปัญหา"/>
+								<search_form:input path="pbName" class="form-control input-sm" placeholder="หมวดปัญหา"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="caseNameTh" class="form-control" placeholder="ชื่อปัญหาภาษาไทย"/>
+								<search_form:input path="caseNameTh" class="form-control input-sm" placeholder="ชื่อปัญหาภาษาไทย"/>
 							</div>	
 							<div class="form-group">
-								<search_form:input path="caseNameEn" class="form-control" placeholder="ชื่อปัญหาภาษาอังกฤษ"/>
+								<search_form:input path="caseNameEn" class="form-control input-sm" placeholder="ชื่อปัญหาภาษาอังกฤษ"/>
 							</div>	
-							<button class="btn btn-success" style="margin: 0px;">Search</button>
-							<a href="${root_action}/document/create" id="btn-create" class="btn btn-primary" style="margin: 0px;">Create</a>
+							<button class="btn btn-success  btn-sm" style="margin: 0px;">Search</button>
+							<a href="${root_action}/document/create" id="btn-create" class="btn btn-primary btn-sm" style="margin: 0px;">Create</a>
 						</search_form:form>
 					</div>
 					</div>

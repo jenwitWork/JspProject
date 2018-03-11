@@ -25,10 +25,15 @@
 				<td class="text-center">${user.posId}</td>
 				<td class="text-center">${user.groupId}</td>
 				<td class="text-center">${user.status}</td>
-				<td class="text-center"> <a href="<%=request.getContextPath() %>/management/users/edit?username=${user.username}" class="btn-edit"><i
-						class="fa fa-pencil fa-fw"></i></a>  <a href="#" onclick="remove('${user.username}')" class="btn-delete"><i
-						class="fa fa-minus-circle fa-fw"></i></a> 
-				</td>
+				<td class="text-center"><c:if
+						test="${access_now.flagEdit == 'Y'}">
+						<a
+							href="<%=request.getContextPath() %>/management/users/edit?username=${user.username}"
+							class="btn-edit"><i class="fa fa-pencil fa-fw"></i></a>
+					</c:if> <c:if test="${access_now.flagDelete == 'Y'}">
+						<a href="#" onclick="remove('${user.username}')"
+							class="btn-delete"><i class="fa fa-minus-circle fa-fw"></i></a>
+					</c:if></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -37,12 +42,32 @@
 
 
 <script type="text/javascript">
-/* 	$('#table-users').DataTable({
-		ordering : false,
-		searching : false,
-		responsive : true
-	}); */
-	
+	/* 	$('#table-users').DataTable({
+	 ordering : false,
+	 searching : false,
+	 responsive : true
+	 }); */
+
+	$('.btn-edit').on('click', function(event) {
+		event.preventDefault();
+		var url1 = $(this).attr("href");
+		$.ajax({
+			url : '${root_action}/utilities/user-access',
+			type : 'get',
+			data : {
+				branch_id : '${current_branch}',
+				username : '${gobalUser.username}',
+				page_name : '${current_action}',
+				flag_type : 'edit'
+			}
+		}).done(function(response) {
+			if (response == 'true') {
+				location.replace(url1);
+			} else {
+				alert('คุณไม่มีสิทธิ์ในการแแก้ไขข้อมูลของสาขานี้');
+			}
+		});
+	})
 
 	function remove(username) {
 		event.preventDefault();

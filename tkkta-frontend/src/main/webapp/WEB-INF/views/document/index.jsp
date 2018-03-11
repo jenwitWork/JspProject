@@ -42,8 +42,8 @@
 									</search_form:select>
 								</div>
 								<div class="form-group">
-									<search_form:input path="serieTitle" class="form-control input-sm"
-												placeholder="รุ่นรถ" />
+									<search_form:input path="serieTitle"
+												class="form-control input-sm" placeholder="รุ่นรถ" />
 								</div>
 								<div class="form-group">
 									<search_form:input path="cmName" class="form-control input-sm"
@@ -54,12 +54,14 @@
 												placeholder="หมวดปัญหา" />
 								</div>
 								<div class="form-group">
-									<search_form:input path="caseNameTh" class="form-control input-sm"
-												placeholder="ชื่อปัญหาภาษาไทย" />
+									<search_form:input path="caseNameTh"
+												class="form-control input-sm" placeholder="ชื่อปัญหาภาษาไทย" />
 								</div>
 								<button class="btn btn-success btn-sm" style="margin: 0px;">Search</button>
+								<c:if test="${access_now.flagAdd == 'Y' }">
 								<a href="${root_action}/document/create" id="btn-create"
-											class="btn btn-primary btn-sm" style="margin: 0px;">Create</a>
+												class="btn btn-primary btn-sm" style="margin: 0px;">Create</a>
+											</c:if>
 							</search_form:form>
 						</div>
 					</div>
@@ -105,11 +107,10 @@
 			$('#table-data').html(response);
 		});
 	});
-	
-	$('select').on('change',function(event){
+
+	$('select').on('change', function(event) {
 		$('#form-search').submit();
 	})
-
 </script>
 
 
