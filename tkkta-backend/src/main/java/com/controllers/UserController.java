@@ -176,7 +176,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public String edit(@ModelAttribute("edit_form") User form) {
 		User user = userRep.findOne(form.getUsername());
-		//String old_branch_id = user.getBranchId();
+		// String old_branch_id = user.getBranchId();
 		user.setName(form.getName());
 		user.setDetail(form.getDetail());
 		user.setBranchId(form.getBranchId());
@@ -188,12 +188,13 @@ public class UserController extends BaseController {
 
 		userRep.save(user);
 
-		/*if (!old_branch_id.equals(form.getBranchId())) {
-			List<UserBranch> new_branch = (List<UserBranch>) userBranchRep.find_branch_and_user(form.getBranchId(),
-					form.getUsername());
-			if (new_branch.isEmpty())
-				userBranchRep.updateBranchWhereUsername(form.getBranchId(), old_branch_id, user.getUsername());
-		}*/
+		/*
+		 * if (!old_branch_id.equals(form.getBranchId())) { List<UserBranch> new_branch
+		 * = (List<UserBranch>) userBranchRep.find_branch_and_user(form.getBranchId(),
+		 * form.getUsername()); if (new_branch.isEmpty())
+		 * userBranchRep.updateBranchWhereUsername(form.getBranchId(), old_branch_id,
+		 * user.getUsername()); }
+		 */
 
 		return "success";
 	}
@@ -363,6 +364,28 @@ public class UserController extends BaseController {
 		}
 
 		return "Success";
+	}
+
+	@GetMapping("/management/users/change-pass")
+	@ResponseBody
+	public Object change_pass(Model model, @RequestParam("username") String username, HttpServletRequest request,
+			HttpSession session) {
+		User user = userRep.findOne(username);
+		model.addAttribute("user", user);
+		return auth.checkLogin(session, request, "management/user/_change-password");
+	}
+
+	@PostMapping("/management/users/change-pass")
+	@ResponseBody
+	public String change_puass(@RequestParam("username") String username, @RequestParam("password") String password) {
+		User user = userRep.findOne(username);
+		try {
+			user.setPassword(new EncodingPassword().getEncode(password.trim()));
+			userRep.save(user);
+			return "true";
+		} catch (NoSuchAlgorithmException e) {
+			return "false";
+		}
 	}
 
 }

@@ -111,6 +111,14 @@
 									</form_user:select>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12"
+											for="last-name"> <span class="required"></span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<a href="${root_action}/management/users/change-pass?username=${edit_form.username}" class="btn-chg-pass">change password</a>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -217,7 +225,7 @@
 			$modal.find('.modal-content').html(response);
 		});
 	})
-	
+
 	$('.btn-delete').on('click', function(event) {
 		event.preventDefault();
 		$modal = $('.gobal-modal');
@@ -244,6 +252,9 @@
 			alert('Error!!, please try again.');
 		})
 	})
+	
+	
+	
 
 	$('#form-edit-user')
 			.validate(

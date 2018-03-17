@@ -30,6 +30,7 @@
 <script type="text/javascript">
 	$('#form-delete').on('submit', function(event) {
 		event.preventDefault();
+		alert($(this).attr('action'));
 		$.ajax({
 			url : $(this).attr('action'),
 			type : 'post',

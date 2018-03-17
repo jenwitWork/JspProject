@@ -105,7 +105,7 @@
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
 						<a href="dashboard" class="site_title"><img
-								src="<%=request.getContextPath()%>/resources/img/favicon.png">
+							src="<%=request.getContextPath()%>/resources/img/favicon.png">
 							<span>TOYOTA KK</span></a>
 					</div>
 
@@ -190,10 +190,9 @@
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a href="javascript:;"><i
 											class="fa fa-user pull-right"></i> Profile</a></li>
-									<li><a href="javascript:;"> <span
-											class="badge bg-red pull-right">50%</span> <span>Settings</span>
-									</a></li>
-									<li><a href="javascript:;"><i
+									<li><a href="${root_action}/management/users/change-pass?username=${gobalUser.username}" class="btn-chg-pass"><i
+											class="fa fa-key pull-right "></i> Change password</a></li>
+									<li><a href="/tkkta-backend"><i
 											class="fa fa-gear pull-right"></i> Administrator</a></li>
 									<li><a href="<%=request.getContextPath()%>/logout"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a></li>
@@ -415,6 +414,20 @@
 				type : 'get'
 			}).done(function(response) {
 				location.replace("${root_action}/document");
+			})
+		})
+
+		$('.btn-chg-pass').on('click', function(event) {
+			event.preventDefault();
+			$modal = $('.gobal-modal');
+			$modal.modal('show');
+			$.ajax({
+				url : $(this).attr('href'),
+				type : 'get'
+			}).done(function(response) {
+				$modal.find('.modal-content').html(response);
+			}).error(function(response) {
+				alert('Error!!, please try again.');
 			})
 		})
 	</script>
