@@ -29,6 +29,7 @@ import com.entities.ProblemType;
 import com.repositories.BranchRepository;
 import com.repositories.CarModelRepository;
 import com.repositories.CarSerieRepository;
+import com.repositories.DocCommentRepository;
 import com.repositories.DocDescRepository;
 import com.repositories.DocFileRepository;
 import com.repositories.DocPicRepository;
@@ -66,6 +67,9 @@ public class DocumentController extends BaseController {
 
 	@Autowired
 	private ProblemTypeRepository pbRep;
+	
+	@Autowired
+	private DocCommentRepository docComRep;
 	
 
 	@GetMapping("/document")
@@ -174,6 +178,7 @@ public class DocumentController extends BaseController {
 		model.addAttribute("pdf", pdf);
 		model.addAttribute("cppList", cppList);
 		model.addAttribute("vdo", vdo);
+		model.addAttribute("comment", docComRep.findByDocNo(doc_no));
 
 		return auth.checkLogin(session, request, "document/_edit");
 	}
@@ -264,6 +269,7 @@ public class DocumentController extends BaseController {
 		docPicRep.deleteWhereDocNo(form.getDocNo());
 		docVdoRep.deleteWhereDocNo(form.getDocNo());
 		docFileRep.deleteWhereDocNo(form.getDocNo());
+		docComRep.deleteFrom_DocNo(form.getDocNo());
 		
 		docRep.delete(form);
 		return "success";

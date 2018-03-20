@@ -205,6 +205,34 @@
 											    data-buttonText="เลือกไฟล์ VDO" type="file" name="videos" id="videos" accept="video/*" />
 										</div>
 									</div>
+									<div class="form-group row">
+										<div class="col-md-2">
+											<label class="form-control-label" for="l11">หมายเหตุ
+											</label>
+										</div>
+										<div class="col-md-10">
+											<table class="table">
+												<thead>
+													<tr>
+														<th class="text-left">#</th>
+														<th class="text-left">Comment</th>
+														<th class="text-left">ผู้อนุมัติ</th>
+														<th class="text-left">วันที่ดำเนินการ</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="item" items="${comment}" varStatus="count">
+														<tr>
+															<td class="text-left">${count.index+1}</td>
+															<td class="text-left">${item.comment}</td>
+															<td class="text-left">${item.username}</td>
+															<td class="text-left">${item.commentDate}</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</edit_form:form>
 							</div>
 						</div>

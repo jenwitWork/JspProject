@@ -73,7 +73,7 @@ public class DocumentController extends BaseController {
 
 	@Autowired
 	private UserPageRepository userPageRep;
-	
+
 	@Autowired
 	private DocCommentRepository docComRep;
 
@@ -255,6 +255,9 @@ public class DocumentController extends BaseController {
 		form.setPbName(pbRep.findOne(form.getPbType().trim()).getPbName().trim());
 		form.setUpdatedDate(new Date());
 
+		if (doc.getStatus().equals("not-approved"))
+			form.setStatus("pending");
+
 		doc.update(form);
 
 		cpd.setDocNo(form.getDocNo().trim());
@@ -321,13 +324,15 @@ public class DocumentController extends BaseController {
 	public String delete(@ModelAttribute("delete_form") Document form) {
 		form = docRep.findOne(form.getDocNo().trim());
 
-		docDescRep.delete(form.getDocNo());
-		docPicRep.deleteWhereDocNo(form.getDocNo());
-		docVdoRep.deleteWhereDocNo(form.getDocNo());
-		docFileRep.deleteWhereDocNo(form.getDocNo());
+		if (!form.getStatus().equals("approved")) {
+			docDescRep.delete(form.getDocNo());
+			docPicRep.deleteWhereDocNo(form.getDocNo());
+			docVdoRep.deleteWhereDocNo(form.getDocNo());
+			docFileRep.deleteWhereDocNo(form.getDocNo());
+			docComRep.deleteFrom_DocNo(form.getDocNo());
 
-		if (!form.getStatus().equals("approved"))
 			docRep.delete(form);
+		}
 		return "success";
 	}
 
@@ -353,7 +358,7 @@ public class DocumentController extends BaseController {
 		if (status.equals("approved")) {
 			doc.setStatus("approved");
 			docRep.save(doc);
-		}else {
+		} else {
 			doc.setStatus("not-approved");
 			docRep.save(doc);
 			DocComment docCom = new DocComment();
@@ -361,10 +366,10 @@ public class DocumentController extends BaseController {
 			docCom.setDocNo(doc_no);
 			docCom.setUsername(current_user);
 			docCom.setCommentDate(new Date());
-			
+
 			docComRep.save(docCom);
-			
-		}		
+
+		}
 		return "success";
 	}
 
