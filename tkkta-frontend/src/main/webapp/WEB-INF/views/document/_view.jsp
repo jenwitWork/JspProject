@@ -132,7 +132,7 @@
 										</div>
 										<div class="col-md-11">
 											<c:if test="${not empty pdf}">
-												<a target="_blank" href="${pdf.pdfPath}">${pdf.pdfName}</a>
+												<a target="_blank" href="${pdf.pdfPath}">${pdf.pdfName}</a>												
 											</c:if>
 										</div>
 									</div>

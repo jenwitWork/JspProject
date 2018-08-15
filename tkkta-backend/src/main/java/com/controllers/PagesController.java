@@ -121,9 +121,13 @@ public class PagesController extends BaseController {
 	@PostMapping("/management/pages/delete")
 	@ResponseBody
 	public String delete(@ModelAttribute("delete_form") Page form, HttpServletRequest request, HttpSession session) {
+
 		form = pageRep.findOne(form.getPageName().trim());
+
 		pageRep.delete(form);
+		//userPageRep.deletePagename(form.getPageName().trim());
 		return "success";
+
 	}
 
 	@GetMapping("/management/pages/check-dup")

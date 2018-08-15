@@ -40,4 +40,9 @@ public interface UserPageRepository extends CrudRepository<UserPage, Integer> {
 	@Query(value = "delete from user_page where username = ?1 and branch_id = ?2", nativeQuery = true)
 	void deleteUsernameAndBranch(String username, String branch_id);
 
+	@Modifying
+	@Transactional
+	@Query(value = "delete from user_page where page_name = ?1", nativeQuery = true)
+	void deletePagename(String page_name);
+
 }
