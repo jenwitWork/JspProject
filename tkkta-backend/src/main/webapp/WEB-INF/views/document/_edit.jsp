@@ -36,7 +36,7 @@
 									<div class="form-group row">
 										<div class="col-md-12 text-right">
 											<button type="submit" name="submit" class="btn width-150 btn-success">บันทึก</button>
-											<button type="button" class="btn btn-warning">ยกเลิก</button>
+											<a href="${root_action}/document" class="btn btn-warning">ยกเลิก</a>
 										</div>
 									</div>
 									<div class="form-group row">
