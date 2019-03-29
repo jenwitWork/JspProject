@@ -18,10 +18,24 @@
 <title>Modern Business - Start Bootstrap Template</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<%=request.getContextPath()%>/resources/css/modern-business.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/modern-business.css"
+	rel="stylesheet">
+
+<!-- Custom fonts for this template-->
+<link
+	href="<%=request.getContextPath()%>/resources/admin-template/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template-->
+<link
+	href="<%=request.getContextPath()%>/resources/admin-template/css/sb-admin.css"
+	rel="stylesheet">
 
 </head>
 
@@ -40,11 +54,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="services.html">ดูหวย</a>
+					<li class="nav-item"><a class="nav-link" href="main">ดูหวย</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">โปรโมชั่น</a>
+					<li class="nav-item"><a class="nav-link" href="promotion">โปรโมชั่น</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">ติดต่อแอดมิน</a>
+					<li class="nav-item"><a class="nav-link" href="contact">ติดต่อแอดมิน</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -53,7 +67,7 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<a class="dropdown-item" href="full-width.html">เปลี่ยนรหัสผ่าน</a>
-							<a class="dropdown-item" href="sidebar.html">ออกจากระบบ</a>
+							<a class="dropdown-item" href="logout">ออกจากระบบ</a>
 						</div></li>
 				</ul>
 			</div>
@@ -63,9 +77,7 @@
 
 
 	<!-- Page Content -->
-	<div class="container">
-		<jsp:invoke fragment="content"></jsp:invoke>
-	</div>
+	<jsp:invoke fragment="content"></jsp:invoke>
 	<!-- /.container -->
 
 	<!-- Footer -->
@@ -78,8 +90,14 @@
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="<%=request.getContextPath()%>/resources/admin-template/vendor/jquery-easing/jquery.easing.min.js"></script>
+
 
 </body>
 

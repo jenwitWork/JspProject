@@ -7,6 +7,8 @@
 
 <mt:_layout title="${current_title }">
 	<jsp:attribute name="content">
-		indes
+		<div class="container">
+			indes
+		</div>
 	</jsp:attribute>
 </mt:_layout>

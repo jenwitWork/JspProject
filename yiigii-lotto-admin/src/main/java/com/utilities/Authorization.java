@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.controllers.BaseController;
-import com.entities.User;
+import com.entities.Admin;
 
 public class Authorization extends BaseController {
 
@@ -21,9 +21,9 @@ public class Authorization extends BaseController {
 		} else {
 			session = request.getSession();
 			ssId = session.getId().trim();
-			User gobalUser = (User) session.getAttribute("gobalUser");
+			Admin active_user = (Admin) session.getAttribute("active_user");
 			if (ssId != null)
-				if (gobalUser != null)
+				if (active_user != null)
 					return new ModelAndView(view_path);
 				else
 					return new RedirectView(request.getContextPath()+"/login");
