@@ -16,6 +16,9 @@ public class MainController extends BaseController {
 	public Object index(Model model, HttpSession session, HttpServletRequest request) {
 		current_action = "main";
 		current_title = "main";
+		session.setAttribute("current_action", current_action);
+		session.setAttribute("current_title", current_title);
+		
 		User active_user = (User) session.getAttribute("active_user");
 		if (active_user != null)
 			if (active_user.getStatus().equals("active")) {

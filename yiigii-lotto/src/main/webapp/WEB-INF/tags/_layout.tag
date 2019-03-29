@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Modern Business - Start Bootstrap Template</title>
+<title>${current_title }</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -54,11 +54,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="main">ดูหวย</a>
+					<li class="nav-item ${current_action == 'main' ? 'active' : '' }"><a class="nav-link" href="main">ดูหวย</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="promotion">โปรโมชั่น</a>
+					<li class="nav-item ${current_action == 'promotion' ? 'active' : '' }"><a class="nav-link" href="promotion">โปรโมชั่น</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="contact">ติดต่อแอดมิน</a>
+					<li class="nav-item ${current_action == 'contact' ? 'active' : '' }"><a class="nav-link" href="contact">ติดต่อแอดมิน</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -66,7 +66,7 @@
 							ข้อมูลส่วนตัว </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="full-width.html">เปลี่ยนรหัสผ่าน</a>
+							<a class="dropdown-item" href="change-pass">เปลี่ยนรหัสผ่าน</a>
 							<a class="dropdown-item" href="logout">ออกจากระบบ</a>
 						</div></li>
 				</ul>
@@ -83,8 +83,7 @@
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2019</p>
+			<p class="m-0 text-center text-white">Copyright &copy; YiiGii Lotto 2019</p>
 		</div>
 		<!-- /.container -->
 	</footer>
@@ -92,6 +91,8 @@
 	<!-- Bootstrap core JavaScript -->
 	<script
 		src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+		<script
+		src="<%=request.getContextPath()%>/resources/js/jquery-validation/jquery.validate.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Core plugin JavaScript-->

@@ -16,30 +16,19 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">ลงทะเบียน</div>
       <div class="card-body">
-        <form action="register" method="post">
+        <form id="regis-form" action="register" method="post">
           <div class="form-group">
-                <div class="form-label-group">
-							<input type="text" id="username" name="username"
+                <input type="text" id="username" name="username"
 										class="form-control" placeholder="Username"
 										required="required" autofocus="autofocus">
-							<label for="username">Username</label>
-						</div>
           </div>
           <div class="form-group">
-                <div class="form-label-group">
-							<input type="password" id="password" name="password"
-										class="form-control" placeholder="รหัสผ่าน"
-										required="required" autofocus="autofocus">
-							<label for="password">รหัสผ่าน</label>
-						</div>
+                <input type="password" id="password" name="password"
+										class="form-control" placeholder="รหัสผ่าน">
           </div>
           <div class="form-group">
-                <div class="form-label-group">
-                   <input type="password" id="confirmPassword"
-										class="form-control" placeholder="รหัสผ่านอีกครั้ง"
-										required="required">
-                  <label for="confirmPassword">รหัสผ่านอีกครั้ง</label>
-                </div>
+          <input type="password" id="c_password" name="c_password"
+										class="form-control" placeholder="รหัสผ่านอีกครั้ง">
           </div>
            <button type="submit" class="btn btn-primary btn-block">ลงทะเบียน</button>
         </form>
@@ -54,3 +43,67 @@
 
 	</jsp:attribute>
 </mt:_layout>
+
+
+
+<script type="text/javascript">
+	/* $('#regis-form').on('submit', function(event) {
+		event.preventDefault();
+		if ($(this).valid()) {
+			$.ajax({
+				url : $(this).attr("action"),
+				type : 'post',
+				data : $(this).serialize()
+			}).done(function(response) {
+			}).error(function(response) {
+				alert("ไม่สามารเพิ่มข้อมูลได้  กรุณาลองใหม่อีกครั้ง");
+			})
+		}
+	});  */
+
+	$('#regis-form').validate({
+		rules : {
+			username : {
+				required : true,
+				maxlength : 10,
+				remote : {
+					url : 'register/check-dup',
+					type : 'get',
+					data : {
+						username : function(){
+							return $('#regis-form input[name=username]').val();
+						},
+						old_username: function(){
+							return $('#regis-form input[name=old_username]').val();
+						}
+					}
+				}
+			},
+			password : {
+				required : true,
+				maxlength : 50
+			},
+			c_password : {
+				required : true,
+				maxlength : 50,
+				equalTo : "#password"
+			}
+		},
+		messages : {
+			username : {
+				required : 'ระบุชื่อผู้ใช้งาน',
+				maxlength : 'ชื่อผู้ใช้งานต้องไม่เกิน 10 ตัวอักษร',
+				remote : 'ชื่อผู้ใช้งานถูกใช้ไปแล้ว'
+			},
+			password : {
+				required : 'ระบุรหัสผ่าน',
+				maxlength : 'รหัสผ่านต้องไม่เกิน 50 ตัวอักษร'
+			},
+			c_password : {
+				required : 'ระบุรหัสผ่าน',
+				maxlength : 'รหัสผ่านต้องไม่เกิน 50 ตัวอักษร',
+				equalTo : "รหัสผ่านไม่ตรงกัน"
+			}
+		}
+	})
+</script>

@@ -1,5 +1,4 @@
 package com.controllers;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entities.User;
 import com.repositories.UserRepository;
@@ -54,6 +54,18 @@ public class LoginController extends BaseController {
 		user_rep.save(user);
 		
 		return "login/success";
+	}
+	
+	@GetMapping("/register/check-dup")
+	@ResponseBody
+	public String checkDup(@RequestParam("username") String username) {
+		String return_value = "false";
+		User user = user_rep.findOne(username.trim());
+		if(user != null)
+			return_value = "false";
+		else
+			return_value = "true";
+		return return_value;
 	}
 	
 	@GetMapping("/logout")

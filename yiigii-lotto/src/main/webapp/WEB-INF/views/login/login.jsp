@@ -14,33 +14,64 @@
 		<div class="card card-login mx-auto mt-5">
 			<div class="card-header">กรุณาเข้าสู่ระบบ</div>
 			<div class="card-body">
-				<form action="login" method="post">
+				<form id="regis-form" action="login" method="post">
 					<div class="form-group">
-						<div class="form-label-group">
-							<input type="text" id="username" name="username"
-										class="form-control" placeholder="Username"
-										required="required" autofocus="autofocus">
-							<label for="username">Username</label>
-						</div>
+						<input type="text" id="username" name="username"
+									class="form-control" placeholder="Username" required="required"
+									autofocus="autofocus">
 					</div>
 					<div class="form-group">
-						<div class="form-label-group">
-							<input type="password" id="password" name="password"
-										class="form-control" placeholder="Password"
-										required="required"> <label for="password">Password</label>
-						</div>
-					</div>
+						<input type="password" id="password" name="password"
+									class="form-control" placeholder="Password" required="required">
+					
+							</div>
 					<button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
 					<a href="register" class="btn btn-success btn-block">ลงทะเบียน</a>
 				</form>
 				<br>
 				<div class="text-center"> <a class="d-block small"
-								href="forgot-password.html">หากลืมรหัสผ่าน clikc ที่นี่  เพื่อติดต่อแอดมิน</a>
+								href="forgot-password.html">หากลืมรหัสผ่าน คลิ๊กที่นี่  เพื่อติดต่อแอดมิน</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	
+	
+	
 	</jsp:attribute>
 </mt:_layout>
+<script type="text/javascript">
+	/* $('#regis-form').on('submit', function(event) {
+		event.preventDefault();
+		if ($(this).valid()) {
+			$.ajax({
+				url : $(this).attr("action"),
+				type : 'post',
+				data : $(this).serialize()
+			}).done(function(response) {
+			}).error(function(response) {
+				alert("ไม่สามารเพิ่มข้อมูลได้  กรุณาลองใหม่อีกครั้ง");
+			})
+		}
+	});  */
+
+	$('#regis-form').validate({
+		rules : {
+			username : {
+				required : true
+			},
+			password : {
+				required : true
+			}
+		},
+		messages : {
+			username : {
+				required : 'ระบุชื่อผู้ใช้งาน'
+			},
+			password : {
+				required : 'ระบุรหัสผ่าน'
+			}
+		}
+	})
+</script>
