@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-07-24T23:01:54 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PermanentReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7402e005-ea76-4921-8cde-3324050de2cc">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cHJvamVjdF9hc3NldC5wZXJtYW5lbnQgQVMgLDE1LDE1LDk5MDEwMDU0LTAzN2MtNGRhZS05Y2Nl&#xA;LWYyNGViMDM3OTA0OTtwcm9qZWN0X2Fzc2V0LnBlcl9kZXRhaWxzIEFTICwxMzgsNDEsMDBlYTVm&#xA;ZDQtNmRhOS00MTUwLWFkNzEtNDNmNmE4Y2I3MzhlOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TestReport"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM project_asset.permanent AS p
+	join project_asset.per_details AS pd ON 
+	 p.per_id = pd.per_id]]>
+	</queryString>
+	<field name="per_id" class="java.lang.Integer"/>
+	<field name="per_code" class="java.lang.String"/>
+	<field name="per_name" class="java.lang.String"/>
+	<field name="amount" class="java.lang.Integer"/>
+	<field name="unit" class="java.lang.String"/>
+	<field name="price" class="java.lang.Double"/>
+	<field name="peice_sum" class="java.lang.Double"/>
+	<field name="input_date" class="java.lang.String"/>
+	<field name="life_time" class="java.lang.Integer"/>
+	<field name="note" class="java.lang.String"/>
+	<field name="asset_id" class="java.lang.Integer"/>
+	<field name="asset_code" class="java.lang.String"/>
+	<field name="asset_name" class="java.lang.String"/>
+	<field name="per_status" class="java.lang.String"/>
+	<field name="per_storage" class="java.lang.String"/>
+	<field name="COLUMN_16" class="java.lang.String"/>
+	<field name="COLUMN_17" class="java.lang.Integer"/>
+	<field name="use_status" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="405" y="34" width="100" height="30" uuid="7f4266be-451d-4618-962e-c6c848827b27"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="31" width="100" height="30" uuid="e53f6134-28f6-4f56-899b-511e30e7bbf9"/>
+				<text><![CDATA[โปรเจ็คจบ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="0" width="100" height="30" uuid="a115faec-9f5a-4761-9325-54d472a25bbb"/>
+				<text><![CDATA[per_name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="87" y="42" width="100" height="30" uuid="432cf8b0-3e84-4e60-a06b-423ea815542c"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{per_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
