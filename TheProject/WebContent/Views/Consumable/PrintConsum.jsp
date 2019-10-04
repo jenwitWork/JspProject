@@ -39,8 +39,7 @@
 							<caption class="text-center"></caption>
 							<thead>
 								<tr>
-									<th colspan="7" class="text-center">คณะวิศวกรรศาสตร์
-										วิทยาเขตขอนแก่น<br> สาขาวิชาวิศวกรรมคอมพิวเตอร์<br>
+									<th colspan="7" class="text-center">
 										รายการวัสดุสิ้นเปลืองคงเหลิอ
 									</th>
 								</tr>

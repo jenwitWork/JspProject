@@ -57,7 +57,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="11" class="text-center">สาขาวิชาวิศวกรรมคอมพิวเตอร์</td>
+									<td colspan="11" class="text-center">รายการวัสดุถาวร</td>
 								</tr>
 								<%
 									for (Permanent list : perList) {

@@ -409,8 +409,8 @@
 					address : {
 						maxlength : "สูงสุด 250 ตัวอักษร"
 					},
-					department_id : "เลิอกสาขาวิชา",
-					faculty_id : "เลือกคณะ",
+					department_id : "เลิอกตำแหน่ง",
+					faculty_id : "เลือกแผนก",
 					first_name : {
 						required : "ระบุชื่อ",
 						maxlength : "สูงสุด 100 ตัวอักษร",
