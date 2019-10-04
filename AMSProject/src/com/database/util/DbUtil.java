@@ -14,9 +14,9 @@ public class DbUtil {
         else {
             try {
                 String driver = "com.mysql.jdbc.Driver";
-                String url = "jdbc:mysql://localhost:3306/test_asset";
+                String url = "jdbc:mysql://localhost:3306/project_asset";
                 String user = "root";
-                String password = "ibraganger";
+                String password = "1234";
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
                 System.out.println("connection complete!!");

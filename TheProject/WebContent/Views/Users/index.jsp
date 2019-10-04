@@ -59,7 +59,7 @@
 									</div>
 									<div class="form-group">
 										<select class="form-control" name="faculty_id" id="faculty_id">
-											<option value="">เลือกคณะ...</option>
+											<option value="">เลือกแผนก...</option>
 											<%
 												for (Faculty fc : listFc) {
 													if (fc.getFaculty_id() == Integer.parseInt(faculty_id)) {
@@ -78,7 +78,7 @@
 									<div class="form-group">
 										<select class="form-control" name="department_id"
 											id="department_id">
-											<option value="">เลือกสาขาวิชา...</option>
+											<option value="">เลือกตำแหน่ง...</option>
 											<%
 												for (Department dp : listDp) {
 													if (dp.getDepartment_id() == Integer.parseInt(department_id)) {
@@ -141,8 +141,8 @@
 											<th>รหัสประจำตัว</th>
 											<th>ชื่อผู้ใช้</th>
 											<th>ชื่อ - สกุล</th>
-											<th class="text-center">คณะ</th>
-											<th class="text-center">สาขาวิชา</th>
+											<th class="text-center">แผนก</th>
+											<th class="text-center">ตำแหน่ง</th>
 											<th class="text-center">สิทธิ์</th>
 											<th class="text-center">สถานะ</th>
 											<th class="text-center">จัดการ</th>

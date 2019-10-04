@@ -100,10 +100,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">คณะ</label>
+								<label class="col-sm-3 control-label">แผนก</label>
 								<div class="col-sm-9">
 									<select name="faculty_id" id="faculty_id" class="form-control">
-										<option value="">เลือกคณะ...</option>
+										<option value="">เลือกแผนก...</option>
 										<%
 											for (Faculty fc : listFc) {
 												if (fc.getFaculty_id() == userEdit.getFaculty_id()) {
@@ -121,11 +121,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">สาขาวิชา</label>
+								<label class="col-sm-3 control-label">ตำแหน่ง</label>
 								<div class="col-sm-9">
 									<select name="department_id" id="department_id"
 										class="form-control">
-										<option value="">เลือกสาขาวิชา...</option>
+										<option value="">เลือกตำแหน่ง...</option>
 										<%
 											for (Department dp : listDp) {
 												if (dp.getDepartment_id() == userEdit.getDepartment_id()) {
